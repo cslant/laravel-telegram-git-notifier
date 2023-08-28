@@ -1,0 +1,63 @@
+{
+  "name": "lbiltech/laravel-telegram-git-notifier",
+  "description": "Send notification from Gitlab and Github events to Telegram",
+  "keywords": [
+    "lbiltech",
+    "telegram-bot",
+    "notify",
+    "git-webhook",
+    "telegram-notifier",
+    "telegram-git-notifier",
+    "github-notifier",
+    "gitlab-notifier",
+    "github-telegram-bot",
+    "gitlab-telegram-bot",
+    "telegram-bot-github-notify",
+    "telegram-bot-gitlab-notify"
+  ],
+  "homepage": "https://github.com/lbiltech/laravel-telegram-git-notifier",
+  "type": "library",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "LbilTech\\LaravelTelegramGitNotifier\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "LbilTech\\LaravelTelegramGitNotifier\\Tests\\": "tests/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Tan Nguyen",
+      "email": "tannp27@gmail.com",
+      "homepage": "https://tanhongit.com",
+      "role": "Lead"
+    },
+    {
+      "name": "Xuan Thinh",
+      "email": "pxthinh.vn@gmail.com",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": "^8.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.5|^10.0",
+    "mockery/mockery": "^1.5"
+  },
+  "support": {
+    "issues": "https://github.com/lbiltech/laravel-telegram-git-notifier/issues"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "LbilTech\\LaravelTelegramGitNotifier\\Providers\\TelegramGitNotifierServiceProvider"
+      ]
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
