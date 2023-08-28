@@ -16,18 +16,7 @@
     "telegram-bot-gitlab-notify"
   ],
   "homepage": "https://github.com/lbiltech/laravel-telegram-git-notifier",
-  "type": "library",
   "license": "MIT",
-  "autoload": {
-    "psr-4": {
-      "LbilTech\\LaravelTelegramGitNotifier\\": "src/"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "LbilTech\\LaravelTelegramGitNotifier\\Tests\\": "tests/"
-    }
-  },
   "authors": [
     {
       "name": "Tan Nguyen",
@@ -41,6 +30,16 @@
       "role": "Developer"
     }
   ],
+  "autoload": {
+    "psr-4": {
+      "LbilTech\\LaravelTelegramGitNotifier\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "LbilTech\\LaravelTelegramGitNotifier\\Tests\\": "tests/"
+    }
+  },
   "require": {
     "php": "^8.0"
   },
@@ -57,6 +56,9 @@
         "LbilTech\\LaravelTelegramGitNotifier\\Providers\\TelegramGitNotifierServiceProvider"
       ]
     }
+  },
+  "config": {
+    "sort-packages": true
   },
   "minimum-stability": "dev",
   "prefer-stable": true
