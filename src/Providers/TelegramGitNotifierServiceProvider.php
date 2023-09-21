@@ -1,6 +1,6 @@
 <?php
 
-namespace LbilTech\LaravelTelegramGitNotifier\App\Providers;
+namespace LbilTech\LaravelTelegramGitNotifier\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
