@@ -1,6 +1,6 @@
 <?php
 
-namespace LbilTech\LaravelTelegramGitNotifier\App\Providers;
+namespace LbilTech\LaravelTelegramGitNotifier\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -31,7 +31,7 @@ class TelegramGitNotifierServiceProvider extends ServiceProvider
         $this->loadTranslationsFrom(__DIR__.'/../../lang', 'telegram-git-notifier');
 
         $this->publishes([
-            __DIR__.'/../../lang' => resource_path('lang/vendor/laravel-generator'),
+            __DIR__.'/../../lang' => resource_path('lang/vendor/telegram-git-notifier'),
         ], 'lang');
     }
 
