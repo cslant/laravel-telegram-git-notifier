@@ -1,8 +1,8 @@
 {
-  "name": "lbiltech/laravel-telegram-git-notifier",
+  "name": "cslant/laravel-telegram-git-notifier",
   "description": "Send notification from Gitlab and Github events to Telegram",
   "keywords": [
-    "lbiltech",
+    "cslant",
     "telegram-bot",
     "notify",
     "git-webhook",
@@ -15,7 +15,7 @@
     "telegram-bot-github-notify",
     "telegram-bot-gitlab-notify"
   ],
-  "homepage": "https://github.com/lbiltech/laravel-telegram-git-notifier",
+  "homepage": "https://github.com/cslant/laravel-telegram-git-notifier",
   "license": "MIT",
   "authors": [
     {
@@ -32,29 +32,30 @@
   ],
   "autoload": {
     "psr-4": {
-      "LbilTech\\LaravelTelegramGitNotifier\\": "src/"
+      "CSlant\\LaravelTelegramGitNotifier\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "LbilTech\\LaravelTelegramGitNotifier\\Tests\\": "tests/"
+      "CSlant\\LaravelTelegramGitNotifier\\Tests\\": "tests/"
     }
   },
   "require": {
     "php": "^8.0",
-    "lbiltech/telegram-git-notifier": "dev-main"
+    "CSlant/telegram-git-notifier": "dev-main"
   },
   "require-dev": {
-    "phpunit/phpunit": "^9.5|^10.0",
-    "mockery/mockery": "^1.6"
+    "friendsofphp/php-cs-fixer": "^v3.37.1",
+    "pestphp/pest": "^2.24",
+    "phpstan/phpstan": "^1.10.39"
   },
   "support": {
-    "issues": "https://github.com/lbiltech/laravel-telegram-git-notifier/issues"
+    "issues": "https://github.com/cslant/laravel-telegram-git-notifier/issues"
   },
   "extra": {
     "laravel": {
       "providers": [
-        "LbilTech\\LaravelTelegramGitNotifier\\Providers\\TelegramGitNotifierServiceProvider"
+        "CSlant\\LaravelTelegramGitNotifier\\Providers\\TelegramGitNotifierServiceProvider"
       ]
     }
   },
