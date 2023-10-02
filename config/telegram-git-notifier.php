@@ -28,6 +28,6 @@ return [
         ],
         'globals' => [
             'access_denied' => env('TGN_VIEW_GLOBALS_ACCESS_DENIED', 'globals.access_denied'),
-        ]
-    ]
+        ],
+    ],
 ];
