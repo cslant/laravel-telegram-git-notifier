@@ -5,9 +5,7 @@ namespace LbilTech\LaravelTelegramGitNotifier\Http\Actions;
 use LbilTech\TelegramGitNotifier\Services\WebhookService;
 
 /**
- * Class WebhookAction
- *
- * @package LbilTech\LaravelTelegramGitNotifier\Http\Actions
+ * Class WebhookAction.
  */
 class WebhookAction
 {
@@ -23,7 +21,7 @@ class WebhookAction
     }
 
     /**
-     * Set webhook for telegram bot
+     * Set webhook for telegram bot.
      *
      * @return false|string
      */
@@ -33,7 +31,7 @@ class WebhookAction
     }
 
     /**
-     * Delete webhook for telegram bot
+     * Delete webhook for telegram bot.
      *
      * @return false|string
      */

@@ -18,4 +18,3 @@ Route::prefix('telegram-git-notifier')->group(function () {
     Route::get('/set-webhook', [WebhookAction::class, 'set'])->name('set-webhook');
     Route::get('/delete-webhook', [WebhookAction::class, 'delete'])->name('delete-webhook');
 });
-

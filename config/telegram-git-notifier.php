@@ -4,7 +4,7 @@ return [
     'app' => [
         'name' => env('APP_NAME', 'Laravel Telegram Git Notify'),
         'url'      => env('APP_URL', 'http://localhost:8000'),
-        'timezone' => env('TIMEZONE','Asia/Ho_Chi_Minh'),
+        'timezone' => env('TIMEZONE', 'Asia/Ho_Chi_Minh'),
     ],
 
     'telegram-bot' => [
@@ -18,7 +18,7 @@ return [
 
     'author' => [
         'contact'     => env('TGN_AUTHOR_CONTACT', 'https://t.me/tannp27'),
-        'source_code' => env('TGN_AUTHOR_SOURCE_CODE','https://github.com/lbiltech/telegram-git-notifier'),
+        'source_code' => env('TGN_AUTHOR_SOURCE_CODE', 'https://github.com/lbiltech/telegram-git-notifier'),
     ],
 
     'view' => [
@@ -28,6 +28,6 @@ return [
         ],
         'globals' => [
             'access_denied' => env('TGN_VIEW_GLOBALS_ACCESS_DENIED', 'globals.access_denied'),
-        ]
-    ]
+        ],
+    ],
 ];
