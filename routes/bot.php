@@ -15,6 +15,8 @@ use LbilTech\LaravelTelegramGitNotifier\Http\Actions\WebhookAction;
 */
 
 Route::prefix('telegram-git-notifier')->group(function () {
-    Route::get('/set-webhook', [WebhookAction::class, 'set'])->name('set-webhook');
-    Route::get('/delete-webhook', [WebhookAction::class, 'delete'])->name('delete-webhook');
+    Route::prefix('webhook')->group(function () {
+        Route::get('/set', [WebhookAction::class, 'set'])->name('set-webhook');
+        Route::get('/delete', [WebhookAction::class, 'delete'])->name('delete-webhook');
+    });
 });

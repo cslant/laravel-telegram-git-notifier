@@ -4,9 +4,6 @@ namespace LbilTech\LaravelTelegramGitNotifier\Http\Actions;
 
 use LbilTech\TelegramGitNotifier\Services\WebhookService;
 
-/**
- * Class WebhookAction.
- */
 class WebhookAction
 {
     protected string $token;
