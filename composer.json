@@ -42,7 +42,7 @@
   },
   "require": {
     "php": "^8.0",
-    "lbiltech/telegram-git-notifier": "^1.0"
+    "lbiltech/telegram-git-notifier": "dev-main"
   },
   "require-dev": {
     "phpunit/phpunit": "^9.5|^10.0",
