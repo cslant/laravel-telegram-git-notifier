@@ -7,7 +7,7 @@ return [
         'timezone' => env('TIMEZONE', 'Asia/Ho_Chi_Minh'),
     ],
 
-    'telegram-bot' => [
+    'bot' => [
         'token'           => env('TELEGRAM_BOT_TOKEN', ''),
         'chat_id'         => env('TELEGRAM_BOT_CHAT_ID', ''),
         'notify_chat_ids' => explode(
@@ -17,7 +17,7 @@ return [
     ],
 
     'author' => [
-        'contact'     => env('TGN_AUTHOR_CONTACT', 'https://t.me/tannp27'),
+        'discussion'     => env('TGN_AUTHOR_CONTACT', 'https://t.me/tannp27'),
         'source_code' => env(
             'TGN_AUTHOR_SOURCE_CODE',
             'https://github.com/lbiltech/laravel-telegram-git-notifier'
