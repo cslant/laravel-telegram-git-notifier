@@ -18,7 +18,7 @@ class WebhookAction
     }
 
     /**
-     * Set webhook for telegram bot
+     * Set webhook for telegram bot.
      *
      * @return false|string
      */
@@ -28,7 +28,7 @@ class WebhookAction
     }
 
     /**
-     * Delete webhook for telegram bot
+     * Delete webhook for telegram bot.
      *
      * @return false|string
      */
@@ -38,7 +38,7 @@ class WebhookAction
     }
 
     /**
-     * Get webhook update
+     * Get webhook update.
      *
      * @return false|string
      */
