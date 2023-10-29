@@ -24,7 +24,7 @@ class TelegramGitNotifierServiceProvider extends ServiceProvider
         }
 
         $viewPath = __DIR__.'/../../resources/views';
-        if (file_exists($routePath)) {
+        if (file_exists($viewPath)) {
             $this->loadViewsFrom($viewPath, 'telegram-git-notifier');
         }
 
