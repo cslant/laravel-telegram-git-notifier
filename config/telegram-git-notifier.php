@@ -2,8 +2,8 @@
 
 return [
     'app' => [
-        'name'     => env('APP_NAME', 'Laravel Telegram Git Notify'),
-        'url'      => env('APP_URL', 'http://localhost:8000'),
+        'name'     => env('TGN_APP_NAME', 'Laravel Telegram Git Notify'),
+        'url'      => env('TGN_APP_URL', 'http://localhost:8000'),
         'timezone' => env('TIMEZONE', 'Asia/Ho_Chi_Minh'),
     ],
 
@@ -14,7 +14,10 @@ return [
     ],
 
     'author' => [
-        'discussion'  => env('TGN_AUTHOR_CONTACT', 'https://t.me/tannp27'),
+        'discussion'  => env(
+            'TGN_AUTHOR_DISCUSSION',
+            'https://github.com/lbiltech/telegram-git-notifier/discussions'
+        ),
         'source_code' => env(
             'TGN_AUTHOR_SOURCE_CODE',
             'https://github.com/lbiltech/laravel-telegram-git-notifier'
