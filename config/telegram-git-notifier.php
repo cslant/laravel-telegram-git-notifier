@@ -10,7 +10,7 @@ return [
     'bot' => [
         'token'           => env('TELEGRAM_BOT_TOKEN', ''),
         'chat_id'         => env('TELEGRAM_BOT_CHAT_ID', ''),
-        'notify_chat_ids' => env('TELEGRAM_NOTIFY_CHAT_IDS', '')
+        'notify_chat_ids' => env('TELEGRAM_NOTIFY_CHAT_IDS', ''),
     ],
 
     'author' => [
