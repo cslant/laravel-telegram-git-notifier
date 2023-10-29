@@ -23,7 +23,7 @@ return [
          * And use comma "," if you want to add multiple thread IDs
          * -------------------------------------------------------
          * The environment variable is expected to be in the format:
-         * "chat_id1;chat_id2:thread_id2;chat_id3:thread_id3_1,thread_id3_2;..."
+         * "chat_id1;chat_id2:thread_id2;chat_id3:thread_id3_1,thread_id3_2;...".
         */
         'notify_chat_ids' => env('TELEGRAM_NOTIFY_CHAT_IDS', ''),
     ],
