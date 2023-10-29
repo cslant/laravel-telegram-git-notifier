@@ -2,38 +2,48 @@
 
 namespace LbilTech\LaravelTelegramGitNotifier\Http\Actions;
 
-use LbilTech\TelegramGitNotifier\Services\WebhookService;
+use LbilTech\TelegramGitNotifier\Webhook;
 
 class WebhookAction
 {
     protected string $token;
 
-    protected WebhookService $webhookService;
+    protected Webhook $webhook;
 
-    public function __construct(WebhookService $webhookService)
+    public function __construct()
     {
-        $this->webhookService = $webhookService;
-        $this->webhookService->setToken(config('telegram-git-notifier.bot.token'));
-        $this->webhookService->setUrl(config('telegram-git-notifier.app.url'));
+        $this->webhook = new Webhook();
+        $this->webhook->setToken(config('telegram-git-notifier.bot.token'));
+        $this->webhook->setUrl(config('telegram-git-notifier.app.url'));
     }
 
     /**
-     * Set webhook for telegram bot.
+     * Set webhook for telegram bot
      *
      * @return false|string
      */
     public function set(): false|string
     {
-        return $this->webhookService->setWebhook();
+        return $this->webhook->setWebhook();
     }
 
     /**
-     * Delete webhook for telegram bot.
+     * Delete webhook for telegram bot
      *
      * @return false|string
      */
     public function delete(): false|string
     {
-        return $this->webhookService->deleteWebHook();
+        return $this->webhook->deleteWebHook();
+    }
+
+    /**
+     * Get webhook update
+     *
+     * @return false|string
+     */
+    public function getUpdates(): false|string
+    {
+        return $this->webhook->getUpdates();
     }
 }
