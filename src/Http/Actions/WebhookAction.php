@@ -6,8 +6,6 @@ use LbilTech\TelegramGitNotifier\Webhook;
 
 class WebhookAction
 {
-    protected string $token;
-
     protected Webhook $webhook;
 
     public function __construct()
