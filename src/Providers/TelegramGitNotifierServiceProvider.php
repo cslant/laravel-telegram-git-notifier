@@ -23,10 +23,14 @@ class TelegramGitNotifierServiceProvider extends ServiceProvider
             $this->loadRoutesFrom($routePath);
         }
 
-        $helperPath = __DIR__.'/../../common/helpers.php';
-        if (file_exists($helperPath)) {
-            require_once $helperPath;
+        $viewPath = __DIR__.'/../../resources/views';
+        if (file_exists($viewPath)) {
+            $this->loadViewsFrom($viewPath, 'telegram-git-notifier');
         }
+
+        $this->publishes([
+            __DIR__.'/../../resources/views' => base_path('resources/views/vendor/telegram-git-notifier'),
+        ], 'views');
 
         $this->loadTranslationsFrom(__DIR__.'/../../lang', 'telegram-git-notifier');
 
