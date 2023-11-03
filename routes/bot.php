@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use CSlant\LaravelTelegramGitNotifier\Http\Actions\WebhookAction;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
