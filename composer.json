@@ -41,13 +41,22 @@
     }
   },
   "require": {
-    "php": "^8.0",
-    "CSlant/telegram-git-notifier": "dev-main"
+    "php": "^8.1",
+    "cslant/telegram-git-notifier": "^v1.3.1"
   },
   "require-dev": {
     "friendsofphp/php-cs-fixer": "^v3.37.1",
     "pestphp/pest": "^2.24",
     "phpstan/phpstan": "^1.10.39"
+  },
+  "scripts": {
+    "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes",
+    "post-install-cmd": [
+      "bash vendor/cslant/telegram-git-notifier/install.sh"
+    ],
+    "post-update-cmd": [
+      "bash vendor/cslant/telegram-git-notifier/install.sh"
+    ]
   },
   "support": {
     "issues": "https://github.com/cslant/laravel-telegram-git-notifier/issues"
@@ -60,7 +69,10 @@
     }
   },
   "config": {
-    "sort-packages": true
+    "sort-packages": true,
+    "allow-plugins": {
+      "pestphp/pest-plugin": true
+    }
   },
   "minimum-stability": "dev",
   "prefer-stable": true
