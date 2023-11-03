@@ -13,7 +13,7 @@
         </include>
     </coverage>
     <testsuites>
-        <testsuite name="LbilTech Laravel Telegram Git Notify">
+        <testsuite name="CSlant Laravel Telegram Git Notifier">
             <directory>tests</directory>
         </testsuite>
     </testsuites>

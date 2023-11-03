@@ -1,8 +1,8 @@
 <?php
 
-namespace LbilTech\LaravelTelegramGitNotifier\Http\Actions;
+namespace CSlant\LaravelTelegramGitNotifier\Http\Actions;
 
-use LbilTech\TelegramGitNotifier\Webhook;
+use CSlant\TelegramGitNotifier\Webhook;
 
 class WebhookAction
 {

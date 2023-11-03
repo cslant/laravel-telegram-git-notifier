@@ -31,11 +31,11 @@ return [
     'author' => [
         'discussion'  => env(
             'TGN_AUTHOR_DISCUSSION',
-            'https://github.com/lbiltech/laravel-telegram-git-notifier/discussions'
+            'https://github.com/cslant/laravel-telegram-git-notifier/discussions'
         ),
         'source_code' => env(
             'TGN_AUTHOR_SOURCE_CODE',
-            'https://github.com/lbiltech/laravel-telegram-git-notifier'
+            'https://github.com/cslant/laravel-telegram-git-notifier'
         ),
     ],
 
