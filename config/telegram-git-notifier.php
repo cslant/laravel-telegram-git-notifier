@@ -1,6 +1,15 @@
 <?php
 
 return [
+    'defaults' => [
+        'paths' => [
+            'view' => env(
+                'TGN_DEFAULT_PATH_VIEW',
+                base_path('resources/views/vendor/telegram-git-notifier')
+            ),
+        ],
+    ],
+
     'app' => [
         'name'     => env('TGN_APP_NAME', 'Laravel Telegram Git Notifier'),
 

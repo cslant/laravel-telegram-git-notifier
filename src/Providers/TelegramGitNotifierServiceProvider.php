@@ -13,11 +13,6 @@ class TelegramGitNotifierServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $configPath = __DIR__.'/../../config/telegram-git-notifier.php';
-        $this->publishes([
-            $configPath => config_path('telegram-git-notifier.php'),
-        ], 'config');
-
         $routePath = __DIR__.'/../../routes/bot.php';
         if (file_exists($routePath)) {
             $this->loadRoutesFrom($routePath);
@@ -28,11 +23,16 @@ class TelegramGitNotifierServiceProvider extends ServiceProvider
             $this->loadViewsFrom($viewPath, 'telegram-git-notifier');
         }
 
-        $this->publishes([
-            __DIR__.'/../../resources/views' => base_path('resources/views/vendor/telegram-git-notifier'),
-        ], 'views');
-
         $this->loadTranslationsFrom(__DIR__.'/../../lang', 'telegram-git-notifier');
+
+        $configPath = __DIR__.'/../../config/telegram-git-notifier.php';
+        $this->publishes([
+            $configPath => config_path('telegram-git-notifier.php'),
+        ], 'config');
+
+        $this->publishes([
+            __DIR__.'/../../resources/views' => config('telegram-git-notifier.defaults.paths.views'),
+        ], 'views');
 
         $this->publishes([
             __DIR__.'/../../lang' => resource_path('lang/vendor/telegram-git-notifier'),

@@ -32,3 +32,4 @@ yarn.lock
 
 build
 .php-cs-fixer.cache
+storage

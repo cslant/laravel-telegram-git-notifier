@@ -4,6 +4,7 @@ $finder = Symfony\Component\Finder\Finder::create()
     ->in([
         __DIR__ . '/src',
         __DIR__ . '/tests',
+        __DIR__ . '/routes',
     ])
     ->name('*.php')
     ->ignoreDotFiles(true)
