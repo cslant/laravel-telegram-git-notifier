@@ -22,11 +22,6 @@
       "name": "Tan Nguyen",
       "email": "tannp27@gmail.com",
       "homepage": "https://tanhongit.com",
-      "role": "Lead"
-    },
-    {
-      "name": "Xuan Thinh",
-      "email": "pxthinh.vn@gmail.com",
       "role": "Developer"
     }
   ],
@@ -42,10 +37,10 @@
   },
   "require": {
     "php": "^8.1",
-    "cslant/telegram-git-notifier": "^v1.3.2"
+    "cslant/telegram-git-notifier": "^v1.3"
   },
   "require-dev": {
-    "friendsofphp/php-cs-fixer": "^v3.37.1",
+    "friendsofphp/php-cs-fixer": "^v3.37",
     "nunomaduro/collision": "^7.10",
     "nunomaduro/larastan": "^2.6",
     "orchestra/testbench": "^8.14",
