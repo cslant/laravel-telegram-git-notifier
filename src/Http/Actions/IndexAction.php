@@ -2,13 +2,13 @@
 
 namespace CSlant\LaravelTelegramGitNotifier\Http\Actions;
 
+use CSlant\LaravelTelegramGitNotifier\Services\NotificationService;
 use CSlant\TelegramGitNotifier\Bot;
 use CSlant\TelegramGitNotifier\Exceptions\ConfigFileException;
 use CSlant\TelegramGitNotifier\Exceptions\InvalidViewTemplateException;
 use CSlant\TelegramGitNotifier\Exceptions\MessageIsEmptyException;
 use CSlant\TelegramGitNotifier\Exceptions\SendNotificationException;
 use CSlant\TelegramGitNotifier\Notifier;
-use CSlant\LaravelTelegramGitNotifier\Services\NotificationService;
 use GuzzleHttp\Client;
 use Symfony\Component\HttpFoundation\Request;
 use Telegram;
@@ -45,8 +45,10 @@ class IndexAction
      */
     public function __invoke(): void
     {
-        $sendNotification = new NotificationService($this->notifier,
-            $this->bot->setting);
+        $sendNotification = new NotificationService(
+            $this->notifier,
+            $this->bot->setting
+        );
         $sendNotification->handle();
     }
 }
