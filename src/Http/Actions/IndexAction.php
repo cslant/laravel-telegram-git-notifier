@@ -36,14 +36,15 @@ class IndexAction
     }
 
     /**
-     * Handle telegram git notifier app
+     * Handle telegram git notifier app.
      *
      * @return void
+     *
      * @throws InvalidViewTemplateException
      * @throws MessageIsEmptyException
      * @throws SendNotificationException
      */
-    public function __invoke(): void
+    public function index(): void
     {
         $sendNotification = new NotificationService(
             $this->notifier,

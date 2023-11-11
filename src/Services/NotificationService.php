@@ -32,9 +32,10 @@ class NotificationService
     }
 
     /**
-     * Handle to send notification from webhook event to telegram
+     * Handle to send notification from webhook event to telegram.
      *
      * @return void
+     *
      * @throws InvalidViewTemplateException
      * @throws SendNotificationException
      * @throws MessageIsEmptyException
@@ -49,8 +50,8 @@ class NotificationService
 
     /**
      * @param  string  $event
-     *
      * @return void
+     *
      * @throws InvalidViewTemplateException
      * @throws SendNotificationException
      * @throws MessageIsEmptyException
@@ -81,11 +82,11 @@ class NotificationService
     }
 
     /**
-     * Validate access event
+     * Validate access event.
      *
      * @param  string  $event
-     *
      * @return bool
+     *
      * @throws InvalidViewTemplateException|MessageIsEmptyException
      */
     private function validateAccessEvent(string $event): bool
@@ -93,7 +94,7 @@ class NotificationService
         $payload = $this->notifier->setPayload($this->request, $event);
         $validator = new Validator($this->setting, $this->notifier->event);
 
-        if (empty($payload)
+        if (empty($payload) || !is_object($payload)
             || !$validator->isAccessEvent(
                 $this->notifier->event->platform,
                 $event,

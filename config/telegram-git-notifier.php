@@ -69,6 +69,8 @@ return [
 
     /** Set the path to the view file */
     'view' => [
+        'namespace' => env('TGN_VIEW_NAMESPACE', 'telegram-git-notifier').'::',
+
         'default' => env(
             'TGN_VIEW_DEFAULT',
             base_path('resources/views/vendor/telegram-git-notifier')
