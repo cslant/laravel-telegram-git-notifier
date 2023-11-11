@@ -1,5 +1,6 @@
 <?php
 
+use CSlant\LaravelTelegramGitNotifier\Http\Actions\IndexAction;
 use CSlant\LaravelTelegramGitNotifier\Http\Actions\WebhookAction;
 use Illuminate\Support\Facades\Route;
 
@@ -15,8 +16,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix('telegram-git-notifier')->group(function () {
+    Route::any('/', [IndexAction::class, 'index'])->name('telegram-git-notifier.index');
+
     Route::prefix('webhook')->group(function () {
-        Route::get('/set', [WebhookAction::class, 'set'])->name('webhook.set');
-        Route::get('/delete', [WebhookAction::class, 'delete'])->name('webhook.delete');
+        Route::get('/set', [WebhookAction::class, 'set'])->name('telegram-git-notifier.webhook.set');
+        Route::get('/delete', [WebhookAction::class, 'delete'])->name('telegram-git-notifier.webhook.delete');
     });
 });

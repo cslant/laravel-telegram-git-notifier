@@ -1,0 +1,3 @@
+parameters:
+    excludePaths:
+        - src/Http/Actions/WebhookAction.php

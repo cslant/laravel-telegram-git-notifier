@@ -22,11 +22,6 @@
       "name": "Tan Nguyen",
       "email": "tannp27@gmail.com",
       "homepage": "https://tanhongit.com",
-      "role": "Lead"
-    },
-    {
-      "name": "Xuan Thinh",
-      "email": "pxthinh.vn@gmail.com",
       "role": "Developer"
     }
   ],
@@ -42,13 +37,20 @@
   },
   "require": {
     "php": "^8.1",
-    "cslant/telegram-git-notifier": "^v1.3.2"
+    "cslant/telegram-git-notifier": "^v1.3"
   },
   "require-dev": {
-    "friendsofphp/php-cs-fixer": "^v3.37.1",
-    "pestphp/pest": "^2.24"
+    "friendsofphp/php-cs-fixer": "^v3.37",
+    "nunomaduro/collision": "^7.10",
+    "nunomaduro/larastan": "^2.6",
+    "orchestra/testbench": "^8.14",
+    "pestphp/pest": "^2.24",
+    "phpstan/extension-installer": "^1.3",
+    "phpstan/phpstan-deprecation-rules": "^1.1",
+    "phpstan/phpstan-phpunit": "^1.3"
   },
   "scripts": {
+    "analyse": "vendor/bin/phpstan analyse",
     "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes",
     "post-install-cmd": [
       "bash vendor/cslant/telegram-git-notifier/install.sh"
@@ -70,7 +72,8 @@
   "config": {
     "sort-packages": true,
     "allow-plugins": {
-      "pestphp/pest-plugin": true
+      "pestphp/pest-plugin": true,
+      "phpstan/extension-installer": true
     }
   },
   "minimum-stability": "dev",
