@@ -1,3 +1,11 @@
 parameters:
-    excludePaths:
-        - src/Http/Actions/WebhookAction.php
+    ignoreErrors:
+        - message: '#Parameter \#2 \$namespace of method Illuminate\\Support\\ServiceProvider\:\:loadViewsFrom\(\) expects string, mixed given\.#'
+          path: src/Providers/TelegramGitNotifierServiceProvider.php
+
+
+        - message: '#Parameter \#1 \$token of method CSlant\\TelegramGitNotifier\\Webhook\:\:setToken\(\) expects string, mixed given\.#'
+          path: src/Http/Actions/WebhookAction.php
+
+        - message: '#Parameter \#1 \$url of method CSlant\\TelegramGitNotifier\\Webhook\:\:setUrl\(\) expects string, mixed given\.#'
+          path: src/Http/Actions/WebhookAction.php
