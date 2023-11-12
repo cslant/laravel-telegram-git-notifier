@@ -3,9 +3,9 @@
 return [
     'defaults' => [
         'paths' => [
-            'view' => env(
+            'views' => env(
                 'TGN_DEFAULT_PATH_VIEW',
-                base_path('resources/views/vendor/telegram-git-notifier')
+                base_path('resources/views/vendor/tg-notifier')
             ),
         ],
     ],
@@ -14,7 +14,7 @@ return [
         'name'     => env('TGN_APP_NAME', 'Laravel Telegram Git Notifier'),
 
         // Required for the bot to work properly
-        'url'      => env('TGN_APP_URL', 'http://localhost:8000'),
+        'url'      => env('TGN_APP_URL', 'http://localhost:8000/telegram-git-notifier'),
         'timezone' => env('TIMEZONE', 'Asia/Ho_Chi_Minh'),
     ],
 
@@ -69,11 +69,11 @@ return [
 
     /** Set the path to the view file */
     'view' => [
-        'namespace' => env('TGN_VIEW_NAMESPACE', 'telegram-git-notifier').'::',
+        'namespace' => env('TGN_VIEW_NAMESPACE', 'tg-notifier'),
 
         'default' => env(
             'TGN_VIEW_DEFAULT',
-            base_path('resources/views/vendor/telegram-git-notifier')
+            base_path('resources/views/vendor/tg-notifier')
         ),
 
         'event' => [

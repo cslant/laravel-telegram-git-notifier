@@ -20,10 +20,10 @@ class TelegramGitNotifierServiceProvider extends ServiceProvider
 
         $viewPath = __DIR__.'/../../resources/views';
         if (file_exists($viewPath)) {
-            $this->loadViewsFrom($viewPath, 'telegram-git-notifier');
+            $this->loadViewsFrom($viewPath, config('telegram-git-notifier.view.namespace'));
         }
 
-        $this->loadTranslationsFrom(__DIR__.'/../../lang', 'telegram-git-notifier');
+        $this->loadTranslationsFrom(__DIR__.'/../../lang', 'tg-notifier');
 
         $configPath = __DIR__.'/../../config/telegram-git-notifier.php';
         $this->publishes([
@@ -35,7 +35,7 @@ class TelegramGitNotifierServiceProvider extends ServiceProvider
         ], 'views');
 
         $this->publishes([
-            __DIR__.'/../../lang' => resource_path('lang/vendor/telegram-git-notifier'),
+            __DIR__.'/../../lang' => resource_path('lang/vendor/tg-notifier'),
         ], 'lang');
     }
 
