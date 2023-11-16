@@ -18,10 +18,10 @@ $issue = $payload->issue;
 @include('tg-notifier::events.shared.partials.github._assignees', compact('payload', 'event'))
 
 @if(isset($payload->changes->title))
-    {!! "📖 <b>Title</b> has been changed\n" !!}
-    {!! "    📝 <b>From:</b> {$payload->changes->title->from}\n" !!}
-    {!! "    🏷 <b>To:</b> {$payload->issue->title}\n" !!}
+    {!! __('tg-notifier::events/github/issues.edited.changes.title.title') !!}
+    {!! __('tg-notifier::events/github/issues.edited.changes.title.from', ['title_from' => $payload->changes->title->from]) !!}
+    {!! __('tg-notifier::events/github/issues.edited.changes.title.to', ['title_to' => $payload->issue->title]) !!}
 @elseif(isset($payload->changes->body))
-    {!! "📖 <b>Body</b> has been changed\n"!!}
-    {!! "Please check the issue for more details\n"!!}
+    {!! __('tg-notifier::events/github/issues.edited.changes.body.title')!!}
+    {!! __('tg-notifier::events/github/issues.edited.changes.body.body')!!}
 @endif

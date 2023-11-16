@@ -10,6 +10,17 @@ return [
     ],
     'edited' => [
         'title' => '⚠️ <b>Issue has been edited</b> to 🦑 :issue by :user',
+        'changes' => [
+            'title' => [
+                'title' => '📖 <b>Title</b> has been changed',
+                'from' => '    📝 <b>From:</b> :title_from',
+                'to' => '    🏷 <b>To:</b> :title_to',
+            ],
+            'body' => [
+                'title' => '📖 <b>Body</b> has been changed',
+                'body' => 'Please check the issue for more details',
+            ]
+        ]
     ],
     'locked' => [
         'title' => '🔒 <b>Issue Locked</b> form 🦑 :issue by :user',
