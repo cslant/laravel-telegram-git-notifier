@@ -1,8 +1,7 @@
 <?php
 
-$configFileStorageFolder = env(
-    'TGN_CONFIG_FILE_STORAGE_FOLDER',
-    storage_path('/app/vendor/tg-notifier/jsons')
+$configFileStorageFolder = storage_path(
+    env('TGN_CONFIG_FILE_STORAGE_FOLDER', '/app/vendor/tg-notifier/jsons')
 );
 
 return [
