@@ -1,5 +1,10 @@
 <?php
 
+$configFileStorageFolder = env(
+    'TGN_CONFIG_FILE_STORAGE_FOLDER',
+    storage_path('/app/vendor/tg-notifier/jsons')
+);
+
 return [
     'defaults' => [
         'paths' => [
@@ -50,19 +55,21 @@ return [
 
     /** Set the path to the data file */
     'data_file' => [
+        'storage_folder' => $configFileStorageFolder,
+
         'setting' => env(
             'TGN_PATH_SETTING',
-            storage_path('/app/json/tgn/tgn-settings.json')
+            $configFileStorageFolder.'/tgn-settings.json'
         ),
 
         'platform' => [
             'gitlab' => env(
                 'TGN_PATH_PLATFORM_GITLAB',
-                storage_path('/app/json/tgn/gitlab-events.json')
+                $configFileStorageFolder.'/gitlab-events.json'
             ),
             'github' => env(
                 'TGN_PATH_PLATFORM_GITHUB',
-                storage_path('/app/json/tgn/github-events.json')
+                $configFileStorageFolder.'/github-events.json'
             ),
         ],
     ],
