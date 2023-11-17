@@ -16,12 +16,11 @@ $issue = $payload->issue;
 {!! __('tg-notifier::events/github/issues.issue_title') !!} <b><?= $issue->title; ?></b>
 
 @include('tg-notifier::events.shared.partials.github._assignees', compact('payload', 'event'))
-
 @if(isset($payload->changes->title))
-    {!! __('tg-notifier::events/github/issues.edited.changes.title.title') !!}
+{!! __('tg-notifier::events/github/issues.edited.changes.title.name') !!}
     {!! __('tg-notifier::events/github/issues.edited.changes.title.from', ['title_from' => $payload->changes->title->from]) !!}
     {!! __('tg-notifier::events/github/issues.edited.changes.title.to', ['title_to' => $payload->issue->title]) !!}
 @elseif(isset($payload->changes->body))
-    {!! __('tg-notifier::events/github/issues.edited.changes.body.title')!!}
-    {!! __('tg-notifier::events/github/issues.edited.changes.body.body')!!}
+{!! __('tg-notifier::events/github/issues.edited.changes.body.title') !!}
+{!! __('tg-notifier::events/github/issues.edited.changes.body.message') !!}
 @endif
