@@ -1,16 +1,20 @@
 <?php
 /**
  * @var $payload mixed
+ * @var $event string
  */
 
-$event = 'comment';
+$issue = $payload->issue;
+?>
 
-$message = "️📝 <b>Issue Comment Edited</b> 💬 in 🦑<a href=\"{$payload->issue->html_url}\">{$payload->repository->full_name}#{$payload->issue->number}</a> by <a href=\"{$payload->comment->user->html_url}\">@{$payload->comment->user->login}</a>\n\n";
+{!! __('tg-notifier::events/github/issue_comment.edited.title', [
+            'issue' => "<a href='$issue->html_url'>{$payload->repository->full_name}#$issue->number</a>",
+            'user' => "<a href='{$issue->user->html_url}'>@{$issue->user->login}</a>"
+        ]
+    ) !!}
 
-$message .= "📢 <b>{$payload->issue->title}</b>\n";
+{!! __('tg-notifier::events/github/issue_comment.issue_comment_title') !!} <b><?= $issue->title; ?></b>
 
-$message .= require __DIR__ . '/../../shared/partials/github/_assignees.php';
+@include('tg-notifier::events.shared.partials.github._assignees', compact('payload', 'event'))
 
-$message .= require __DIR__ . '/../../shared/partials/github/_body.php';
-
-echo $message;
+@include('tg-notifier::events.shared.partials.github._body', compact('payload', 'event'))
