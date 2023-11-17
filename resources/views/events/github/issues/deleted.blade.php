@@ -1,12 +1,20 @@
 <?php
 /**
  * @var $payload mixed
+ * @var $event string
  */
 
-$message = "️🗑 <b>Issue Deleted</b> form 🦑<a href=\"{$payload->repository->html_url}\">{$payload->repository->full_name} </a> by <a href=\"{$payload->sender->html_url}\">@{$payload->sender->login}</a>\n\n";
+$issue = $payload->issue;
+?>
 
-$message .= "📢 <b>{$payload->issue->title}</b>\n";
+{!! __('tg-notifier::events/github/issues.deleted.title', [
+            'issue' => "<a href='$issue->html_url'>{$payload->repository->full_name}#$issue->number</a>",
+            'user' => "<a href='{$issue->user->html_url}'>@{$issue->user->login}</a>"
+        ]
+    ) !!}
 
-$message .= require __DIR__ . '/../../shared/partials/github/_assignees.php';
+{!! __('tg-notifier::events/github/issues.issue_title') !!} <b><?= $issue->title; ?></b>
 
-echo $message;
+@include('tg-notifier::events.shared.partials.github._assignees', compact('payload', 'event'))
+
+@include('tg-notifier::events.shared.partials.github._body', compact('payload', 'event'))

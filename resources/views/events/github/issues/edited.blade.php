@@ -1,21 +1,26 @@
 <?php
 /**
  * @var $payload mixed
+ * @var $event string
  */
 
-$message = "⚠️ <b>Issue has been edited</b> to 🦑<a href=\"{$payload->issue->html_url}\">{$payload->repository->full_name}#{$payload->issue->number}</a> by <a href=\"{$payload->issue->user->html_url}\">@{$payload->issue->user->login}</a>\n\n";
+$issue = $payload->issue;
+?>
 
-$message .= "📢 <b>{$payload->issue->title}</b>\n";
+{!! __('tg-notifier::events/github/issues.edited.title', [
+            'issue' => "<a href='$issue->html_url'>{$payload->repository->full_name}#$issue->number</a>",
+            'user' => "<a href='{$issue->user->html_url}'>@{$issue->user->login}</a>"
+        ]
+    ) !!}
 
-$message .= require __DIR__ . '/../../shared/partials/github/_assignees.php';
+{!! __('tg-notifier::events/github/issues.issue_title') !!} <b><?= $issue->title; ?></b>
 
-if (isset($payload->changes->title)) {
-    $message .= "📖 <b>Title</b> has been changed\n";
-    $message .= "    📝 <b>From:</b> {$payload->changes->title->from}\n";
-    $message .= "    🏷 <b>To:</b> {$payload->issue->title}\n";
-} elseif (isset($payload->changes->body)) {
-    $message .= "📖 <b>Body</b> has been changed\n";
-    $message .= "Please check the issue for more details\n";
-}
-
-echo $message;
+@include('tg-notifier::events.shared.partials.github._assignees', compact('payload', 'event'))
+@if(isset($payload->changes->title))
+{!! __('tg-notifier::events/github/issues.edited.changes.title.name') !!}
+    {!! __('tg-notifier::events/github/issues.edited.changes.title.from', ['title_from' => $payload->changes->title->from]) !!}
+    {!! __('tg-notifier::events/github/issues.edited.changes.title.to', ['title_to' => $payload->issue->title]) !!}
+@elseif(isset($payload->changes->body))
+{!! __('tg-notifier::events/github/issues.edited.changes.body.title') !!}
+{!! __('tg-notifier::events/github/issues.edited.changes.body.message') !!}
+@endif
