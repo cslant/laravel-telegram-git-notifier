@@ -8,14 +8,24 @@ $noun = ($count > 1) ? "commits" : "commit";
 
 $ref = explode('/', $payload->ref);
 $branch = implode('/', array_slice($ref, 2));
+?>
 
-$message = "⚙️ <b>{$count}</b> new {$noun} to 🦑<b>{$payload->repository->full_name}:<code>{$branch}</code></b>\n\n";
+{!! __('tg-notifier::events/github/push.default.title', [
+            'count' => $count,
+            'noun' => $noun,
+            'user' => $payload->repository->full_name,
+            'branch' => $branch,
+        ]
+    ) !!}
 
-foreach ($payload->commits as $commit) {
-    $commitId = substr($commit->id, -7);
-    $message .= "<a href=\"{$commit->url}\">{$commitId}</a>: {$commit->message} - by <i>{$commit->author->name}</i>\n";
-}
+@foreach($payload->commits as $commit)
+   <?= $commitId = substr($commit->id, -7);?>
+   {!! __('tg-notifier::events/github/push.default.commit', [
+           'commit' => "<a href='$commit->url'>$commitId</a>",
+           'commit_message' => $commit->message,
+           'commit_name' => $commit->author->name,
+       ]
+   ) !!}
+@endforeach
 
-$message .= "\n👤 Pushed by : <b>{$payload->pusher->name}</b>\n";
-
-echo $message;
+{!! __('tg-notifier::events/github/push.default.pushed', ['name' => $payload->pusher->name]) !!}
