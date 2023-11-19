@@ -2,9 +2,10 @@
 /**
  * @var $payload mixed
  */
+?>
 
-$message = "🎉 <b>Action Queued</b> form 🦑<a href=\"{$payload->repository->html_url}\">{$payload->repository->full_name}</a>\n\n";
+{!! __('tg-notifier::events/github/workflow_job.queued.title', ['user' => "<a href='{$payload->repository->html_url}'>{$payload->repository->html_url}</a>"]) !!}
 
-$message .= "Queued action: 💥 <b>{$payload->workflow_job->runner_name}</b> ⏰\n\n";
+{!! __('tg-notifier::events/github/workflow_job.queued.body', ['runner_name' => $payload->workflow_job->runner_name]) !!}
 
-$message .= "🔗 Link: <a href=\"{$payload->workflow_job->html_url}\">{$payload->workflow_job->html_url}</a>\n\n";
+{!! __('tg-notifier::events/github/workflow_job.link', ['link' => "<a href='{$payload->workflow_job->html_url}'>{$payload->workflow_job->html_url}</a>"]) !!}
