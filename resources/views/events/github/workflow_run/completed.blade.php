@@ -2,36 +2,31 @@
 /**
  * @var $payload mixed
  */
+?>
 
-switch ($payload->workflow_run->conclusion) {
-    case 'success':
-        $message = "🎉 <b>Workflow Completed</b> form 🦑<a href=\"{$payload->repository->html_url}\">{$payload->repository->full_name}</a>\n\n";
+@switch($payload->workflow_run->conclusion)
+    @case('success')
+{!! __('tg-notifier::events/github/workflow_run.completed.success.title', ['user' => "<a href='{$payload->repository->html_url}'>{$payload->repository->html_url}</a>"]) !!}
 
-        $message .= "Done workflow: 🎉 <b>{$payload->workflow_run->name}</b> ✨ \n\n";
+{!! __('tg-notifier::events/github/workflow_run.completed.success.body', ['name' => $payload->workflow_run->runner_name]) !!}
 
-        break;
-    case 'failure':
-        $message = "🚫 <b>Workflow Failed</b> form 🦑<a href=\"{$payload->repository->html_url}\">{$payload->repository->full_name}</a>\n\n";
+        @break
+    @case('failure')
+{!! __('tg-notifier::events/github/workflow_run.completed.failure.title', ['user' => "<a href='{$payload->repository->html_url}'>{$payload->repository->html_url}</a>"]) !!}
 
-        $message .= "Failed workflow: 🚫 <b>{$payload->workflow_run->name}</b> ❌ \n\n";
+{!! __('tg-notifier::events/github/workflow_run.completed.failure.body', ['name' => $payload->workflow_run->runner_name]) !!}
 
-        break;
-    case 'cancelled':
-        $message = "❌ <b>Workflow Cancelled</b> form 🦑<a href=\"{$payload->repository->html_url}\">{$payload->repository->full_name}</a>\n\n";
+        @break
+    @case('cancelled')
+{!! __('tg-notifier::events/github/workflow_run.completed.cancelled.title', ['user' => "<a href='{$payload->repository->html_url}'>{$payload->repository->html_url}</a>"]) !!}
 
-        $message .= "Cancelled workflow: 🚨 <b>{$payload->workflow_run->name}</b> ❌ \n\n";
+{!! __('tg-notifier::events/github/workflow_run.completed.cancelled.body', ['name' => $payload->workflow_run->runner_name]) !!}
 
-        break;
-    default:
-        $message = "🚨 <b>Workflow Can't Success</b> form 🦑<a href=\"{$payload->repository->html_url}\">{$payload->repository->full_name}</a>\n\n";
+        @break
+    @default
+{!! __('tg-notifier::events/github/workflow_run.completed.default.title', ['user' => "<a href='{$payload->repository->html_url}'>{$payload->repository->html_url}</a>"]) !!}
 
-        $message .= "Can't Success workflow: 🚨 <b>{$payload->workflow_run->name}</b> ❌ \n\n";
+{!! __('tg-notifier::events/github/workflow_run.completed.default.body', ['name' => $payload->workflow_run->runner_name]) !!}
+@endswitch
 
-        break;
-}
-
-// $message .= "📤 Commit: <b>{$payload->workflow_run->head_commit->message}</b>\n\n";
-
-$message .= "🔗 Link: <a href=\"{$payload->workflow_run->html_url}\">{$payload->workflow_run->html_url}</a>\n\n";
-
-echo $message;
+{!! __('tg-notifier::events/github/workflow_run.link', ['link' => "<a href='{$payload->workflow_run->html_url}'>{$payload->workflow_run->html_url}</a>"]) !!}
