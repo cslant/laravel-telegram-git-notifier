@@ -9,4 +9,4 @@
         ]
     ) !!}
 
-{!! __('tg-notifier::events/github/watch.started.watched', ['sender_login' => $payload->sender->login]) !!}
+{!! __('tg-notifier::events/github/watch.started.watcher', ['sender_login' => $payload->sender->login]) !!}
