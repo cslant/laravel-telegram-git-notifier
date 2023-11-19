@@ -7,7 +7,7 @@
 $issue = $payload->issue;
 ?>
 
-{!! __('tg-notifier::events/github/issues.closed.title', [
+{!! __('tg-notifier::events/github/issue_comment.deleted.title', [
             'issue' => "<a href='$issue->html_url'>{$payload->repository->full_name}#$issue->number</a>",
             'user' => "<a href='{$issue->user->html_url}'>@{$issue->user->login}</a>"
         ]
