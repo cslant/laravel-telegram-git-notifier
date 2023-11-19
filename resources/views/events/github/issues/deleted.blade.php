@@ -13,7 +13,7 @@ $issue = $payload->issue;
         ]
     ) !!}
 
-{!! __('tg-notifier::events/github/issues.issue_title') !!} <b><?= $issue->title; ?></b>
+📢 <b>{{ $issue->title }}</b>
 
 @include('tg-notifier::events.shared.partials.github._assignees', compact('payload', 'event'))
 

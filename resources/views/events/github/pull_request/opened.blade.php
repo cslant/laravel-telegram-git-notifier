@@ -1,18 +1,23 @@
 <?php
 /**
  * @var $payload mixed
+ * @var $event string
  */
 
-$message = "👷‍♂️🛠️ <b>New Pull Request</b> - 🦑<a href=\"{$payload->pull_request->html_url}\">{$payload->repository->full_name}#{$payload->pull_request->number}</a> create by <a href=\"{$payload->pull_request->user->html_url}\">@{$payload->pull_request->user->login}</a>\n\n";
+$pull_request = $payload->pull_request;
+?>
 
-$message .= "🛠 <b>{$payload->pull_request->title}</b> \n\n";
+{!! __('tg-notifier::events/github/pull_request.opened.title', [
+            'issue' => "<a href='$pull_request->html_url'>{$payload->repository->full_name}#$pull_request->number</a>",
+            'user' => "<a href='{$pull_request->user->html_url}'>@{$pull_request->user->login}</a>"
+        ]
+    ) !!}
 
-$message .= "🌳 {$payload->pull_request->head->ref} -> {$payload->pull_request->base->ref} 🎯 \n";
+📢 <b>{{ $pull_request->title }}</b>
 
-$message .= require __DIR__ . '/../../shared/partials/github/_assignees.php';
+🌳 {{ $pull_request->head->ref }} -> {{ $pull_request->base->ref }} 🎯
+@include('tg-notifier::events.shared.partials.github._assignees', compact('payload', 'event'))
 
-$message .= require __DIR__ . '/partials/_reviewers.php';
+@include('tg-notifier::events.github.pull_request.partials._reviewers', compact('payload'))
 
-$message .= require __DIR__ . '/../../shared/partials/github/_body.php';
-
-echo $message;
+@include('tg-notifier::events.shared.partials.github._body', compact('payload', 'event'))

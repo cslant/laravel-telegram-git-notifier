@@ -1,23 +1,29 @@
 <?php
 /**
  * @var $payload mixed
+ * @var $event string
  */
 
-$message = '✅ <b>Pull Request Merged';
+$pull_request = $payload->pull_request;
+
+$message = __('tg-notifier::events/github/pull_request.closed.title_merged');
 if (!isset($payload->pull_request->merged) || $payload->pull_request->merged !== true) {
-    $message = '❌ <b>Pull Request Closed';
+    $message = __('tg-notifier::events/github/pull_request.closed.title_closed');
 }
+?>
 
-$message = $message . "</b> - 🦑<a href=\"{$payload->pull_request->html_url}\">{$payload->repository->full_name}#{$payload->pull_request->number}</a> by <a href=\"{$payload->pull_request->user->html_url}\">@{$payload->pull_request->user->login}</a>\n\n";
+{!! __('tg-notifier::events/github/pull_request.closed.title', [
+            'title' => $message,
+            'issue' => "<a href='$pull_request->html_url'>{$payload->repository->full_name}#$pull_request->number</a>",
+            'user' => "<a href='{$pull_request->user->html_url}'>@{$pull_request->user->login}</a>"
+        ]
+    ) !!}
 
-$message .= "🛠 <b>{$payload->pull_request->title}</b> \n\n";
+📢 <b>{{ $pull_request->title }}</b>
 
-$message .= "🌳 {$payload->pull_request->head->ref} -> {$payload->pull_request->base->ref} 🎯 \n";
+🌳 {{ $pull_request->head->ref }} -> {{ $pull_request->base->ref }} 🎯
+@include('tg-notifier::events.shared.partials.github._assignees', compact('payload', 'event'))
 
-$message .= require __DIR__ . '/../../shared/partials/github/_assignees.php';
+@include('tg-notifier::events.github.pull_request.partials._reviewers', compact('payload'))
 
-$message .= require __DIR__ . '/partials/_reviewers.php';
-
-$message .= require __DIR__ . '/../../shared/partials/github/_body.php';
-
-echo $message;
+@include('tg-notifier::events.shared.partials.github._body', compact('payload', 'event'))
