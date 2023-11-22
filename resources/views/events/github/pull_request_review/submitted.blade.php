@@ -3,10 +3,15 @@
  * @var $payload mixed
  */
 
-$message = "👷‍♂️🛠️ <b>New Pull Request Review Comment</b> 💬 - 🦑<a href=\"{$payload->pull_request->html_url}\">{$payload->repository->full_name}#{$payload->pull_request->number}</a> by <a href=\"{$payload->review->user->html_url}\">@{$payload->review->user->login}</a>\n\n";
+$pull_request = $payload->pull_request;
+?>
 
-$message .= "🛠 <b>{$payload->pull_request->title}</b> \n\n";
+{!! __('tg-notifier::events/github/pull_request_review.submitted.title', [
+            'issue' => "<a href='$pull_request->html_url'>{$payload->repository->full_name}#$pull_request->number</a>",
+            'user' => "<a href='{$pull_request->user->html_url}'>@{$pull_request->user->login}</a>"
+        ]
+    ) !!}
 
-$message .= "🔗 Link: <a href=\"{$payload->review->html_url}\">{$payload->review->html_url}</a>\n\n";
+🛠 <b>{{ $pull_request->title }}</b>
 
-echo $message;
+{!! __('tg-notifier::events/github/pull_request_review.link', ['review' => "<a href='{$payload->review->html_url}'>{$payload->review->html_url}</a>"]) !!}

@@ -2,11 +2,10 @@
 /**
  * @var $payload mixed
  */
+?>
 
-$message = "🔧 <b>Action in progress</b> form 🦑<a href=\"{$payload->repository->html_url}\">{$payload->repository->full_name} </a>\n\n";
+{!! __('tg-notifier::events/github/workflow_job.in_progress.progress', ['user' => "<a href='{$payload->repository->html_url}'>{$payload->repository->html_url}</a>"]) !!}
 
-$message .= "Running action: 💥 <b>{$payload->workflow_job->runner_name}</b> ⏳\n\n";
+{!! __('tg-notifier::events/github/workflow_job.in_progress.running', ['runner_name' => $payload->workflow_job->runner_name]) !!}
 
-$message .= "🔗 Link: <a href=\"{$payload->workflow_job->html_url}\">{$payload->workflow_job->html_url}</a>\n\n";
-
-echo $message;
+{!! __('tg-notifier::events/github/workflow_job.link', ['link' => "<a href='{$payload->workflow_job->html_url}'>{$payload->workflow_job->workflow_name}</a>"]) !!}

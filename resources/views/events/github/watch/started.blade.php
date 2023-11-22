@@ -2,9 +2,11 @@
 /**
  * @var $payload mixed
  */
+?>
 
-$message = "🎉 <b>Watch Started</b> form 🦑<a href=\"{$payload->repository->html_url}\">{$payload->repository->full_name}</a>\n\n";
+{!! __('tg-notifier::events/github/watch.started.title', [
+    'user' => "<a href='{$payload->repository->html_url}'>{$payload->repository->full_name}</a>"
+        ]
+    ) !!}
 
-$message .= "👤 Watcher: <b>{$payload->sender->login}</b> 👀\n\n";
-
-echo $message;
+{!! __('tg-notifier::events/github/watch.started.watcher', ['sender_login' => $payload->sender->login]) !!}

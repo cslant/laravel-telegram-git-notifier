@@ -10,7 +10,7 @@ if (isset($event) && isset($payload) && !empty($payload->{$event}->assignees)) {
     foreach ($payload->{$event}->assignees as $assignee) {
         $assigneeArray[] = "<a href=\"{$assignee->html_url}\">@{$assignee->login}</a> ";
     }
-    $assigneeText .= implode(', ', $assigneeArray)."\n";
+    $assigneeText .= implode(', ', $assigneeArray);
 }
 ?>
 {!! $assigneeText ?? '' !!}
