@@ -16,5 +16,5 @@ return [
         'title' => ' <b>Action Queued</b> form 🦑:user',
         'body' => 'Queued action: 💥 <b>:runner_name</b> ⏰',
     ],
-    'link' => '🔗 Link: :link',
+    'link' => '🔗 Workflow link: :link',
 ];

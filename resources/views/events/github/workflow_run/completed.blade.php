@@ -31,4 +31,4 @@
         @break
 @endswitch
 
-{!! __('tg-notifier::events/github/workflow_run.link', ['link' => "<a href='{$payload->workflow_run->html_url}'>{$payload->workflow_run->html_url}</a>"]) !!}
+{!! __('tg-notifier::events/github/workflow_run.link', ['link' => "<a href='{$payload->workflow_run->html_url}'>{$payload->workflow_run->event} - {$payload->workflow_run->name}</a>"]) !!}
