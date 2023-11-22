@@ -1,6 +1,6 @@
 <?php
 /**
- * @var $payload mixed
+ * @var $payload object
  */
 
 $ref = explode('/', $payload->ref);

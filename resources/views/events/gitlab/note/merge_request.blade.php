@@ -1,6 +1,6 @@
 <?php
 /**
- * @var $payload mixed
+ * @var $payload object
  */
 
 $message = "💬 <b>New Comment on Merge Request</b> - 🦊<a href=\"{$payload->object_attributes->url}\">{$payload->project->path_with_namespace}#{$payload->merge_request->iid}</a> by <b>{$payload->user->name}</b>\n\n";

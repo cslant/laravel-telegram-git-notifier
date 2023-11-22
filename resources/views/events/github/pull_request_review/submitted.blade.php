@@ -1,6 +1,6 @@
 <?php
 /**
- * @var $payload mixed
+ * @var $payload object
  */
 
 $pull_request = $payload->pull_request;

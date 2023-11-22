@@ -1,6 +1,6 @@
 <?php
 /**
- * @var $payload mixed
+ * @var $payload object
  */
 
 $message = "❌ <b>Close Merge Request</b> - 🦊<a href=\"{$payload->object_attributes->url}\">{$payload->project->path_with_namespace}#{$payload->object_attributes->iid}</a> by <b>{$payload->user->name}</b>\n\n";
