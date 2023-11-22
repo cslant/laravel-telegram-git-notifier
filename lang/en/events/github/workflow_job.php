@@ -4,6 +4,7 @@ return [
     'completed' => [
         'completed' => '🎉 <b>Action Completed</b> form :user',
         'done' => 'Done action: 🎉 <b>:runner_name</b> ✨',
+
         'canceled' => '🚫 <b>Canceled Action</b> form 🦑:user',
         'failed' => 'Failed action: 🚫 <b>:runner_name</b> ❌',
     ],
