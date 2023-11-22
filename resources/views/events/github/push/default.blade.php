@@ -19,9 +19,9 @@ $branch = implode('/', array_slice($ref, 2));
     ) !!}
 
 @foreach($payload->commits as $commit)
-    @php
-        $commitId = substr($commit->id, -7);
-    @endphp
+@php
+    $commitId = substr($commit->id, -7);
+@endphp
 {!! __('tg-notifier::events/github/push.default.commit', [
        'commit' => "<a href='$commit->url'>$commitId</a>",
        'commit_message' => $commit->message,
