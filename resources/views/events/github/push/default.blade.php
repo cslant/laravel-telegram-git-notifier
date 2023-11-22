@@ -25,7 +25,7 @@ $branch = implode('/', array_slice($ref, 2));
 {!! __('tg-notifier::events/github/push.default.commit', [
        'commit' => "<a href='$commit->url'>$commitId</a>",
        'commit_message' => $commit->message,
-       'commit_name' => $commit->author->name,
+       'commit_by' => $commit->author->name,
    ]
 ) !!}
 @endforeach

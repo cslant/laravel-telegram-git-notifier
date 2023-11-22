@@ -1,22 +1,27 @@
 <?php
 /**
  * @var $payload mixed
+ * @var $event string
  */
 
+$flagUrl = $payload->project->web_url."/-/feature_flags/".$payload->object_attributes->id;
+$flatTag = "<a href=\"{$flagUrl}\">{$payload->project->path_with_namespace}#{$payload->object_attributes->name}</a>";
+$userTag = "<a href=\"{$payload->user_url}\">{$payload->user->name}</a>";
+
 if ($payload->object_attributes->active) {
-    $active = "Enabled";
+    $active = "enabled";
     $icon = "🚩";
 } else {
-    $active = "Disabled";
+    $active = "disabled";
     $icon = "🏴";
 }
+?>
 
-$flagUrl = $payload->project->web_url . "/-/feature_flags/" . $payload->object_attributes->id;
+{!! $icon !!} {!! __('tg-notifier::events/gitlab/feature_flag.title'.$active, [
+        'flag_tag' => $flagTag,
+        'user_tag' => $userTag,
+    ]) !!}
 
-$message = "{$icon} <b>Feature Flag {$active}</b> - 🦊<a href=\"{$flagUrl}\">{$payload->project->path_with_namespace}#{$payload->object_attributes->name}</a> by <a href=\"{$payload->user_url}\">{$payload->user->name}</a>\n\n";
+{!! $icon !!} {!! __('tg-notifier::events/gitlab/feature_flag.name', ['flag_name' => $payload->object_attributes->name]) !!}
 
-$message .= "{$icon} Name: <b>{$payload->object_attributes->name}</b> \n\n";
-
-$message .= require __DIR__ . '/../../shared/partials/gitlab/_body.php';
-
-echo $message;
+@include('tg-notifier::events.shared.partials.gitlab._body', compact('payload', 'event'))

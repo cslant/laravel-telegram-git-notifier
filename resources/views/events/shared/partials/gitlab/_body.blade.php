@@ -1,8 +1,10 @@
 <?php
 /**
  * @var $payload mixed
+ * @var $event string
  */
 
+$html = '';
 if (isset($event) && isset($payload)) {
     if (!empty($payload->object_attributes->description)) {
         $body = $payload->object_attributes->description;
@@ -21,7 +23,9 @@ if (isset($event) && isset($payload)) {
         $body = substr($body, 0, 50) . '...';
     }
 
-    return "📖 <b>Content:</b>\n{$body}";
+    $html = __('tg-notifier::events/shared/gitlab._body.title', ['body' => $body])
+        ."\n"
+        .htmlentities($body);
 }
-
-return '';
+?>
+{!! $html !!}
