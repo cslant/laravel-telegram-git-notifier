@@ -30,3 +30,9 @@ First, please clone and install this project via [Composer](https://getcomposer.
 ```bash
 composer require cslant/laravel-telegram-git-notifier
 ```
+
+Publication of configuration files:
+
+```bash
+php artisan vendor:publish --provider="CSlant\LaravelTelegramGitNotifier\Providers\TelegramGitNotifierServiceProvider" --tag="config_jsons"
+```
