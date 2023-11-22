@@ -16,5 +16,4 @@ $issue = $payload->issue;
 📢 <b>{{ $issue->title }}</b>
 
 @include('tg-notifier::events.shared.partials.github._assignees', compact('payload', 'event'))
-
 @include('tg-notifier::events.shared.partials.github._body', compact('payload', 'event'))
