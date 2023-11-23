@@ -5,6 +5,9 @@ return [
     'closed' => [
         'title' => '🚫 <b>Issue Closed </b> to 🦊 :issue by :user',
     ],
+    'edited' => [
+        'title' => '⚠️ <b>Issue has been edited</b> to 🦊 :issue by :user',
+    ],
     'opened' => [
         'title' => '⚠️ <b>New Issue</b> to 🦊 :issue by :user',
     ],
