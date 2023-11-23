@@ -8,3 +8,12 @@ parameters:
 
         - message: '#Parameter \#1 \$url of method CSlant\\TelegramGitNotifier\\Webhook\:\:setUrl\(\) expects string, mixed given\.#'
           path: src/Http/Actions/WebhookAction.php
+
+        - message: '#Parameter \#1 \$prefix of static method Illuminate\\Support\\Facades\\Route::prefix\(\) expects string, mixed given\.#'
+          path: routes/bot.php
+
+        - message: '#Part \$routePrefix \(mixed\) of encapsed string cannot be cast to string\.#'
+          path: routes/bot.php
+
+        - message: '#Property .+ does not accept mixed#'
+          path: %currentWorkingDirectory%/src/Services/*.php

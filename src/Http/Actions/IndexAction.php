@@ -2,9 +2,14 @@
 
 namespace CSlant\LaravelTelegramGitNotifier\Http\Actions;
 
+use CSlant\LaravelTelegramGitNotifier\Services\CallbackService;
+use CSlant\LaravelTelegramGitNotifier\Services\CommandService;
 use CSlant\LaravelTelegramGitNotifier\Services\NotificationService;
 use CSlant\TelegramGitNotifier\Bot;
+use CSlant\TelegramGitNotifier\Exceptions\BotException;
+use CSlant\TelegramGitNotifier\Exceptions\CallbackException;
 use CSlant\TelegramGitNotifier\Exceptions\ConfigFileException;
+use CSlant\TelegramGitNotifier\Exceptions\EntryNotFoundException;
 use CSlant\TelegramGitNotifier\Exceptions\InvalidViewTemplateException;
 use CSlant\TelegramGitNotifier\Exceptions\MessageIsEmptyException;
 use CSlant\TelegramGitNotifier\Exceptions\SendNotificationException;
@@ -43,9 +48,26 @@ class IndexAction
      * @throws InvalidViewTemplateException
      * @throws MessageIsEmptyException
      * @throws SendNotificationException
+     * @throws BotException
+     * @throws CallbackException
+     * @throws EntryNotFoundException
      */
-    public function index(): void
+    public function __invoke(): void
     {
+        if ($this->bot->isCallback()) {
+            $callbackAction = new CallbackService($this->bot);
+            $callbackAction->handle();
+
+            return;
+        }
+
+        if ($this->bot->isMessage() && $this->bot->isOwner()) {
+            $commandAction = new CommandService($this->bot);
+            $commandAction->handle();
+
+            return;
+        }
+
         $sendNotification = new NotificationService(
             $this->notifier,
             $this->bot->setting

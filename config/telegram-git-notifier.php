@@ -12,6 +12,9 @@ return [
                 base_path('resources/views/vendor/tg-notifier')
             ),
         ],
+
+        // Set route prefix for telegram git notifier app
+        'route_prefix' => env('TGN_DEFAULT_ROUTE_PREFIX', 'telegram-git-notifier'),
     ],
 
     'app' => [
