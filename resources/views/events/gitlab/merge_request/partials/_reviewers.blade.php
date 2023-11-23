@@ -11,6 +11,7 @@ if (isset($payload->reviewers) && count($payload->reviewers) > 0) {
     }
 
     $textReviewers .= "👥 Reviewers: " . implode(', ', $reviewers) . "\n";
+    $textReviewers .= __('tg-notifier::events/gitlab/merge_request.review') . implode(', ', $reviewers);
 }
-
-return $textReviewers;
+?>
+{!! $textReviewers !!}
