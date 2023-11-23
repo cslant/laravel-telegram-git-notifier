@@ -15,8 +15,7 @@ $branch = implode('/', array_slice($ref, 2));
             'noun' => $noun,
             'repo' => $payload->project->path_with_namespace,
             'branch' => $branch,
-        ]
-    ) !!}
+        ]) !!}
 
 @foreach($payload->commits as $commit)
 @php
@@ -26,8 +25,7 @@ $branch = implode('/', array_slice($ref, 2));
        'commit' => "<a href='$commit->url'>$commitId</a>",
        'commit_message' => $commit->message,
        'commit_by' => $commit->author->name,
-   ]
-) !!}
+   ]) !!}
 @endforeach
 
 {!! __('tg-notifier::events/gitlab/push.default.pusher', ['name' => $payload->user_name]) !!}

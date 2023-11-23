@@ -1,14 +1,18 @@
 <?php
 /**
  * @var $payload object
+ * @var $event string
  */
 
-$message = "💬 <b>New Comment on Snippet</b> - 🦊<a href=\"{$payload->object_attributes->url}\">{$payload->project->path_with_namespace}</a> by <b>{$payload->user->name}</b>\n\n";
+?>
+{!! __('tg-notifier::events/gitlab/note.title.snippet', [
+       'repo' => "<a href='{$payload->object_attributes->url}'>{$payload->project->path_with_namespace}</a>",
+       'user' => "<b>{$payload->user->name}</b>"
+   ]
+) !!}
 
-$message .= "📝 <b>{$payload->snippet->title}</b> \n\n";
+📝 <b>{{ $payload->snippet->title }}</b>
 
-$message .= "🔗 <a href=\"{$payload->object_attributes->url}\">View Comment</a> \n\n";
+🔗 <a href="{{ $payload->object_attributes->url }}">{{ __('tg-notifier::events/gitlab/note.snippet_comment') }}</a>
 
-$message .= require __DIR__ . '/../../shared/partials/gitlab/_body.php';
-
-echo $message;
+@include('tg-notifier::events.shared.partials.gitlab._body', compact('payload', 'event'))
