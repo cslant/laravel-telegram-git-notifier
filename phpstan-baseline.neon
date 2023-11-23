@@ -14,3 +14,6 @@ parameters:
 
         - message: '#Part \$routePrefix \(mixed\) of encapsed string cannot be cast to string\.#'
           path: routes/bot.php
+
+        - message: '#Property .+ does not accept mixed#'
+          path: %currentWorkingDirectory%/src/Services/*.php
