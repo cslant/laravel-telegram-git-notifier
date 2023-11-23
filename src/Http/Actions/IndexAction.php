@@ -2,6 +2,8 @@
 
 namespace CSlant\LaravelTelegramGitNotifier\Http\Actions;
 
+use CSlant\LaravelTelegramGitNotifier\Services\CallbackService;
+use CSlant\LaravelTelegramGitNotifier\Services\CommandService;
 use CSlant\LaravelTelegramGitNotifier\Services\NotificationService;
 use CSlant\TelegramGitNotifier\Bot;
 use CSlant\TelegramGitNotifier\Exceptions\BotException;
@@ -12,8 +14,6 @@ use CSlant\TelegramGitNotifier\Exceptions\InvalidViewTemplateException;
 use CSlant\TelegramGitNotifier\Exceptions\MessageIsEmptyException;
 use CSlant\TelegramGitNotifier\Exceptions\SendNotificationException;
 use CSlant\TelegramGitNotifier\Notifier;
-use CSlant\LaravelTelegramGitNotifier\Services\CallbackService;
-use CSlant\LaravelTelegramGitNotifier\Services\CommandService;
 use GuzzleHttp\Client;
 use Symfony\Component\HttpFoundation\Request;
 use Telegram;
