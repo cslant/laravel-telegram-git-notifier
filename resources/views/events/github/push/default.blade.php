@@ -13,7 +13,7 @@ $branch = implode('/', array_slice($ref, 2));
 {!! __('tg-notifier::events/github/push.default.title', [
             'count' => $count,
             'noun' => $noun,
-            'user' => $payload->repository->full_name,
+            'repo' => $payload->repository->full_name,
             'branch' => $branch,
         ]
     ) !!}
@@ -30,4 +30,4 @@ $branch = implode('/', array_slice($ref, 2));
 ) !!}
 @endforeach
 
-{!! __('tg-notifier::events/github/push.default.pushed', ['name' => $payload->pusher->name]) !!}
+{!! __('tg-notifier::events/github/push.default.pusher', ['name' => $payload->pusher->name]) !!}
