@@ -6,5 +6,5 @@ return [
         'update' => '📝 <b>Wiki Page Updated</b> - 🦊:repo by :user',
         'delete' => '🗑 <b>Wiki Page Deleted</b> - 🦊:repo by :user',
     ],
-    'name' => '📝 <b>Wiki Page Name</b>: :name',
+    'name' => '📝 Page Name: <b>:name</b>',
 ];

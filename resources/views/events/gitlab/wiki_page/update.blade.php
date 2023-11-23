@@ -4,6 +4,7 @@
  * @var $event string
  */
 
+?>
 {!! __('tg-notifier::events/gitlab/wiki_page.title.update', [
        'repo' => "<a href='{$payload->object_attributes->url}'>{$payload->project->path_with_namespace}#{$payload->object_attributes->slug}</a>",
        'user' => "<b>{$payload->user->name}</b>"

@@ -13,11 +13,10 @@ if (!isset($payload->pull_request->merged) || $payload->pull_request->merged !==
 ?>
 
 {!! __('tg-notifier::events/github/pull_request.closed.title', [
-            'title' => $message,
-            'issue' => "<a href='$pull_request->html_url'>{$payload->repository->full_name}#$pull_request->number</a>",
-            'user' => "<a href='{$pull_request->user->html_url}'>@{$pull_request->user->login}</a>"
-        ]
-    ) !!}
+        'title' => $message,
+        'repo' => "<a href='$pull_request->html_url'>{$payload->repository->full_name}#$pull_request->number</a>",
+        'user' => "<a href='{$pull_request->user->html_url}'>@{$pull_request->user->login}</a>"
+    ]) !!}
 
 📢 <b>{{ $pull_request->title }}</b>
 
