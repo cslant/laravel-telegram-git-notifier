@@ -2,13 +2,13 @@
 
 namespace CSlant\LaravelTelegramGitNotifier\Services;
 
+use CSlant\LaravelTelegramGitNotifier\Traits\Markup;
 use CSlant\TelegramGitNotifier\Bot;
 use CSlant\TelegramGitNotifier\Constants\SettingConstant;
 use CSlant\TelegramGitNotifier\Exceptions\BotException;
 use CSlant\TelegramGitNotifier\Exceptions\CallbackException;
 use CSlant\TelegramGitNotifier\Exceptions\InvalidViewTemplateException;
 use CSlant\TelegramGitNotifier\Exceptions\MessageIsEmptyException;
-use CSlant\LaravelTelegramGitNotifier\Traits\Markup;
 
 class CallbackService
 {

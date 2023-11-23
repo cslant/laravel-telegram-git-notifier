@@ -2,10 +2,10 @@
 
 namespace CSlant\LaravelTelegramGitNotifier\Services;
 
+use CSlant\LaravelTelegramGitNotifier\Traits\Markup;
 use CSlant\TelegramGitNotifier\Bot;
 use CSlant\TelegramGitNotifier\Exceptions\EntryNotFoundException;
 use CSlant\TelegramGitNotifier\Exceptions\MessageIsEmptyException;
-use CSlant\LaravelTelegramGitNotifier\Traits\Markup;
 
 class CommandService
 {
