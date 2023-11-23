@@ -23,5 +23,5 @@ return [
         'title' => ' <b>Workflow Requested</b> form 🦑:user',
         'body' => 'Running workflow: 💥 <b>:name</b> ⏳',
     ],
-    'link' => '🔗 Link: :link',
+    'link' => '🔗 Workflow run link: :link',
 ];

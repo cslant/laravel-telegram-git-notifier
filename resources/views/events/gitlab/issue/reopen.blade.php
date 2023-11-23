@@ -1,14 +1,17 @@
 <?php
 /**
  * @var $payload object
+ * @var $event string
  */
 
-$message = "⚠️ <b>Issue has been reopened</b> ⚠️ to 🦊<a href=\"{$payload->object_attributes->url}\">{$payload->project->path_with_namespace}#{$payload->object_attributes->id}</a> by <b>{$payload->user->name}</b>\n\n";
+?>
+{!! __('tg-notifier::events/gitlab/issues.reopened.title', [
+            'issue' => "<a href='$payload->object_attributes->url'>{$payload->project->path_with_namespace}#{$payload->object_attributes->id}</a>",
+            'user' => "<b>{$payload->user->name}</b>"
+        ]
+    ) !!}
 
-$message .= "📢 <b>{$payload->object_attributes->title}</b>\n";
+📢 <b>{{ $payload->object_attributes->title }}</b>
 
-$message .= require __DIR__ . '/../../shared/partials/gitlab/_assignees.php';
-
-$message .= require __DIR__ . '/../../shared/partials/gitlab/_body.php';
-
-echo $message;
+@include('tg-notifier::events.shared.partials.gitlab._assignees', compact('payload', 'event'))
+@include('tg-notifier::events.shared.partials.gitlab._body', compact('payload', 'event'))
