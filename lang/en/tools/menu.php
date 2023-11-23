@@ -11,4 +11,7 @@ return [
     'server' => 'To get Server Information',
     'settings' => 'Go to settings of the bot',
     'back' => 'Back',
+
+    'discussion' => '🗨 Discussion',
+    'source_code' => '💠 Source Code',
 ];

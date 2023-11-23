@@ -7,7 +7,7 @@ use Telegram;
 trait Markup
 {
     /**
-     * Generate menu markup
+     * Generate menu markup.
      *
      * @return array[]
      */
@@ -15,9 +15,9 @@ trait Markup
     {
         return [
             [
-                $telegram->buildInlineKeyBoardButton('🗨 Discussion', config('telegram-git-notifier.author.discussion')),
+                $telegram->buildInlineKeyBoardButton(__('tg-notifier::tools/menu.discussion'), config('telegram-git-notifier.author.discussion')),
             ], [
-                $telegram->buildInlineKeyBoardButton('💠 Source Code', config('telegram-git-notifier.author.source_code')),
+                $telegram->buildInlineKeyBoardButton(__('tg-notifier::tools/menu.source_code'), config('telegram-git-notifier.author.source_code')),
             ],
         ];
     }

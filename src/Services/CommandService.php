@@ -22,9 +22,9 @@ class CommandService
     }
 
     /**
-     * @param Bot $bot
-     *
+     * @param  Bot  $bot
      * @return void
+     *
      * @throws EntryNotFoundException
      */
     public function sendStartMessage(Bot $bot): void
@@ -34,13 +34,14 @@ class CommandService
             ['first_name' => $bot->telegram->FirstName()]
         );
         $bot->sendPhoto(
-            __DIR__ . '/../../resources/images/start.png',
+            __DIR__.'/../../resources/images/start.png',
             ['caption' => $reply]
         );
     }
 
     /**
      * @return void
+     *
      * @throws EntryNotFoundException
      * @throws MessageIsEmptyException
      */
@@ -64,7 +65,7 @@ class CommandService
             case '/id':
             case '/usage':
             case '/server':
-                $this->bot->sendMessage(view('tools.' . trim($text, '/')));
+                $this->bot->sendMessage(view("$this->viewNamespace::tools.".trim($text, '/')));
 
                 break;
             case '/settings':
@@ -76,7 +77,7 @@ class CommandService
 
                 break;
             default:
-                $this->bot->sendMessage('🤨 Invalid Request!');
+                $this->bot->sendMessage(__('tg-notifier::app.invalid_request'));
         }
     }
 

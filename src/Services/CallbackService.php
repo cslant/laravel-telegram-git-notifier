@@ -28,8 +28,8 @@ class CallbackService
      * Answer the back button.
      *
      * @param  string  $callback
-     *
      * @return void
+     *
      * @throws MessageIsEmptyException
      * @throws BotException
      * @throws CallbackException
@@ -71,6 +71,7 @@ class CallbackService
 
     /**
      * @return void
+     *
      * @throws MessageIsEmptyException
      * @throws InvalidViewTemplateException
      * @throws BotException|CallbackException
