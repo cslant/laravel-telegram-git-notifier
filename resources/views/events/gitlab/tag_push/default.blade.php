@@ -5,13 +5,17 @@
 
 $ref = explode('/', $payload->ref);
 $tag = implode('/', array_slice($ref, 2));
+$tagUrl = $payload->project->web_url.'/tags/'.$tag;
+?>
 
-$tagUrl = $payload->project->web_url . '/tags/' . $tag;
+{!! __('tg-notifier::events/gitlab/tag_push.title', [
+       'repo' => "<a href='{$payload->project->web_url}'>{$payload->project->path_with_namespace}</a>",
+   ]) !!}
 
-$message = "⚙️ <b>A new tag has been pushed to the project</b> 🦊<a href=\"{$payload->project->web_url}\">{$payload->project->path_with_namespace}</a>\n\n";
+{!! __('tg-notifier::events/gitlab/tag_push.name', [
+       'tag_name' => "<a href='{$tagUrl}'>{$tag}</a>",
+   ]) !!}
 
-$message .= "🔖 Tag: <a href=\"{$tagUrl}\">{$tag}</a>\n\n";
-
-$message .= "👤 Pushed by : <b>{$payload->user_name}</b>\n";
-
-echo $message;
+{!! __('tg-notifier::events/gitlab/tag_push.pusher', [
+       'pusher' => "<b>{$payload->user_name}</b>",
+   ]) !!}

@@ -1,12 +1,16 @@
 <?php
 /**
  * @var $payload object
+ * @var $event string
  */
 
-$message = "📝 <b>Wiki Page Updated</b> - 🦊<a href=\"{$payload->object_attributes->url}\">{$payload->project->path_with_namespace}#{$payload->object_attributes->slug}</a> by <b>{$payload->user->name}</b>\n\n";
+{!! __('tg-notifier::events/gitlab/wiki_page.title.update', [
+       'repo' => "<a href='{$payload->object_attributes->url}'>{$payload->project->path_with_namespace}#{$payload->object_attributes->slug}</a>",
+         'user' => "<b>{$payload->user->name}</b>"
+   ]) !!}
 
-$message .= "🏷 Title: <b>{$payload->object_attributes->title}</b> \n\n";
+{!! __('tg-notifier::events/gitlab/wiki_page.name', [
+       'name' => "<b>{$payload->object_attributes->title}</b>"
+   ]) !!}
 
-$message .= require __DIR__ . '/../../shared/partials/gitlab/_body.php';
-
-echo $message;
+@include('tg-notifier::events.shared.partials.gitlab._body', compact('payload', 'event'))
