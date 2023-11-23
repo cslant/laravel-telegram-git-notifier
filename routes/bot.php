@@ -21,5 +21,7 @@ Route::prefix('telegram-git-notifier')->group(function () {
     Route::prefix('webhook')->group(function () {
         Route::get('/set', [WebhookAction::class, 'set'])->name('telegram-git-notifier.webhook.set');
         Route::get('/delete', [WebhookAction::class, 'delete'])->name('telegram-git-notifier.webhook.delete');
+        Route::get('/info', [WebhookAction::class, 'getWebHookInfo'])->name('telegram-git-notifier.webhook.info');
+        Route::get('/updates', [WebhookAction::class, 'getUpdates'])->name('telegram-git-notifier.webhook.updates');
     });
 });

@@ -1,14 +1,17 @@
 <?php
 /**
- * @var $payload mixed
+ * @var $payload object
+ * @var $event string
  */
 
-$message = "✅🚀 <b>Release Created</b> - 🦊<a href=\"{$payload->url}\">{$payload->project->path_with_namespace}#{$payload->tag}</a> by <b>{$payload->commit->author->name}</b>\n\n";
+?>
 
-$message .= "🔖 <b>{$payload->tag}</b> \n";
+{!! __('tg-notifier::events/gitlab/release.title.create', [
+       'repo' => "<a href='$payload->url'>{$payload->project->path_with_namespace}#{$payload->tag}</a>",
+       'user' => "<b>{$payload->commit->author->name}</b>"
+   ]) !!}
 
-$message .= "🗞 <b>{$payload->name}</b> \n";
+🔖 <b>{{ $payload->tag }}</b>
+🗞 <b>{{ $payload->name }}</b>
 
-$message .= require __DIR__ . '/../../shared/partials/gitlab/_body.php';
-
-echo $message;
+@include('tg-notifier::events.shared.partials.gitlab._body', compact('payload', 'event'))

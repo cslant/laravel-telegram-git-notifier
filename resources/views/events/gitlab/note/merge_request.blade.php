@@ -1,14 +1,17 @@
 <?php
 /**
- * @var $payload mixed
+ * @var $payload object
+ * @var $event string
  */
 
-$message = "💬 <b>New Comment on Merge Request</b> - 🦊<a href=\"{$payload->object_attributes->url}\">{$payload->project->path_with_namespace}#{$payload->merge_request->iid}</a> by <b>{$payload->user->name}</b>\n\n";
+?>
+{!! __('tg-notifier::events/gitlab/note.title.merge_request', [
+       'repo' => "<a href='{$payload->object_attributes->url}'>{$payload->project->path_with_namespace}#{$payload->merge_request->iid}</a>",
+       'user' => "<b>{$payload->user->name}</b>"
+   ]
+) !!}
 
-$message .= "🛠 <b>{$payload->merge_request->title}</b> \n";
+🛠 <b>{{ $payload->merge_request->title }}</b>
+🌳 {{ $payload->merge_request->source_branch }} -> {{ $payload->merge_request->target_branch }} 🎯
 
-$message .= "🌳 {$payload->merge_request->source_branch} -> {$payload->merge_request->target_branch} 🎯 \n";
-
-$message .= require __DIR__ . '/../../shared/partials/gitlab/_body.php';
-
-echo $message;
+@include('tg-notifier::events.shared.partials.gitlab._body', compact('payload', 'event'))

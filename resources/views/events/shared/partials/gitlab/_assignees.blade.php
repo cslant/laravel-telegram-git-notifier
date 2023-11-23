@@ -1,16 +1,16 @@
 <?php
 /**
- * @var $payload mixed
+ * @var $payload object
  * @var $event string
  */
 
 if (isset($event) && isset($payload) && !empty($payload->assignees)) {
-    $assigneeText = "🙋 Assignee: ";
+    $assigneeText = __('tg-notifier::events/shared/gitlab._assignee.title');
     $assigneeArray = [];
     foreach ($payload->assignees as $assignee) {
         $assigneeArray[] = "<b>{$assignee->name}</b>";
     }
-    $assigneeText .= implode(', ', $assigneeArray) . "\n";
+    $assigneeText .= implode(', ', $assigneeArray);
 }
-
-return $assigneeText ?? '';
+?>
+{!! $assigneeText ?? '' !!}

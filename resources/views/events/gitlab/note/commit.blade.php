@@ -1,14 +1,21 @@
 <?php
 /**
- * @var $payload mixed
+ * @var $payload object
+ * @var $event string
  */
 
-$message = "💬 <b>New Comment on Commit</b> - 🦊<a href=\"{$payload->object_attributes->url}\">{$payload->project->path_with_namespace}</a> by <b>{$payload->user->name}</b>\n\n";
+?>
+{!! __('tg-notifier::events/gitlab/note.title.commit', [
+       'repo' => "<a href='{$payload->object_attributes->url}'>{$payload->project->path_with_namespace}</a>",
+       'user' => "<b>{$payload->user->name}</b>"
+   ]
+) !!}
 
-$message .= "⚙️ <b>{$payload->commit->message}</b> \n\n";
+⚙️ <b>{{ $payload->commit->message }}</b>
 
-$message .= "🔗 View Comment: <a href=\"{$payload->object_attributes->url}\">{$payload->commit->id}</a> \n\n";
+{!! __('tg-notifier::events/gitlab/note.view_comment', [
+       'link' => "<a href='{$payload->object_attributes->url}'>{$payload->commit->id}</a>"
+   ]
+) !!}
 
-$message .= require __DIR__ . '/../../shared/partials/gitlab/_body.php';
-
-echo $message;
+@include('tg-notifier::events.shared.partials.gitlab._body', compact('payload', 'event'))
