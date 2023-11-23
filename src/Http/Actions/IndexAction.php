@@ -44,7 +44,7 @@ class IndexAction
      * @throws MessageIsEmptyException
      * @throws SendNotificationException
      */
-    public function index(): void
+    public function __invoke(): void
     {
         $sendNotification = new NotificationService(
             $this->notifier,
