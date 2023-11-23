@@ -11,32 +11,6 @@ class CommandService
 {
     use Markup;
 
-    public const MENU_COMMANDS
-        = [
-            [
-                'command' => '/start',
-                'description' => 'Welcome to the bot',
-            ], [
-                'command' => '/menu',
-                'description' => 'Show menu of the bot',
-            ], [
-                'command' => '/token',
-                'description' => 'Show token of the bot',
-            ], [
-                'command' => '/id',
-                'description' => 'Show the ID of the current chat',
-            ], [
-                'command' => '/usage',
-                'description' => 'Show step by step usage',
-            ], [
-                'command' => '/server',
-                'description' => 'To get Server Information',
-            ], [
-                'command' => '/settings',
-                'description' => 'Go to settings of the bot',
-            ],
-        ];
-
     private Bot $bot;
 
     protected string $viewNamespace = '';
@@ -98,11 +72,42 @@ class CommandService
 
                 break;
             case '/set_menu':
-                $this->bot->setMyCommands(CommandService::MENU_COMMANDS);
+                $this->bot->setMyCommands(self::menuCommands());
 
                 break;
             default:
                 $this->bot->sendMessage('🤨 Invalid Request!');
         }
+    }
+
+    /**
+     * @return array[]
+     */
+    public static function menuCommands(): array
+    {
+        return [
+            [
+                'command' => '/start',
+                'description' => __('tg-notifier::tools/menu.start'),
+            ], [
+                'command' => '/menu',
+                'description' => __('tg-notifier::tools/menu.menu'),
+            ], [
+                'command' => '/token',
+                'description' => __('tg-notifier::tools/menu.token'),
+            ], [
+                'command' => '/id',
+                'description' => __('tg-notifier::tools/menu.id'),
+            ], [
+                'command' => '/usage',
+                'description' => __('tg-notifier::tools/menu.usage'),
+            ], [
+                'command' => '/server',
+                'description' => __('tg-notifier::tools/menu.server'),
+            ], [
+                'command' => '/settings',
+                'description' => __('tg-notifier::tools/menu.settings'),
+            ],
+        ];
     }
 }

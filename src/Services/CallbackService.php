@@ -25,9 +25,9 @@ class CallbackService
     }
 
     /**
-     * Answer the back button
+     * Answer the back button.
      *
-     * @param string $callback
+     * @param  string  $callback
      *
      * @return void
      * @throws MessageIsEmptyException
