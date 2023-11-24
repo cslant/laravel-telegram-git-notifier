@@ -43,7 +43,7 @@ class TelegramGitNotifierServiceProvider extends ServiceProvider
         ], 'config_jsons');
 
         $jsonsPath = config('telegram-git-notifier.data_file.storage_folder');
-        if (file_exists($jsonsPath)) {
+        if (is_string($jsonsPath) && file_exists($jsonsPath)) {
             exec("chown -R www-data:www-data $jsonsPath");
         }
     }
