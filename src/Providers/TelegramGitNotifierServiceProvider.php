@@ -38,10 +38,14 @@ class TelegramGitNotifierServiceProvider extends ServiceProvider
             __DIR__.'/../../lang' => resource_path('lang/vendor/tg-notifier'),
         ], 'lang');
 
-        // copy config jsons from core package and ensure permissions are correct
         $this->publishes([
             __DIR__.'/../../../telegram-git-notifier/config/jsons' => config('telegram-git-notifier.data_file.storage_folder'),
         ], 'config_jsons');
+
+        $jsonsPath = config('telegram-git-notifier.data_file.storage_folder');
+        if (file_exists($jsonsPath)) {
+            exec("chown -R www-data:www-data $jsonsPath");
+        }
     }
 
     /**
