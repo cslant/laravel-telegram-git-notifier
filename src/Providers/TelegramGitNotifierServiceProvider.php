@@ -2,8 +2,8 @@
 
 namespace CSlant\LaravelTelegramGitNotifier\Providers;
 
-use Illuminate\Support\ServiceProvider;
 use CSlant\LaravelTelegramGitNotifier\Commands\ChangeOwnerConfigJson;
+use Illuminate\Support\ServiceProvider;
 
 class TelegramGitNotifierServiceProvider extends ServiceProvider
 {
