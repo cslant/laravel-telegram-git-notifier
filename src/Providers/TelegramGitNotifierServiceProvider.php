@@ -28,7 +28,7 @@ class TelegramGitNotifierServiceProvider extends ServiceProvider
 
         $this->registerCommands();
 
-        $this->registerPublishes();
+        $this->registerAssetPublishing();
     }
 
     /**
@@ -65,7 +65,7 @@ class TelegramGitNotifierServiceProvider extends ServiceProvider
     /**
      * @return void
      */
-    protected function registerPublishes(): void
+    protected function registerAssetPublishing(): void
     {
         $configPath = __DIR__.'/../../config/telegram-git-notifier.php';
         $this->publishes([
