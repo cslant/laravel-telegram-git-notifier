@@ -11,7 +11,9 @@ class ChangeOwnerConfigJson extends Command
      *
      * @var string
      */
-    protected $signature = 'config-json:change-owner {--user= : user}';
+    protected $signature = 'config-json:change-owner 
+                {user : The user to change owner}
+                {group? : The group to change owner}';
 
     /**
      * The console command description.
@@ -27,10 +29,12 @@ class ChangeOwnerConfigJson extends Command
      */
     public function handle(): void
     {
-        $user = $this->option('user');
+        $user = $this->argument('user');
+        $group = $this->argument('group') ?? $user;
+
         $jsonsPath = config('telegram-git-notifier.data_file.storage_folder');
         if (is_string($jsonsPath) && file_exists($jsonsPath)) {
-            exec("chown -R $user:$user $jsonsPath");
+            exec("chown -R $user:$group $jsonsPath");
         }
     }
 }
