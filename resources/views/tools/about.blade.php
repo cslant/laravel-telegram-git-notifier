@@ -1,3 +1,3 @@
-Thanks for using our bot.
+{!! __('tg-notifier::tools/about.title') !!}
 
-The bot is designed to send notifications based on GitHub and GitLab events from your repo instantly to your Telegram account.
+{!! __('tg-notifier::tools/about.description') !!}
