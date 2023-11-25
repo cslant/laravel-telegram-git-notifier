@@ -1,1 +1,1 @@
-Your id is <code><?= config('telegram-git-notifier.bot.chat_id') ?></code>
+{!! __('tg-notifier::tools/id.title', ['chat_id' => config('telegram-git-notifier.bot.chat_id')]) !!}

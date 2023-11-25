@@ -1,1 +1,1 @@
-This bot token is: <code><?= config('telegram-git-notifier.bot.token') ?></code>
+{!! __('tg-notifier::tools/token.title', ['token' => config('telegram-git-notifier.bot.token')]) !!}

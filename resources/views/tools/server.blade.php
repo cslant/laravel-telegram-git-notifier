@@ -1,4 +1,14 @@
-Server Address : <a href="<?= $_SERVER['SERVER_ADDR'] ?>"><?= $_SERVER['SERVER_ADDR'] ?></a>
-Server Name : <a href="<?= $_SERVER['SERVER_NAME'] ?>"><?= $_SERVER['SERVER_NAME'] ?></a>
-Server Port : <a href="<?= $_SERVER['SERVER_PORT'] ?>"><?= $_SERVER['SERVER_PORT'] ?></a>
-Server Software : <a href="<?= $_SERVER['SERVER_SOFTWARE'] ?>"><?= $_SERVER['SERVER_SOFTWARE'] ?></a>
+<?php
+
+use Illuminate\Support\Facades\Request;
+
+$serverAddr = Request::server('SERVER_ADDR');
+$serverName = Request::server('SERVER_NAME');
+$serverPort = Request::server('SERVER_PORT');
+$serverSoftware = Request::server('SERVER_SOFTWARE');
+?>
+
+{!! __('tg-notifier::tools/server.address', ['link' => "<a href='{$serverAddr}'>{$serverAddr}</a>"]) !!}
+{!! __('tg-notifier::tools/server.name', ['link' => "<a href='{$serverName}'>{$serverName}</a>"]) !!}
+{!! __('tg-notifier::tools/server.port', ['link' => "<a href='{$serverPort}'>{$serverPort}</a>"]) !!}
+{!! __('tg-notifier::tools/server.software', ['link' => "<a href='{$serverSoftware}'>{$serverSoftware}</a>"]) !!}

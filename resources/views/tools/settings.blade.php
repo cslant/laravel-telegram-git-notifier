@@ -1,1 +1,1 @@
-<b>Settings for your bot</b> 🤖
+{!! __('tg-notifier::tools/settings.title') !!}

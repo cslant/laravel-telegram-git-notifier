@@ -1,3 +1,3 @@
-✅ Menu button set successfully!
+{!! __('tg-notifier::tools/set_menu_cmd.title') !!}
 
-Please restart the bot to apply the changes.
+{!! __('tg-notifier::tools/set_menu_cmd.restartMessage') !!}
