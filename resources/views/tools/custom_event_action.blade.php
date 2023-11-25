@@ -9,5 +9,5 @@ if ($platform === 'gitlab') {
     $platformIcon = '🦊';
 }
 ?>
-Setting actions for the <b><?= $event ?></b> event <?= $platformIcon ?>.
-Please select an action of this event to enable or disable notifications:
+{!! __('tg-notifier::tools/custom_event_action.title', ['event' => $event, 'platformIcon' => $platformIcon]) !!}
+{!! __('tg-notifier::tools/custom_event_action.actionPrompt') !!}

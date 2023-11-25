@@ -7,8 +7,9 @@ $docsUrl = 'https://docs.github.com/en/developers/webhooks-and-events/webhook-ev
 if ($platform === 'gitlab') {
     $docsUrl = 'https://docs.gitlab.com/ee/user/project/integrations/webhooks.html';
 }
+$documentation = __('tg-notifier::tools/custom_event.documentation');
 ?>
-Go to check the <a href="<?= $docsUrl ?>"><?= $platform ?> documentation</a> for more information about events.
+{!! __('tg-notifier::tools/custom_event.title', ['link' => "<a href='$docsUrl'>$platform $documentation</a>"]) !!}
 ---
-<b>Click and configure child events if the option has the ⚙ icon.</b>
-And select an event to enable or disable notifications:
+{!! __('tg-notifier::tools/custom_event.instruction') !!}
+{!! __('tg-notifier::tools/custom_event.eventSelection') !!}
