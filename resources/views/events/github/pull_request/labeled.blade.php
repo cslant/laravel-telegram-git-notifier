@@ -1,10 +1,10 @@
 <?php
 /**
  * @var $payload object
- * @var $event string
  */
 
 $pull_request = $payload->pull_request;
+$description = strlen($payload->label->description) > 50 ? $payload->label->description : substr($payload->label->description, 0, 50).'...';
 ?>
 
 {!! __('tg-notifier::events/github/pull_request.labeled.title', [
@@ -14,4 +14,4 @@ $pull_request = $payload->pull_request;
     ) !!}
 
 📢 <b>{{ $payload->label->name }}</b>
-{{ substr($payload->label->description, 0, 50).'...' }}
+{{ $description }}

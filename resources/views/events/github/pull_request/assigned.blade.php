@@ -1,7 +1,6 @@
 <?php
 /**
  * @var $payload object
- * @var $event string
  */
 
 $pull_request = $payload->pull_request;
