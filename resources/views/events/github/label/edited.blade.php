@@ -5,8 +5,10 @@
 
 $changes = $payload->changes;
 $label = $payload->label;
-$description = strlen($label->description) > 50 ? $label->description : substr($label->description, 0, 50).'...';
-$description_changes = strlen($changes->name->description) > 50 ? $changes->name->description : substr($changes->name->description, 0, 50).'...';
+$description = strlen($label->description) < 50 ? $label->description : substr($label->description, 0, 50).'...';
+if (isset($changes->description->from)) {
+    $description_changes = strlen($changes->description->from) < 50 ? $changes->description->from : substr($changes->description->from, 0, 50).'...';
+}
 ?>
 
 {!! __('tg-notifier::events/github/label.edited.title', [
@@ -15,17 +17,18 @@ $description_changes = strlen($changes->name->description) > 50 ? $changes->name
         ]
     ) !!}
 
-
 @if(isset($changes->name->from))
+{!! __('tg-notifier::events/github/label.edited.changes.title.name') !!}
 {!! __('tg-notifier::events/github/label.edited.changes.title.from', ['title_from' => $payload->changes->name->from]) !!}
 {!! __('tg-notifier::events/github/label.edited.changes.title.to', ['title_to' => $payload->label->name]) !!}
 @else
 📢 <b>{{ $label->name }}</b>
 @endif
 
-@if(isset($changes->name->description))
-    {!! __('tg-notifier::events/github/label.edited.changes.description.from', ['description_from' => $description_changes]) !!}
-    {!! __('tg-notifier::events/github/label.edited.changes.description.to', ['description_to' =>$description]) !!}
+@if(isset($changes->description->from))
+{!! __('tg-notifier::events/github/label.edited.changes.description.name') !!}
+{!! __('tg-notifier::events/github/label.edited.changes.description.from', ['description_from' => $description_changes]) !!}
+{!! __('tg-notifier::events/github/label.edited.changes.description.to', ['description_to' => $description]) !!}
 @else
 {{ $description }}
 @endif
