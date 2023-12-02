@@ -78,6 +78,8 @@ return [
 
     /** Set the path to the view file */
     'view' => [
+        'ignore-message' => env('IGNORE_MESSAGE', 'ignore-message'),
+
         'namespace' => env('TGN_VIEW_NAMESPACE', 'tg-notifier'),
 
         'default' => env(

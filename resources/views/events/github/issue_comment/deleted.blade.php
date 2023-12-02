@@ -19,5 +19,5 @@ $issue = $payload->issue;
 @include('tg-notifier::events.shared.partials.github._assignees', compact('payload', 'event'))
 @include('tg-notifier::events.shared.partials.github._body', compact('payload', 'event'))
 @else
-IGNORE_MESSAGE
+{{ config('telegram-git-notifier.view.ignore-message') }}
 @endif
