@@ -9,7 +9,7 @@ $issue = $payload->issue;
 
 {!! __('tg-notifier::events/github/issues.locked.title', [
             'issue' => "<a href='$issue->html_url'>{$payload->repository->full_name}#$issue->number</a>",
-            'user' => "<a href='{$issue->user->html_url}'>@{$issue->user->login}</a>"
+            'user' => "<a href='{$payload->sender->html_url}'>@{$payload->sender->login}</a>"
         ]
     ) !!}
 
