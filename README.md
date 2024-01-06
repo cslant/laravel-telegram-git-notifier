@@ -12,6 +12,8 @@ and manage customization through messages and buttons on Telegram.
 [![Quality Score](https://img.shields.io/scrutinizer/g/cslant/laravel-telegram-git-notifier.svg?style=flat-square)](https://scrutinizer-ci.com/g/cslant/laravel-telegram-git-notifier)
 [![Maintainability](https://api.codeclimate.com/v1/badges/7ccaccebe9cd58ff3df5/maintainability)](https://codeclimate.com/github/cslant/laravel-telegram-git-notifier/maintainability)
 
+![telegram-git-notifier-laravel-background](https://github.com/cslant/laravel-telegram-git-notifier/assets/35853002/f70bbdc2-b60a-4c39-a70c-4c53927c6d8f)
+
 ## 📝 Information
 
 - Send notifications of your GitHub/GitLab repositories to Telegram Bots, Groups, Super Groups (Multiple Topics), and Channels.
