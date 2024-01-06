@@ -3,6 +3,10 @@
 With this package, you can create a Telegram bot to receive notifications from GitHub or GitLab events
 and manage customization through messages and buttons on Telegram.
 
+<p align="center">
+  <img alt="GitHub and GitLab notifications to telegram php" src="https://github.com/cslant/laravel-telegram-git-notifier/assets/35853002/09b85152-52c9-444d-ac2e-a32ee4ab5121" />
+</p>
+
 ![License](https://img.shields.io/github/license/cslant/laravel-telegram-git-notifier.svg?style=flat-square)
 [![Latest Version](https://img.shields.io/github/release/cslant/laravel-telegram-git-notifier.svg?style=flat-square)](https://github.com/cslant/laravel-telegram-git-notifier/releases)
 [![Total Downloads](https://img.shields.io/packagist/dt/cslant/laravel-telegram-git-notifier.svg?style=flat-square)](https://packagist.org/packages/cslant/laravel-telegram-git-notifier)
@@ -11,8 +15,6 @@ and manage customization through messages and buttons on Telegram.
 [![StyleCI](https://styleci.io/repos/683727144/shield)](https://styleci.io/repos/683727144)
 [![Quality Score](https://img.shields.io/scrutinizer/g/cslant/laravel-telegram-git-notifier.svg?style=flat-square)](https://scrutinizer-ci.com/g/cslant/laravel-telegram-git-notifier)
 [![Maintainability](https://api.codeclimate.com/v1/badges/7ccaccebe9cd58ff3df5/maintainability)](https://codeclimate.com/github/cslant/laravel-telegram-git-notifier/maintainability)
-
-![telegram-git-notifier-laravel-background](https://github.com/cslant/laravel-telegram-git-notifier/assets/35853002/f70bbdc2-b60a-4c39-a70c-4c53927c6d8f)
 
 ## 📝 Information
 
