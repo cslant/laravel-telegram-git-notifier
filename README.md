@@ -4,7 +4,7 @@ With this package, you can create a Telegram bot to receive notifications from G
 and manage customization through messages and buttons on Telegram.
 
 <p align="center">
-  <img alt="GitHub and GitLab notifications to telegram php" src="https://github.com/cslant/laravel-telegram-git-notifier/assets/35853002/09b85152-52c9-444d-ac2e-a32ee4ab5121" />
+  <img alt="Telegram GitHub/GitLab Notifier Laravel" src="resources/images/telegram-git-notifier-laravel.png" />
 </p>
 
 ![License](https://img.shields.io/github/license/cslant/laravel-telegram-git-notifier.svg?style=flat-square)
@@ -57,4 +57,4 @@ sudo php artisan config-json:change-owner www-data www-data
 
 ## 📖 Documentation
 
-...In construction...
+Please see the [Telegram Git Notifier Documentation](https://docs.cslant.com/telegram-git-notifier/introduction) for more information.

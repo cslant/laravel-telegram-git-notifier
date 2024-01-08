@@ -34,7 +34,7 @@ class CommandService
             ['first_name' => $bot->telegram->FirstName()]
         );
         $bot->sendPhoto(
-            __DIR__.'/../../resources/images/start.png',
+            __DIR__.'/../../resources/images/telegram-git-notifier-laravel.png',
             ['caption' => $reply]
         );
     }
