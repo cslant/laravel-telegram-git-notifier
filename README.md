@@ -27,6 +27,14 @@ Laravel Telegram Git Notifier is a package that allows you to create a Telegram 
 - [Composer](https://getcomposer.org/)
 - Core: [Telegram Git Notifier](https://github.com/cslant/telegram-git-notifier.git)
 
+## 🔧 Installation
+
+You can install this package via Composer:
+
+```bash
+composer require cslant/laravel-telegram-git-notifier
+```
+
 ## 📖 Official Documentation
 
 Please see the [Telegram Git Notifier Documentation](https://docs.cslant.com/telegram-git-notifier/) for more information.
