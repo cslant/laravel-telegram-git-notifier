@@ -2,6 +2,18 @@
 
 Here you can see the full list of changes between each Telegram Git Notifier package release.
 
+## v1.0.2 - 2024-01-15
+
+### What's Changed
+
+* New Official Documentation in the [Telegram Git Notifier Documentation](https://docs.cslant.com/telegram-git-notifier/)
+* Update view template for bot's tool by @pxthinh in https://github.com/cslant/laravel-telegram-git-notifier/pull/38
+* Add view and lang for branch protection rule and deploy key by @pxthinh in https://github.com/cslant/laravel-telegram-git-notifier/pull/39
+* Update view template for some github events by @pxthinh in https://github.com/cslant/laravel-telegram-git-notifier/pull/41
+* Fix the person execute for some view template by @pxthinh in https://github.com/cslant/laravel-telegram-git-notifier/pull/42
+
+**Full Changelog**: https://github.com/cslant/laravel-telegram-git-notifier/compare/v1.0.1...v1.0.2
+
 ## v1.0.1 - 2023-11-25
 
 ### 🚀 New Version Release! 🚀
@@ -27,14 +39,15 @@ Here you can see the full list of changes between each Telegram Git Notifier pac
 - Added support for sending notifications in topics (threads in supergroups).
 - Enhanced capability to send notifications across multiple topics simultaneously.
 - Validate the configuration platform events.
-- **Support for Optional Configuration via Vendor Publish Command**   
-  - You can now customize the configuration more easily using the following command:      
-    ```bash      
+- **Support for Optional Configuration via Vendor Publish Command**
+  - You can now customize the configuration more easily using the following command:
+    ```bash
     php artisan vendor:publish --provider="CSlant\LaravelTelegramGitNotifier\Providers\TelegramGitNotifierServiceProvider" --tag="config_jsons"            
-          
-          
-    ```   
-  - This feature allows you to flexibly configure and manage your application according to your preferences.   
+    
+    
+    
+    ```
+  - This feature allows you to flexibly configure and manage your application according to your preferences.
   
 
 ### 📝 What's Changed
