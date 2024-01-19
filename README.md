@@ -11,7 +11,7 @@
 <a href="https://github.com/cslant/laravel-telegram-git-notifier/actions/workflows/setup_test.yml"><img src="https://img.shields.io/github/actions/workflow/status/cslant/laravel-telegram-git-notifier/setup_test.yml?label=tests&branch=main" alt="Test Status"></a>
 <a href="https://github.com/cslant/laravel-telegram-git-notifier/actions/workflows/php-cs-fixer.yml"><img src="https://img.shields.io/github/actions/workflow/status/cslant/laravel-telegram-git-notifier/php-cs-fixer.yml?label=code%20style&branch=main" alt="Code Style Status"></a>
 <a href="https://scrutinizer-ci.com/g/cslant/laravel-telegram-git-notifier"><img src="https://img.shields.io/scrutinizer/g/cslant/laravel-telegram-git-notifier.svg?style=flat-square" alt="Quality Score"></a>
-<a href="https://codeclimate.com/github/cslant/laravel-telegram-git-notifier/maintainability"><img src="https://api.codeclimate.com/v1/badges/7ccaccebe9cd58ff3df5/maintainability" alt="Maintainability"></a>
+<a href="https://codeclimate.com/github/cslant/laravel-telegram-git-notifier/maintainability"><img src="https://api.codeclimate.com/v1/badges/a4f72c7bdd4200cf3dda/maintainability" alt="Maintainability"></a>
 </p>
 
 ## 📝 Introduction
