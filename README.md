@@ -35,6 +35,8 @@ You can install this package via Composer:
 composer require cslant/laravel-telegram-git-notifier
 ```
 
+Please check and update some configurations in the documentation.
+
 ## 📖 Official Documentation
 
 Please see the [Telegram Git Notifier Documentation](https://docs.cslant.com/telegram-git-notifier/) for more information.
