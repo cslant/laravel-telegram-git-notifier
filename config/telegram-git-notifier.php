@@ -3,6 +3,7 @@
 $configFileStorageFolder = storage_path(
     env('TGN_CONFIG_FILE_STORAGE_FOLDER', '/app/vendor/tg-notifier/jsons')
 );
+$routePrefix = env('TGN_DEFAULT_ROUTE_PREFIX', 'telegram-git-notifier');
 
 return [
     'defaults' => [
@@ -11,15 +12,15 @@ return [
         ],
 
         /* Set route prefix for telegram git notifier app */
-        'route_prefix' => env('TGN_DEFAULT_ROUTE_PREFIX', 'telegram-git-notifier'),
+        'route_prefix' => $routePrefix,
     ],
 
     'app' => [
         'name' => env('TGN_APP_NAME', 'Laravel Telegram Git Notifier'),
+        'timezone' => env('TIMEZONE', 'Asia/Ho_Chi_Minh'),
 
         /* Required for the bot to work properly */
-        'url' => env('TGN_APP_URL', 'http://localhost:8000/telegram-git-notifier'),
-        'timezone' => env('TIMEZONE', 'Asia/Ho_Chi_Minh'),
+        'url' => env('TGN_APP_URL', env('APP_URL', 'http://localhost')).'/'.$routePrefix,
     ],
 
     'bot' => [
