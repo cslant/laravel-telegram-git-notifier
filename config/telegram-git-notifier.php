@@ -21,6 +21,7 @@ return [
 
         /* Required for the bot to work properly */
         'url' => env('TGN_APP_URL', env('APP_URL', 'http://localhost')).'/'.$routePrefix,
+        'request_verify' => env('TGN_REQUEST_VERIFY', false),
     ],
 
     'bot' => [
