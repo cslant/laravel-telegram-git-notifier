@@ -9,9 +9,9 @@ class WebhookAction
 {
     protected WebhookService $webhookService;
 
-    public function __construct(WebhookService $webhookService)
+    public function __construct()
     {
-        $this->webhookService = $webhookService;
+        $this->webhookService = new WebhookService();
     }
 
     /**

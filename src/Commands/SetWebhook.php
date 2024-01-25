@@ -22,14 +22,6 @@ class SetWebhook extends Command
      */
     protected $description = 'Set webhook';
 
-    protected WebhookService $webhookService;
-
-    public function __construct(WebhookService $webhookService)
-    {
-        parent::__construct();
-        $this->webhookService = $webhookService;
-    }
-
     /**
      * Execute the console command.
      *
@@ -38,7 +30,7 @@ class SetWebhook extends Command
     public function handle(): void
     {
         try {
-            $log = $this->webhookService->setWebhook();
+            $log = (new WebhookService())->setWebhook();
 
             $this->info($log);
         } catch (WebhookException $e) {

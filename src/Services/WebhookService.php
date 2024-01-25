@@ -9,9 +9,9 @@ class WebhookService
 {
     protected Webhook $webhook;
 
-    public function __construct(Webhook $webhook)
+    public function __construct()
     {
-        $this->webhook = $webhook;
+        $this->webhook = new Webhook();
         $this->webhook->setToken(config('telegram-git-notifier.bot.token'));
         $this->webhook->setUrl(config('telegram-git-notifier.app.url'));
     }
