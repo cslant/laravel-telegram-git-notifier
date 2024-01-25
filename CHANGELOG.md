@@ -2,6 +2,19 @@
 
 Here you can see the full list of changes between each Telegram Git Notifier package release.
 
+## v1.0.3 - 2024-01-25
+
+### What's Changed
+
+* Refactor config by @tanhongit in https://github.com/cslant/laravel-telegram-git-notifier/pull/57
+* feat: set webhook using CLI by @LuongTienThinh in https://github.com/cslant/laravel-telegram-git-notifier/pull/58
+
+### New Contributors
+
+* @LuongTienThinh made their first contribution in https://github.com/cslant/laravel-telegram-git-notifier/pull/58
+
+**Full Changelog**: https://github.com/cslant/laravel-telegram-git-notifier/compare/v1.0.2...v1.0.3
+
 ## v1.0.2 - 2024-01-15
 
 ### What's Changed
@@ -43,6 +56,7 @@ Here you can see the full list of changes between each Telegram Git Notifier pac
   - You can now customize the configuration more easily using the following command:
     ```bash
     php artisan vendor:publish --provider="CSlant\LaravelTelegramGitNotifier\Providers\TelegramGitNotifierServiceProvider" --tag="config_jsons"            
+    
     
     
     
