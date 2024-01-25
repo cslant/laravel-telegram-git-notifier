@@ -20,6 +20,7 @@ class WebhookService
      * Set webhook for telegram bot.
      *
      * @return string
+     *
      * @throws WebhookException
      */
     public function setWebhook(): string
@@ -31,6 +32,7 @@ class WebhookService
      * Delete webhook for telegram bot.
      *
      * @return string
+     *
      * @throws WebhookException
      */
     public function deleteWebHook(): string
@@ -42,6 +44,7 @@ class WebhookService
      * Get webhook update.
      *
      * @return string
+     *
      * @throws WebhookException
      */
     public function getUpdates(): string
