@@ -4,10 +4,10 @@ parameters:
           path: src/Providers/TelegramGitNotifierServiceProvider.php
 
         - message: '#Parameter \#1 \$token of method CSlant\\TelegramGitNotifier\\Webhook\:\:setToken\(\) expects string, mixed given\.#'
-          path: src/Http/Actions/WebhookAction.php
+          path: src/Services/WebhookService.php
 
         - message: '#Parameter \#1 \$url of method CSlant\\TelegramGitNotifier\\Webhook\:\:setUrl\(\) expects string, mixed given\.#'
-          path: src/Http/Actions/WebhookAction.php
+          path: src/Services/WebhookService.php
 
         - message: '#Parameter \#1 \$prefix of static method Illuminate\\Support\\Facades\\Route::prefix\(\) expects string, mixed given\.#'
           path: routes/bot.php

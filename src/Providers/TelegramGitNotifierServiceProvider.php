@@ -3,6 +3,7 @@
 namespace CSlant\LaravelTelegramGitNotifier\Providers;
 
 use CSlant\LaravelTelegramGitNotifier\Commands\ChangeOwnerConfigJson;
+use CSlant\LaravelTelegramGitNotifier\Commands\SetWebhook;
 use Illuminate\Support\ServiceProvider;
 
 class TelegramGitNotifierServiceProvider extends ServiceProvider
@@ -59,6 +60,7 @@ class TelegramGitNotifierServiceProvider extends ServiceProvider
     {
         $this->commands([
             ChangeOwnerConfigJson::class,
+            SetWebhook::class,
         ]);
     }
 
