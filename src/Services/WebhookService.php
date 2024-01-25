@@ -2,23 +2,62 @@
 
 namespace CSlant\LaravelTelegramGitNotifier\Services;
 
-use CSlant\LaravelTelegramGitNotifier\Http\Actions\WebhookAction;
 use CSlant\TelegramGitNotifier\Exceptions\WebhookException;
+use CSlant\TelegramGitNotifier\Webhook;
 
 class WebhookService
 {
-    protected WebhookAction $webhookAction;
+    protected Webhook $webhook;
 
-    public function __construct(WebhookAction $webhookAction) {
-        $this->webhookAction = $webhookAction;
+    public function __construct(Webhook $webhook)
+    {
+        $this->webhook = $webhook;
+        $this->webhook->setToken(config('telegram-git-notifier.bot.token'));
+        $this->webhook->setUrl(config('telegram-git-notifier.app.url'));
     }
 
-
     /**
+     * Set webhook for telegram bot.
+     *
+     * @return string
      * @throws WebhookException
      */
-    public function handle(): string
+    public function setWebhook(): string
     {
-        return $this->webhookAction->set();
+        return $this->webhook->setWebhook();
+    }
+
+    /**
+     * Delete webhook for telegram bot.
+     *
+     * @return string
+     * @throws WebhookException
+     */
+    public function deleteWebHook(): string
+    {
+        return $this->webhook->deleteWebHook();
+    }
+
+    /**
+     * Get webhook update.
+     *
+     * @return string
+     * @throws WebhookException
+     */
+    public function getUpdates(): string
+    {
+        return $this->webhook->getUpdates();
+    }
+
+    /**
+     * Get webhook info.
+     *
+     * @return string
+     *
+     * @throws WebhookException
+     */
+    public function getWebHookInfo(): string
+    {
+        return $this->webhook->getWebHookInfo();
     }
 }

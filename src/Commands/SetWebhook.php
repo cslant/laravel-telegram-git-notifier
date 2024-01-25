@@ -5,7 +5,6 @@ namespace CSlant\LaravelTelegramGitNotifier\Commands;
 use CSlant\LaravelTelegramGitNotifier\Services\WebhookService;
 use CSlant\TelegramGitNotifier\Exceptions\WebhookException;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Log;
 
 class SetWebhook extends Command
 {
@@ -39,7 +38,7 @@ class SetWebhook extends Command
     public function handle(): void
     {
         try {
-            $log = $this->webhookService->handle();
+            $log = $this->webhookService->setWebhook();
 
             $this->info($log);
         } catch (WebhookException $e) {
