@@ -30,9 +30,9 @@ class SetWebhook extends Command
     public function handle(): void
     {
         try {
-            $log = (new WebhookService())->setWebhook();
+            $webhookService = new WebhookService();
 
-            $this->info($log);
+            $this->info($webhookService->setWebhook());
         } catch (WebhookException $e) {
             $this->error($e->getMessage());
         }
