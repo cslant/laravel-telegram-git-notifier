@@ -2,6 +2,15 @@
 
 Here you can see the full list of changes between each Telegram Git Notifier package release.
 
+## v1.0.4 - 2024-01-26
+
+### What's Changed
+
+* Feat: add request_verify from `Client Request` to work correctly on window and Linux by @LuongTienThinh in https://github.com/cslant/laravel-telegram-git-notifier/pull/59
+  Related: https://github.com/cslant/telegram-git-notifier/releases/tag/v1.3.6
+
+**Full Changelog**: https://github.com/cslant/laravel-telegram-git-notifier/compare/v1.0.3...v1.0.4
+
 ## v1.0.3 - 2024-01-25
 
 ### What's Changed
@@ -56,6 +65,7 @@ Here you can see the full list of changes between each Telegram Git Notifier pac
   - You can now customize the configuration more easily using the following command:
     ```bash
     php artisan vendor:publish --provider="CSlant\LaravelTelegramGitNotifier\Providers\TelegramGitNotifierServiceProvider" --tag="config_jsons"            
+    
     
     
     
