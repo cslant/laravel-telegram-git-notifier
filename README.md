@@ -16,9 +16,11 @@
 
 ## 📝 Introduction
 
-Laravel Telegram Git Notifier is a package that allows you to create a Telegram bot to receive notifications from GitHub or GitLab events and manage customization through messages and buttons on Telegram.
+Laravel Telegram Git Notifier is a package that allows you to create a Telegram bot to receive notifications from GitHub
+or GitLab events and manage customization through messages and buttons on Telegram.
 
-- Send notifications of your GitHub/GitLab repositories to Telegram Bots, Groups, Super Groups (Multiple Topics), and Channels.
+- Send notifications of your GitHub/GitLab repositories to Telegram Bots, Groups, Super Groups (Multiple Topics), and
+  Channels.
 - The bot must be created using the [BotFather](https://core.telegram.org/bots#6-botfather)
 
 ## 📋 Requirements
@@ -35,11 +37,52 @@ You can install this package via Composer:
 composer require cslant/laravel-telegram-git-notifier
 ```
 
+## 🚀 Usage
+
+See the [Usage - Telegram git notifier Documentation](https://docs.cslant.com/telegram-git-notifier/usage/first_test)
+for a list of usage.
+
 Please check and update some configurations in the documentation.
 
 ## 📖 Official Documentation
 
-Please see the [Telegram Git Notifier Documentation](https://docs.cslant.com/telegram-git-notifier/) for more information.
+Please see the [Telegram Git Notifier Documentation](https://docs.cslant.com/telegram-git-notifier/) for more
+information.
+
+## ✨ Supported events
+
+### GitHub Events Available
+
+- [x] Push
+- [x] Issues
+- [x] Issue Comment
+- [x] Pull Request
+- [x] Pull Request Review
+- [x] Pull Request Review Comment
+- [x] Fork
+- [x] Commit Comment
+- [x] Deployment
+- [x] Deployment Status
+- [x] Fork
+- [x] Gollum
+- [x] Watch
+
+  ... and more events can see in the [all GitHub events available](https://docs.cslant.com/telegram-git-notifier/)
+
+### GitLab Events Available
+
+- [x] Push
+- [x] Tag Push
+- [x] Issue
+- [x] Merge Request
+- [x] Note
+- [x] Pipeline
+- [x] Wiki Page
+- [x] Build
+- [x] Deployment
+- [x] Release
+
+  ... and more events can see in the [all GitLab events available](https://docs.cslant.com/telegram-git-notifier/)
 
 ## License
 
