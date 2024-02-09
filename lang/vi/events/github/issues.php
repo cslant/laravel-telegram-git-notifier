@@ -6,7 +6,7 @@ return [
         'title' => '🚫 <b>Issue Closed </b> to 🦑 :issue by :user',
     ],
     'deleted' => [
-        'title' => '🗑 <b>Issue Deleted</b> form 🦑 :issue by :user',
+        'title' => '🗑 <b>Issue Deleted</b> from 🦑 :issue by :user',
     ],
     'edited' => [
         'title' => '⚠️ <b>Issue has been edited</b> to 🦑 :issue by :user',
@@ -23,21 +23,21 @@ return [
         ],
     ],
     'locked' => [
-        'title' => '🔒 <b>Issue Locked</b> form 🦑 :issue by :user',
+        'title' => '🔒 <b>Issue Locked</b> from 🦑 :issue by :user',
     ],
     'opened' => [
         'title' => '⚠️ <b>New Issue</b> to 🦑 :issue by :user',
     ],
     'pinned' => [
-        'title' => '📌 <b>Issue Pinned</b> form 🦑 :issue by :user',
+        'title' => '📌 <b>Issue Pinned</b> from 🦑 :issue by :user',
     ],
     'reopened' => [
         'title' => '⚠️ <b>Issue has been reopened</b> ⚠️ to 🦑 :issue by :user',
     ],
     'unlocked' => [
-        'title' => '🔐 <b>Issue Unlocked</b> form 🦑 :issue by :user',
+        'title' => '🔐 <b>Issue Unlocked</b> from 🦑 :issue by :user',
     ],
     'unpinned' => [
-        'title' => '🔔 <b>Issue Unpinned</b> form 🦑 :issue by :user',
+        'title' => '🔔 <b>Issue Unpinned</b> from 🦑 :issue by :user',
     ],
 ];
