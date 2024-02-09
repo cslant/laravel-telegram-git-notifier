@@ -2,12 +2,12 @@
 
 return [
     'created' => [
-        'title' => '🎉 <b>New Star 🌟</b> from 🦑:user',
-        'seeder' => '👤 Starer: <b>:sender_login</b> 👀',
+        'title' => '🎉 <b>Nhận dấu sao mới 🌟</b> từ 🦑:user',
+        'seeder' => '👤 Người gắn dấu sao: <b>:sender_login</b> 👀',
     ],
 
     'deleted' => [
-        'title' => '🚫 <b>Star 🌟 Removed</b> from 🦑:user',
-        'remover' => '👤 Remover: <b>:sender_login</b> 👀',
+        'title' => '🚫 <b>Dấu sao đã bị hủy <b> từ 🦑:user',
+        'remover' => '👤 Người hủy bỏ: <b>:sender_login</b> 👀',
     ],
 ];
