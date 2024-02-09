@@ -2,7 +2,7 @@
 
 return [
     'started' => [
-        'title' => '🎉 <b>New Started</b> form 🦑:user',
-        'watcher' => '👤 Watcher: <b>:sender_login</b> 👀',
+        'title' => '🎉 <b>(Watch) Dấu sao mới 🌟</b> từ 🦑:user',
+        'watcher' => '👤 Người theo dõi: <b>:sender_login</b> 👀',
     ],
 ];
