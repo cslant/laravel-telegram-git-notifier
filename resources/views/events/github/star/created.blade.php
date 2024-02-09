@@ -5,7 +5,7 @@
 ?>
 
 {!! __('tg-notifier::events/github/star.created.title', [
-    'user' => "<a href='{$payload->repository->html_url}'>{$payload->repository->full_name}</a>"
+    'repo' => "<a href='{$payload->repository->html_url}'>{$payload->repository->full_name}</a>"
         ]
     ) !!}
 

@@ -2,11 +2,11 @@
 
 return [
     'created' => [
-        'title' => '⚠️ <b>New Branch Protection Rules</b> from 🦑:user',
+        'title' => '⚠️ <b>New Branch Protection Rules</b> from 🦑:repo',
         'link' => '🔗 Link: :link',
     ],
     'edited' => [
-        'title' => '📝 <b>Branch Protection Rules Have Been Edited</b> from 🦑:user',
+        'title' => '📝 <b>Branch Protection Rules Have Been Edited</b> from 🦑:repo',
         'changes' => [
             'title' => [
                 'name' => '📖 <b>Title</b> has been changed',
@@ -17,6 +17,6 @@ return [
         'link' => '🔗 Link: :link',
     ],
     'deleted' => [
-        'title' => '🗑 <b>Branch Protection Rules Deleted</b> from 🦑:user',
+        'title' => '🗑 <b>Branch Protection Rules Deleted</b> from 🦑:repo',
     ],
 ];

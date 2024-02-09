@@ -4,7 +4,7 @@
  */
 ?>
 
-{!! __('tg-notifier::events/github/workflow_job.in_progress.progress', ['user' => "<a href='{$payload->repository->html_url}'>{$payload->repository->html_url}</a>"]) !!}
+{!! __('tg-notifier::events/github/workflow_job.in_progress.progress', ['repo' => "<a href='{$payload->repository->html_url}'>{$payload->repository->html_url}</a>"]) !!}
 
 {!! __('tg-notifier::events/github/workflow_job.in_progress.running', ['runner_name' => $payload->workflow_job->runner_name]) !!}
 
