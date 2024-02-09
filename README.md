@@ -1,7 +1,7 @@
 # Welcome to Telegram GitHub/GitLab Notifier 👋
 
 <p align="center">
-  <img alt="Telegram GitHub/GitLab Notifier Laravel" src="resources/images/telegram-git-notifier-laravel.png" />
+  <img alt="Telegram GitHub/GitLab Notifier Laravel" src="https://github.com/cslant/laravel-telegram-git-notifier/blob/main/resources/images/telegram-git-notifier-laravel.png" />
 </p>
 
 <p align="center">
