@@ -4,7 +4,7 @@
  */
 ?>
 
-{!! __('tg-notifier::events/github/workflow_run.requested.title', ['user' => "<a href='{$payload->repository->html_url}'>{$payload->repository->full_name}</a>"]) !!}
+{!! __('tg-notifier::events/github/workflow_run.requested.title', ['repo' => "<a href='{$payload->repository->html_url}'>{$payload->repository->full_name}</a>"]) !!}
 
 {!! __('tg-notifier::events/github/workflow_run.requested.body', ['name' => $payload->workflow_run->name]) !!}
 
