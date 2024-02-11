@@ -2,6 +2,18 @@
 
 Here you can see the full list of changes between each Telegram Git Notifier package release.
 
+## v1.0.5 - 2024-02-08
+
+### What's Changed
+
+* create messages for delete event by @avaelo in https://github.com/cslant/laravel-telegram-git-notifier/pull/61
+
+### New Contributors
+
+* @avaelo made their first contribution in https://github.com/cslant/laravel-telegram-git-notifier/pull/61
+
+**Full Changelog**: https://github.com/cslant/laravel-telegram-git-notifier/compare/v1.0.4...v1.0.5
+
 ## v1.0.4 - 2024-01-26
 
 ### What's Changed
@@ -65,6 +77,7 @@ Here you can see the full list of changes between each Telegram Git Notifier pac
   - You can now customize the configuration more easily using the following command:
     ```bash
     php artisan vendor:publish --provider="CSlant\LaravelTelegramGitNotifier\Providers\TelegramGitNotifierServiceProvider" --tag="config_jsons"            
+    
     
     
     
