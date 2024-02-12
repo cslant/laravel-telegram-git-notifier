@@ -31,6 +31,7 @@ class ChangeOwnerConfigJson extends Command
     {
         if (PHP_OS_FAMILY !== 'Linux') {
             $this->error('This command only works on Linux');
+
             return;
         }
 
