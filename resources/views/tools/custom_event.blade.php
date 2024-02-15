@@ -5,7 +5,7 @@
 
 $docsUrl = 'https://docs.github.com/en/developers/webhooks-and-events/webhook-events-and-payloads';
 if ($platform === 'gitlab') {
-    $docsUrl = 'https://docs.gitlab.com/ee/user/project/integrations/webhooks.html';
+    $docsUrl = 'https://docs.gitlab.com/ee/user/project/integrations/webhook_events.html';
 }
 $documentation = __('tg-notifier::tools/custom_event.documentation');
 ?>

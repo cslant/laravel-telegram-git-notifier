@@ -51,13 +51,7 @@
   },
   "scripts": {
     "analyse": "vendor/bin/phpstan analyse",
-    "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes",
-    "post-install-cmd": [
-      "bash vendor/cslant/telegram-git-notifier/install.sh"
-    ],
-    "post-update-cmd": [
-      "bash vendor/cslant/telegram-git-notifier/install.sh"
-    ]
+    "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes"
   },
   "support": {
     "issues": "https://github.com/cslant/laravel-telegram-git-notifier/issues"

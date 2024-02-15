@@ -12,7 +12,7 @@ class ChangeOwnerConfigJson extends Command
      * @var string
      */
     protected $signature = 'config-json:change-owner 
-                {user : The user to change owner}
+                {user? : The user to change owner}
                 {group? : The group to change owner}';
 
     /**
@@ -29,12 +29,24 @@ class ChangeOwnerConfigJson extends Command
      */
     public function handle(): void
     {
-        $user = $this->argument('user');
+        if (PHP_OS_FAMILY !== 'Linux') {
+            $this->error('This command only works on Linux');
+
+            return;
+        }
+
+        $user = $this->argument('user') ?? '';
         $group = $this->argument('group') ?? $user;
+
+        if (empty($user) || empty($group)) {
+            $group = $user = exec('ps aux | egrep "(apache|httpd|nginx)" | grep -v "root" | head -n1 | cut -d\  -f1');
+        }
 
         $jsonsPath = config('telegram-git-notifier.data_file.storage_folder');
         if (is_string($jsonsPath) && file_exists($jsonsPath)) {
-            exec("chown -R $user:$group $jsonsPath");
+            shell_exec("chown -R $user:$group $jsonsPath");
+        } else {
+            $this->error('The path to the jsons folder is not valid');
         }
     }
 }
