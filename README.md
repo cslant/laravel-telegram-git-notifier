@@ -67,7 +67,7 @@ information.
 - [x] Gollum
 - [x] Watch
 
-  ... and more events can see in the [all GitHub events available](https://docs.cslant.com/telegram-git-notifier/)
+  ... and more events can be seen in the [all GitHub events available](https://docs.cslant.com/telegram-git-notifier/prologue/event-availability/github)
 
 ### GitLab Events Available
 
@@ -82,7 +82,7 @@ information.
 - [x] Deployment
 - [x] Release
 
-  ... and more events can see in the [all GitLab events available](https://docs.cslant.com/telegram-git-notifier/)
+  ... and more events can be seen in the [all GitLab events available](https://docs.cslant.com/telegram-git-notifier//prologue/event-availability/gitlab)
 
 ## License
 
