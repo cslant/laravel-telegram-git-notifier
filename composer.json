@@ -40,11 +40,11 @@
     "cslant/telegram-git-notifier": "^v1.3"
   },
   "require-dev": {
-    "friendsofphp/php-cs-fixer": "^v3.37",
+    "friendsofphp/php-cs-fixer": "^v3.0",
     "nunomaduro/collision": "^7.10",
-    "nunomaduro/larastan": "^2.6",
-    "orchestra/testbench": "^8.14",
-    "pestphp/pest": "^2.24",
+    "nunomaduro/larastan": "^2.9",
+    "orchestra/testbench": "^8.0",
+    "pestphp/pest": "^2.0",
     "phpstan/extension-installer": "^1.3",
     "phpstan/phpstan-deprecation-rules": "^1.1",
     "phpstan/phpstan-phpunit": "^1.3"
