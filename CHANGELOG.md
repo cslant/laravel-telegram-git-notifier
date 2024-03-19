@@ -2,6 +2,14 @@
 
 Here you can see the full list of changes between each Telegram Git Notifier package release.
 
+## v1.0.8 - 2024-03-19
+
+### What's Changed
+
+* Laravel 11.x Support by @tanhongit in https://github.com/cslant/laravel-telegram-git-notifier/pull/64
+
+**Full Changelog**: https://github.com/cslant/laravel-telegram-git-notifier/compare/v1.0.7...v1.0.8
+
 ## v1.0.7 - 2024-02-15
 
 ### What's Changed
@@ -98,6 +106,7 @@ Here you can see the full list of changes between each Telegram Git Notifier pac
   - You can now customize the configuration more easily using the following command:
     ```bash
     php artisan vendor:publish --provider="CSlant\LaravelTelegramGitNotifier\Providers\TelegramGitNotifierServiceProvider" --tag="config_jsons"            
+    
     
     
     
