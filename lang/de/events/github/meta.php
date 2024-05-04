@@ -2,9 +2,9 @@
 
 return [
     'delete' => [
-        'title' => '🗑 <b>Webhook gelöscht</b>',
-        'organization' => '🏢 Organisation: <b>:organization</b>',
-        'full_name' => '📦 Repository: 🦑<b>:full_name</b>',
-        'sender' => '👤 Sender (der das Ereignis ausgelöst hat): <b>:sender</b>',
+        'title' => 'Webhook Deleted',
+        'organization' => 'Organization',
+        'full_name' => 'Repository',
+        'sender' => 'Sender (triggered the event): <b>:sender</b>',
     ],
 ];
