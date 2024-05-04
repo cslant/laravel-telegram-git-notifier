@@ -4,9 +4,9 @@
  */
 ?>
 
-{!! __('tg-notifier::events/github/watch.started.title', [
+🎉 {!! __('tg-notifier::events/github/watch.started.title', [
     'repo' => "<a href='{$payload->repository->html_url}'>{$payload->repository->full_name}</a>"
         ]
     ) !!}
 
-👤 {!! __('tg-notifier::events/github/watch.started.watcher', ['sender_login' => $payload->sender->login]) !!}
+👤 {!! __('tg-notifier::events/github/watch.started.watcher') !!}: <b><code>{{ $payload->sender->login }}</code></b> 👀
