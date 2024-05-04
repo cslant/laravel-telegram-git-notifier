@@ -9,4 +9,4 @@
         ]
     ) !!}
 
-👤 {!! __('tg-notifier::events/github/star.deleted.remover') !!}: <b><code>{{ $payload->sender->login }}</code></b> 👀
+👤 {!! __('tg-notifier::events/github/star.deleted.remover') !!}: <code>{{ $payload->sender->login }}</code> 👀

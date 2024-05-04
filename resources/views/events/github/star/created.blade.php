@@ -9,4 +9,4 @@
         ]
     ) !!}
 
-👤 {!! __('tg-notifier::events/github/star.created.seeder') !!}: <b><code>{{ $payload->sender->login }}</code></b> 👀
+👤 {!! __('tg-notifier::events/github/star.created.seeder') !!}: <code>{{ $payload->sender->login }}</code> 👀

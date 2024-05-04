@@ -9,4 +9,4 @@
         ]
     ) !!}
 
-👤 {!! __('tg-notifier::events/github/watch.started.watcher') !!}: <b><code>{{ $payload->sender->login }}</code></b> 👀
+👤 {!! __('tg-notifier::events/github/watch.started.watcher') !!}: <code>{{ $payload->sender->login }}</code> 👀

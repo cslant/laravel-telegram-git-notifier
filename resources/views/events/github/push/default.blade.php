@@ -30,4 +30,4 @@ $branch = implode('/', array_slice($ref, 2));
 ) !!}
 @endforeach
 
-{!! __('tg-notifier::events/github/push.default.pusher', ['name' => $payload->pusher->name]) !!}
+👤 {!! __('tg-notifier::events/github/push.default.pusher') !!} : <code>{{ $payload->pusher->name }}</code>
