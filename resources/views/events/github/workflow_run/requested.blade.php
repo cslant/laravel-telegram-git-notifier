@@ -8,4 +8,4 @@
 
 {!! __('tg-notifier::events/github/workflow_run.requested.body', ['name' => $payload->workflow_run->name]) !!}
 📝 {!! __('tg-notifier::events/github/workflow_run.display_title') !!}: <code>{!! $payload->workflow_run->display_title !!}</code>
-{!! __('tg-notifier::events/github/workflow_run.link', ['link' => "<a href='{$payload->workflow_run->html_url}'>{$payload->workflow_run->event} - {$payload->workflow_run->name}</a>"]) !!}
+🔗 {!! __('tg-notifier::events/github/workflow_run.link', ['link' => "<a href='{$payload->workflow_run->html_url}'>{$payload->workflow_run->event} - {$payload->workflow_run->name}</a>"]) !!}

@@ -30,5 +30,5 @@ if (isset($changes->description->from)) {
 {!! __('tg-notifier::events/github/label.edited.changes.description.from', ['description_from' => $description_changes]) !!}
 {!! __('tg-notifier::events/github/label.edited.changes.description.to', ['description_to' => $description]) !!}
 @else
-{{ $description }}
+<pre>{{ $description }}</pre>
 @endif

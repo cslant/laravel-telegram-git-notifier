@@ -2,7 +2,7 @@
 
 return [
     'started' => [
-        'title' => 'Watch) <b>New Star 🌟</b> from 🦑:repo',
-        'watcher' => 'Watcher',
+        'title' => '(betrachten) <b>Neuer Stern 🌟</b> von 🦑:repo',
+        'watcher' => 'Betrachter',
     ],
 ];
