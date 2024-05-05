@@ -2,6 +2,7 @@
 /**
  * @var $payload object
  */
+
 ?>
 
 ⚡ <b>{!! __('tg-notifier::events/github/ping.default.title') !!}</b> 🎊

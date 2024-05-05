@@ -5,6 +5,7 @@
  */
 
 $issue = $payload->issue;
+$event = 'issue';
 ?>
 
 @if(empty($issue->pull_request))

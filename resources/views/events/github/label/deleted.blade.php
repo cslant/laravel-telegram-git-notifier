@@ -2,6 +2,7 @@
 /**
  * @var $payload object
  */
+
 ?>
 
 {!! __('tg-notifier::events/github/label.deleted.title', [

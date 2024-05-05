@@ -11,4 +11,4 @@ $repository = $payload->repository;
         ]
     ) !!}
 
-🛡 {!! __('tg-notifier::events/github/branch_protection_rule.name') !!}: <b>{{ $payload->rule->name }}</b>
+🛡 {!! __('tg-notifier::events/github/branch_protection_rule.name') !!}: <code>{{ $payload->rule->name }}</code>

@@ -2,6 +2,7 @@
 /**
  * @var $payload object
  */
+
 ?>
 
 @if($payload->workflow_job->conclusion === 'success')

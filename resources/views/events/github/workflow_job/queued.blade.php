@@ -2,6 +2,7 @@
 /**
  * @var $payload object
  */
+
 ?>
 
 {!! __('tg-notifier::events/github/workflow_job.queued.title', ['repo' => "<a href='{$payload->repository->html_url}'>{$payload->repository->html_url}</a>"]) !!}
