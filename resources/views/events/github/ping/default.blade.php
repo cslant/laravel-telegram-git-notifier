@@ -4,7 +4,7 @@
  */
 ?>
 
-⚡ <b>{!! __('tg-notifier::events/github/ping.default.title') !!}</b>
+⚡ <b>{!! __('tg-notifier::events/github/ping.default.title') !!}</b> 🎊
 
 @if(isset($payload->organization))
 🏢 {!! __('tg-notifier::events/github/ping.default.organization') !!}: <b>{{ $payload->organization->login }}</b>

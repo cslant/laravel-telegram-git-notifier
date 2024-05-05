@@ -14,4 +14,4 @@ $description = strlen($label->description) > 50 ? $label->description : substr($
     ) !!}
 
 📢 <b>{{ $payload->label->name }}</b>
-{{ $description }}
+<pre>{{ $description }}</pre>

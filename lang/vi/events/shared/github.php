@@ -2,9 +2,9 @@
 
 return [
     '_body' => [
-        'title' => '📖 <b>Nội dung</b>: ',
+        'title' => 'Nội dung',
     ],
     '_assignee' => [
-        'title' => '🙋 Người được giao: ',
+        'title' => 'Người được giao',
     ],
 ];
