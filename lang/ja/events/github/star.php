@@ -2,12 +2,12 @@
 
 return [
     'created' => [
-        'title' => '🎉 <b>New Star 🌟</b> from 🦑:repo',
+        'title' => '<b>New Star 🌟</b> from',
         'seeder' => 'Starer',
     ],
 
     'deleted' => [
-        'title' => '🚫 <b>Star 🌟 Removed</b> from 🦑:repo',
+        'title' => '<b>Star 🌟 Removed</b> from',
         'remover' => 'Remover',
     ],
 ];
