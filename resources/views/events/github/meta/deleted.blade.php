@@ -14,5 +14,5 @@
 📦 {!! __('tg-notifier::events/github/meta.delete.full_name') !!}: 🦑<b>{{ $payload->repository->full_name }}</b>
 @endif
 @if(isset($payload->sender))
-👤 {!! __('tg-notifier::events/github/meta.delete.sender', ['sender' => $payload->sender->login]) !!}
+👤 {!! __('tg-notifier::events/github/meta.delete.sender') !!}: <code>{{ $payload->sender->login }}</code>
 @endif

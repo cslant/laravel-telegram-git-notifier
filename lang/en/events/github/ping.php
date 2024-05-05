@@ -5,6 +5,6 @@ return [
         'title' => 'Connection Successful',
         'organization' => 'Organization',
         'full_name' => 'Repository',
-        'sender' => 'Sender (triggered the event): <b>:sender</b>',
+        'sender' => 'Sender (triggered the event)',
     ],
 ];
