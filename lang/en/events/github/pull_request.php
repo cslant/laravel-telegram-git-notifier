@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'review' => '👥 Reviewers: ',
+    'review' => 'Reviewers: ',
     'assigned' => [
         'title' => '<b>Assigned Pull Request</b> - :repo by :user',
         'body' => ':name has been assigned in the pull request <b>:pullRequest</b>',
