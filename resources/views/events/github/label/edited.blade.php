@@ -20,7 +20,7 @@ if (isset($changes->description->from)) {
 @if(isset($changes->name->from))
 📖 {!! __('tg-notifier::events/github/label.edited.changes.title.name') !!}
 📝 {!! __('tg-notifier::events/github/label.edited.changes.title.from', ['title_from' => "<code>{$payload->changes->name->from}</code>"]) !!}
-🏷 {!! __('tg-notifier::events/github/label.edited.changes.title.to', ['title_to' => "<code>{$payload->label->name}</code>"]) !!}
+🔖 {!! __('tg-notifier::events/github/label.edited.changes.title.to', ['title_to' => "<code>{$payload->label->name}</code>"]) !!}
 @else
 🔖 <b>{{ $label->name }}</b>
 @endif

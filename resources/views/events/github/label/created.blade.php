@@ -13,5 +13,5 @@ $description = strlen($label->description) < 100 ? $label->description : substr(
         ]
     ) !!}
 
-🏷 <b>{{ $payload->label->name }}</b>
+🔖 <b>{{ $payload->label->name }}</b>
 <b>{!! __('tg-notifier::events/shared/github._description.title') !!}:</b> {{ $description }}
