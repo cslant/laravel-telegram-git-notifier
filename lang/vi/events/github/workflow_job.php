@@ -2,19 +2,22 @@
 
 return [
     'completed' => [
-        'completed' => '🎉 <b>Action Completed</b> from 🦑:repo',
-        'done' => 'Done action: 🎉 <b>:runner_name</b> ✨',
-
-        'canceled' => '🚫 <b>Canceled Action</b> from 🦑:repo',
-        'failed' => 'Failed action: 🚫 <b>:runner_name</b> ❌',
+        'success' => '<b>Action Completed</b> from :repo',
+        'failure' => '<b>Canceled Action</b> from :repo',
+    ],
+    'status' => [
+        'title' => 'Status',
+        'success' => 'Success',
+        'failure' => 'Failure',
     ],
     'in_progress' => [
-        'progress' => '🔧 <b>Action in progress</b> form🦑:user',
-        'running' => 'Running action: 💥 <b>:runner_name</b> ⏳',
+        'progress' => '<b>Action in progress</b> form :repo',
+        'running' => 'Running action',
     ],
     'queued' => [
-        'title' => ' <b>Action Queued</b> from 🦑:repo',
-        'body' => 'Queued action: 💥 <b>:runner_name</b> ⏰',
+        'title' => ' <b>Action Queued</b> from :repo',
+        'name' => 'Queued action',
     ],
-    'link' => '🔗 Workflow job link: :link',
+    'link' => 'Workflow job link: :link',
+    'name' => 'Workflow job name',
 ];
