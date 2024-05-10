@@ -11,4 +11,4 @@
         ]
     ) !!}
 
-📢 <b>{{ $payload->label->name }}</b>
+🏷 <b>{{ $payload->label->name }}</b>

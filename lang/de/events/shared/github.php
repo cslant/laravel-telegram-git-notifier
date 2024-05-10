@@ -7,4 +7,7 @@ return [
     '_assignee' => [
         'title' => 'Assignee',
     ],
+    '_description' => [
+        'title' => 'Description',
+    ],
 ];

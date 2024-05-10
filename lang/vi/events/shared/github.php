@@ -7,4 +7,7 @@ return [
     '_assignee' => [
         'title' => 'Người được giao',
     ],
+    '_description' => [
+        'title' => 'Mô tả',
+    ],
 ];
