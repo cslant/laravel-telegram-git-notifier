@@ -2,6 +2,8 @@
 
 return [
     'review' => 'Reviewers: ',
+    'title' => 'Title',
+    'name' => 'Name',
     'assigned' => [
         'title' => '<b>Assigned Pull Request</b> - :repo by :user',
         'body' => ':name has been assigned in the pull request <b>:pullRequest</b>',
@@ -12,6 +14,8 @@ return [
         'title_closed' => '<b>Pull Request Closed</b>',
     ],
     'labeled' => [
+        'name' => 'Label',
+        'description' => 'Description',
         'title' => '<b>Labeled Pull Request</b> - :repo by :user',
     ],
     'locked' => [

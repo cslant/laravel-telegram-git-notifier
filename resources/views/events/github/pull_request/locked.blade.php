@@ -12,4 +12,4 @@ $pull_request = $payload->pull_request;
         ]
     ) !!}
 
-📢 <b>{{ $pull_request->title }}</b>
+🏷 {!! __('tg-notifier::events/github/pull_request.title') !!}: <code>{{ $pull_request->title }}</code>

@@ -4,6 +4,7 @@
  */
 
 $pull_request = $payload->pull_request;
+$description = strlen($payload->label->description) > 100 ? $payload->label->description : substr($payload->label->description, 0, 100).'...';
 ?>
 
 ‍👷‍♂️🛠️ {!! __('tg-notifier::events/github/pull_request.unlabeled.title', [
@@ -12,5 +13,5 @@ $pull_request = $payload->pull_request;
         ]
     ) !!}
 
-📢 <b>{{ $payload->label->name }}</b>
-{{ substr($payload->label->description, 0, 50).'...' }}
+🔖 {!! __('tg-notifier::events/github/pull_request.labeled.name') !!}: <code>{{ $payload->label->name }}</code>
+📑 {!! __('tg-notifier::events/github/pull_request.labeled.description') !!}: {{ $description }}

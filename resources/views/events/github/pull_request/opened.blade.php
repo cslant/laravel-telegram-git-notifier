@@ -13,7 +13,7 @@ $pull_request = $payload->pull_request;
         ]
     ) !!}
 
-📢 <b>{{ $pull_request->title }}</b>
+🏷 {!! __('tg-notifier::events/github/pull_request.title') !!}: <code>{{ $pull_request->title }}</code>
 
 🌳 {{ $pull_request->head->ref }} -> {{ $pull_request->base->ref }} 🎯
 @include('tg-notifier::events.shared.partials.github._assignees', compact('payload', 'event'))
