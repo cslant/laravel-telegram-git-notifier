@@ -20,7 +20,7 @@ if (!isset($payload->pull_request->merged) || $payload->pull_request->merged !==
 
 🏷 {!! __('tg-notifier::events/github/pull_request.title') !!}: <code>{{ $pull_request->title }}</code>
 
-🌳: {{ $pull_request->head->ref }} -> {{ $pull_request->base->ref }} 🎯
+🌳 {{ $pull_request->head->ref }} ➡ {{ $pull_request->base->ref }} 🎯
 @include('tg-notifier::events.shared.partials.github._assignees', compact('payload', 'event'))
 @include('tg-notifier::events.github.pull_request.partials._reviewers', compact('payload'))
 @include('tg-notifier::events.shared.partials.github._body', compact('payload', 'event'))
