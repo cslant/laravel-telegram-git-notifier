@@ -6,15 +6,15 @@
 
 $pull_request = $payload->pull_request;
 
-$message = __('tg-notifier::events/github/pull_request.closed.title_merged');
+$message = '✅ '.__('tg-notifier::events/github/pull_request.closed.title_merged');
 if (!isset($payload->pull_request->merged) || $payload->pull_request->merged !== true) {
-    $message = __('tg-notifier::events/github/pull_request.closed.title_closed');
+    $message = '🚫 '.__('tg-notifier::events/github/pull_request.closed.title_closed');
 }
 ?>
 
 {!! __('tg-notifier::events/github/pull_request.closed.title', [
         'title' => $message,
-        'repo' => "<a href='$pull_request->html_url'>{$payload->repository->full_name}#$pull_request->number</a>",
+        'repo' => "🦑<a href='$pull_request->html_url'>{$payload->repository->full_name}#$pull_request->number</a>",
          'user' => "<a href='{$payload->sender->html_url}'>@{$payload->sender->login}</a>"
     ]) !!}
 
