@@ -2,10 +2,11 @@
 
 return [
     'dismissed' => [
-        'title' => '👷‍♂️🛠️ <b>Dismissed Pull Request Review Comment</b> 💬 - 🦑:repo by :user',
+        'title' => '<b>Dismissed Pull Request Review Comment</b> 💬 - :repo by :user',
     ],
     'submitted' => [
-        'title' => '👷‍♂️‍🛠️ <b>New Pull Request Review Comment</b> 💬 - 🦑:repo by :user',
+        'title' => '<b>New Pull Request Review Comment</b> 💬 - :repo by :user',
     ],
-    'link' => '🔗 Link: :review',
+    'link' => 'Link: :review',
+    'name' => 'PR Name',
 ];

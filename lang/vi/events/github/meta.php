@@ -2,9 +2,9 @@
 
 return [
     'delete' => [
-        'title' => '🗑 <b>Webhook đã được xóa</b>',
-        'organization' => '🏢 Tổ chức: <b>:organization</b>',
-        'full_name' => '📦 Kho lưu trữ: 🦑<b>:full_name</b>',
-        'sender' => '👤 Người thực hiện sự kiện: <b>:sender</b>',
+        'title' => 'Webhook đã được xóa',
+        'organization' => 'Tổ chức',
+        'full_name' => 'Kho lưu trữ',
+        'sender' => 'Người thực hiện sự kiện',
     ],
 ];

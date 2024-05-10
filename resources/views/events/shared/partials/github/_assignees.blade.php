@@ -4,8 +4,8 @@
  * @var $event string
  */
 
+$assigneeText = '';
 if (isset($event) && isset($payload) && !empty($payload->{$event}->assignees)) {
-    $assigneeText = __('tg-notifier::events/shared/github._assignee.title');
     $assigneeArray = [];
     foreach ($payload->{$event}->assignees as $assignee) {
         $assigneeArray[] = "<a href=\"{$assignee->html_url}\">@{$assignee->login}</a> ";
@@ -13,4 +13,6 @@ if (isset($event) && isset($payload) && !empty($payload->{$event}->assignees)) {
     $assigneeText .= implode(', ', $assigneeArray);
 }
 ?>
-{!! $assigneeText ?? '' !!}
+@if(!empty($assigneeText))
+🙋 <b>{!! __('tg-notifier::events/shared/github._assignee.title') !!}</b>: {!! $assigneeText !!}
+@endif
