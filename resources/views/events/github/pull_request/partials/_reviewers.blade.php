@@ -10,7 +10,7 @@ if (isset($payload->pull_request->requested_reviewers) && count($payload->pull_r
         $reviewers[] = "<b>{$reviewer->login}</b>";
     }
 
-    $textReviewers .= __('tg-notifier::events/github/pull_request.review') . implode(', ', $reviewers);
+    $textReviewers .= '👥 '.__('tg-notifier::events/github/pull_request.review') . implode(', ', $reviewers);
 }
 ?>
 {!! $textReviewers !!}
