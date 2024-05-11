@@ -77,7 +77,7 @@ class CommandService
 
                 break;
             default:
-                $this->bot->sendMessage(__('tg-notifier::app.invalid_request'));
+                $this->bot->sendMessage('🤨 '.__('tg-notifier::app.invalid_request'));
         }
     }
 
