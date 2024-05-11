@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'title' => 'Connection Successful',
+    'title' => 'Team Added successfully',
     'organization' => 'Organization',
     'full_name' => 'Repository',
-    'sender' => 'Sender (triggered the event)',
+    'team' => 'Team'
 ];
