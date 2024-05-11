@@ -19,13 +19,15 @@ if (isset($event) && isset($payload)) {
     } else {
         return '';
     }
-    if (strlen($body) > 50) {
-        $body = substr($body, 0, 50) . '...';
+    if (strlen($body) > 100) {
+        $body = substr($body, 0, 100) . '...';
     }
 
-    $html = __('tg-notifier::events/shared/gitlab._body.title', ['body' => $body])
-        ."\n"
-        .htmlentities($body);
+    $html = htmlentities($body);
 }
 ?>
-{!! $html !!}
+@if(!empty($html))
+📖 <b>{!! __('tg-notifier::events/shared/gitlab._body.title') !!}:</b>
+<pre>{!! $html !!}</pre>
+@endif
+
