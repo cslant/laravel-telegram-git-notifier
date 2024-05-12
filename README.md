@@ -16,7 +16,7 @@
 
 ## 📝 Introduction
 
-Laravel Telegram Git Notifier is a package that allows you to create a Telegram bot to receive notifications from GitHub
+Laravel Telegram Git Notifier is a Laravel package that allows you to create a Telegram bot to receive notifications from GitHub
 or GitLab events and manage customization through messages and buttons on Telegram.
 
 - Send notifications of your GitHub/GitLab repositories to Telegram Bots, Groups, Super Groups (Multiple Topics), and
@@ -58,13 +58,12 @@ information.
 - [x] Issue Comment
 - [x] Pull Request
 - [x] Pull Request Review
-- [x] Pull Request Review Comment
 - [x] Fork
 - [x] Commit Comment
 - [x] Deployment
 - [x] Deployment Status
 - [x] Fork
-- [x] Gollum
+- [x] Workflow
 - [x] Watch
 
   ... and more events can be seen in the [all GitHub events available](https://docs.cslant.com/telegram-git-notifier/prologue/event-availability/github)

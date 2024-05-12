@@ -2,7 +2,7 @@
 
 return [
     '_body' => [
-        'title' => '📖 <b>Content:</b>',
+        'title' => 'Content',
     ],
     '_assignee' => [
         'title' => '🙋 Assignee: ',
