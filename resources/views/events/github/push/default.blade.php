@@ -9,7 +9,9 @@ $noun = ($count > 1) ? "commits" : "commit";
 $ref = explode('/', $payload->ref);
 $branch = implode('/', array_slice($ref, 2));
 
-$type = 'default';
+if (empty($payload->commits)) {
+    return '';
+}
 ?>
 
 👷⚙️ {!! __('tg-notifier::events/github/push.default.title', [
@@ -21,9 +23,12 @@ $type = 'default';
     ) !!}
 
 @foreach($payload->commits as $commit)
-@php
-    $commitId = substr($commit->id, -7);
-@endphp
+    @php
+        $commitId = substr($commit->id, -7);
+
+        $commit->message = $commit->message ?? '';
+        $commit->message = str_replace("\n", '↩', $commit->message);
+    @endphp
 {!! __('tg-notifier::events/github/push.default.commit', [
        'commit' => "<a href='$commit->url'>$commitId</a>",
        'commit_message' => $commit->message,
