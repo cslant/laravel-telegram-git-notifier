@@ -37,4 +37,5 @@ if (empty($payload->commits)) {
 ) !!}
 @endforeach
 
+🌲 {{ __('tg-notifier::app.branch') }}: <code>{{ $branch }}</code>
 👤 {!! __('tg-notifier::events/github/push.default.pusher') !!}: <code>{{ $payload->pusher->name }}</code>
