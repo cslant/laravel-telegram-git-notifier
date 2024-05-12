@@ -8,12 +8,14 @@ $noun = ($count > 1) ? "commits" : "commit";
 
 $ref = explode('/', $payload->ref);
 $branch = implode('/', array_slice($ref, 2));
+
+$type = 'default';
 ?>
 
-{!! __('tg-notifier::events/github/push.default.title', [
+👷⚙️ {!! __('tg-notifier::events/github/push.default.title', [
             'count' => $count,
             'noun' => $noun,
-            'repo' => $payload->repository->full_name,
+            'repo' => "🦑<a href='{$payload->repository->html_url}'>{$payload->repository->full_name}</a>",
             'branch' => $branch,
         ]
     ) !!}
