@@ -23,12 +23,12 @@ if (empty($payload->commits)) {
     ) !!}
 
 @foreach($payload->commits as $commit)
-    @php
-        $commitId = substr($commit->id, -7);
+@php
+    $commitId = substr($commit->id, -7);
 
-        $commit->message = $commit->message ?? '';
-        $commit->message = str_replace("\n", '↩', $commit->message);
-    @endphp
+    $commit->message = $commit->message ?? '';
+    $commit->message = explode("\n", $commit->message)[0];
+@endphp
 {!! __('tg-notifier::events/github/push.default.commit', [
        'commit' => "<a href='$commit->url'>$commitId</a>",
        'commit_message' => $commit->message,
