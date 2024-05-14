@@ -15,5 +15,5 @@
 👤 {!! __('tg-notifier::events/github/team.created.sender') !!}: <b>{{ $payload->sender->login }}</b>
 @endif
 @if(isset($payload->team))
-👥 {!! __('tg-notifier::events/github/team.created.team') !!}: 🦑<a href='{{ $payload->team->html_url }}'><b>{{ $payload->team->name }}</b></a>
+👥 {!! __('tg-notifier::events/github/team.created.team') !!}: <a href='{{ $payload->team->html_url }}'><b>{{ $payload->team->name }}</b></a>
 @endif
