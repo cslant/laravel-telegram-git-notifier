@@ -1,6 +1,14 @@
 <?php
 
 return [
+    'added_to_repository' => [
+        'title' => 'Team added to repository successfully',
+        'organization' => 'Organization',
+        'full_name' => 'Repository',
+        'permissions' => 'Permissions',
+        'sender' => 'Sender',
+        'team' => 'Team',
+    ],
     'created' => [
         'title' => 'Team created successfully',
         'organization' => 'Organization',
