@@ -13,4 +13,10 @@ return [
         'sender' => 'Sender',
         'team' => 'Team',
     ],
+    'edited' => [
+        'title' => 'Team edited successfully',
+        'organization' => 'Organization',
+        'sender' => 'Sender',
+        'team' => 'Team',
+    ],
 ];
