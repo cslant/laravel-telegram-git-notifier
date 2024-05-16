@@ -18,12 +18,12 @@ use Illuminate\Support\Facades\Route;
 $routePrefix = config('telegram-git-notifier.defaults.route_prefix');
 
 Route::prefix($routePrefix)->name("$routePrefix.")->group(function () {
-    Route::match(['get', 'post'], '/', IndexAction::class)->name("index");
+    Route::match(['get', 'post'], '/', IndexAction::class)->name('index');
 
-    Route::prefix('webhook')->name("webhook.")->group(function () {
-        Route::get('set', [WebhookAction::class, 'set'])->name("set");
-        Route::get('delete', [WebhookAction::class, 'delete'])->name("delete");
-        Route::get('info', [WebhookAction::class, 'getWebHookInfo'])->name("info");
-        Route::get('updates', [WebhookAction::class, 'getUpdates'])->name("updates");
+    Route::prefix('webhook')->name('webhook.')->group(function () {
+        Route::get('set', [WebhookAction::class, 'set'])->name('set');
+        Route::get('delete', [WebhookAction::class, 'delete'])->name('delete');
+        Route::get('info', [WebhookAction::class, 'getWebHookInfo'])->name('info');
+        Route::get('updates', [WebhookAction::class, 'getUpdates'])->name('updates');
     });
 });
