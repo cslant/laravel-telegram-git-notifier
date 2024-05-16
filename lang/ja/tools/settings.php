@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'title' => '<b>Settings for your bot</b> 🤖',
+    'title' => 'Settings for your bot',
 ];
