@@ -1,7 +1,8 @@
 <?php
 
 return [
-    'by' => 'bởi',
-    'unknown_callback' => 'Callback không xác định. Đã xảy ra lỗi!',
-    'invalid_request' => 'Yêu cầu không hợp lệ!',
+    'by' => 'by',
+    'unknown_callback' => 'Unknown Callback. Something went wrong!',
+    'invalid_request' => 'Invalid Request!',
+    'branch' => 'Branch',
 ];

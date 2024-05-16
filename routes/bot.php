@@ -17,13 +17,13 @@ use Illuminate\Support\Facades\Route;
 
 $routePrefix = config('telegram-git-notifier.defaults.route_prefix');
 
-Route::prefix($routePrefix)->group(function () use ($routePrefix) {
-    Route::match(['get', 'post'], '/', IndexAction::class)->name("$routePrefix.index");
+Route::prefix($routePrefix)->name("$routePrefix.")->group(function () {
+    Route::match(['get', 'post'], '/', IndexAction::class)->name('index');
 
-    Route::prefix('webhook')->group(function () use ($routePrefix) {
-        Route::get('set', [WebhookAction::class, 'set'])->name("$routePrefix.webhook.set");
-        Route::get('delete', [WebhookAction::class, 'delete'])->name("$routePrefix.webhook.delete");
-        Route::get('info', [WebhookAction::class, 'getWebHookInfo'])->name("$routePrefix.webhook.info");
-        Route::get('updates', [WebhookAction::class, 'getUpdates'])->name("$routePrefix.webhook.updates");
+    Route::prefix('webhook')->name('webhook.')->group(function () {
+        Route::get('set', [WebhookAction::class, 'set'])->name('set');
+        Route::get('delete', [WebhookAction::class, 'delete'])->name('delete');
+        Route::get('info', [WebhookAction::class, 'getWebHookInfo'])->name('info');
+        Route::get('updates', [WebhookAction::class, 'getUpdates'])->name('updates');
     });
 });
