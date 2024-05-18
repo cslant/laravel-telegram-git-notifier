@@ -1,1 +1,1 @@
-{!! __('tg-notifier::tools/settings.title') !!}
+<b>{!! __('tg-notifier::tools/settings.title') !!}</b> 🤖
