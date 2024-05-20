@@ -1,32 +1,32 @@
 <?php
 
 return [
-    'review' => 'Reviewers: ',
+    'review' => 'Người đánh giá: ',
     'closed' => [
-        'title' => '<b>Merge Request Closed</b> - :repo by :user',
+        'title' => '<b>Yêu cầu hợp nhất đã đóng</b> - :repo bởi :user',
     ],
     'merged' => [
-        'title' => '<b>Merge Request Merged</b> - :repo by :user',
+        'title' => '<b>Yêu cầu hợp nhất Đã hợp nhất</b> - :repo bởi :user',
     ],
     'opened' => [
-        'title' => '<b>New Merge Request</b> - :repo by :user',
+        'title' => '<b>Yêu cầu hợp nhất mới</b> - :repo bởi :user',
     ],
     'reopened' => [
-        'title' => '<b>Merge Request Reopened</b> - :repo by :user',
+        'title' => '<b>Yêu cầu hợp nhất đã được mở lại</b> - :repo bởi :user',
     ],
     'approved' => [
-        'title' => '<b>Merge Request Approved</b> :repo by :user',
+        'title' => '<b>Yêu cầu hợp nhất đã được phê duyệt</b> :repo bởi :user',
     ],
     'unapproved' => [
-        'title' => '<b>Merge Request Unapproved</b> :repo by :user',
+        'title' => '<b>Yêu cầu hợp nhất không được phê duyệt</b> :repo bởi :user',
     ],
     'approval' => [
-        'title' => '<b>Merge Request Approval</b> :repo by :user',
+        'title' => '<b>Phê duyệt yêu cầu hợp nhất</b> :repo bởi :user',
     ],
     'unapproval' => [
-        'title' => '<b>Merge Request Unapproval</b> :repo by :user',
+        'title' => '<b>Yêu cầu hợp nhất không được phê duyệt</b> :repo bởi :user',
     ],
     'update' => [
-        'title' => '<b>Merge Request Updated</b> - :repo by :user',
+        'title' => '<b>Đã cập nhật yêu cầu hợp nhất</b> - :repo bởi :user',
     ],
 ];

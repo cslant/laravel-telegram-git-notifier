@@ -2,8 +2,8 @@
 
 return [
     'title' => [
-        'enabled' => '<b>Feature Flag Enabled</b> :flag_tag by :user_tag',
-        'disabled' => '<b>Feature Flag Disabled</b> :flag_tag by :user_tag',
+        'enabled' => '<b>Đã bật cờ tính năng</b> :flag_tag bởi :user_tag',
+        'disabled' => '<b>Cờ tính năng bị vô hiệu hóa</b> :flag_tag bởi :user_tag',
     ],
-    'name' => 'Name: <b>:flag_name</b>',
+    'name' => 'Tên: <b>:flag_name</b>',
 ];

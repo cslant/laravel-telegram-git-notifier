@@ -2,11 +2,11 @@
 
 return [
     'title' => [
-        'commit' => '<b>New Comment on Commit</b> - :repo by :user',
-        'issue' => '<b>New Comment on Issue</b> - :repo by :user',
-        'merge_request' => '<b>New Comment on Merge Request</b> - :repo by :user',
-        'snippet' => '<b>New Comment on Snippet</b> - :repo by :user',
+        'commit' => '<b>Bình luận mới về Cam kết</b> - :repo bởi :user',
+        'issue' => '<b>Bình luận mới về vấn đề</b> - :repo bởi :user',
+        'merge_request' => '<b>Bình luận mới về yêu cầu hợp nhất</b> - :repo bởi :user',
+        'snippet' => '<b>Bình luận mới về Đoạn trích</b> - :repo bởi :user',
     ],
-    'view_comment' => 'View Comment: :link',
-    'snippet_comment' => 'View Comment on Snippet',
+    'view_comment' => 'Xem bình luận: :link',
+    'snippet_comment' => 'Xem bình luận về đoạn trích',
 ];

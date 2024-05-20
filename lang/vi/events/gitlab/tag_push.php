@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'title' => '<b>A new tag has been pushed to the project</b> :repo',
-    'name' => 'Tag Name',
-    'pusher' => ' Pushed by',
+    'title' => '<b>Một thẻ mới đã được đẩy vào dự án</b> :repo',
+    'name' => 'Tên thẻ',
+    'pusher' => 'Được đẩy bởi',
 ];
