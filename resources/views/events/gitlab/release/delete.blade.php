@@ -11,7 +11,6 @@
        'user' => "<b>{$payload->commit->author->name}</b>"
    ]) !!}
 
-🔖 <b>{{ $payload->tag }}</b>
-🗞 <b>{{ $payload->name }}</b>
-
+🔖 {{ __('tg-notifier::events/gitlab/release.tag') }}: <code>{{ $payload->tag }}</code>
+🗞 {{ __('tg-notifier::events/gitlab/release.name') }}: <code>{{ $payload->name }}</code>
 @include('tg-notifier::events.shared.partials.gitlab._body', compact('payload', 'event'))
