@@ -18,7 +18,7 @@ if ($payload->object_attributes->active) {
 ?>
 
 {!! $icon !!} {!! __('tg-notifier::events/gitlab/feature_flag.title'.$active, [
-        'flag_tag' => $flagTag,
+        'flag_tag' => '🦊'.$flagTag,
         'user_tag' => $userTag,
     ]) !!}
 

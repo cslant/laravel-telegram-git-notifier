@@ -10,10 +10,10 @@ $ref = explode('/', $payload->ref);
 $branch = implode('/', array_slice($ref, 2));
 ?>
 
-{!! __('tg-notifier::events/gitlab/push.default.title', [
+👷⚙️ {!! __('tg-notifier::events/gitlab/push.default.title', [
             'count' => $count,
             'noun' => $noun,
-            'repo' => $payload->project->path_with_namespace,
+            'repo' => "🦑<b>" . $payload->project->path_with_namespace,
             'branch' => $branch,
         ]) !!}
 

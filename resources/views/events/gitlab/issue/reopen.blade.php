@@ -5,8 +5,8 @@
  */
 
 ?>
-{!! __('tg-notifier::events/gitlab/issues.reopened.title', [
-            'issue' => "<a href='{$payload->object_attributes->url}'>{$payload->project->path_with_namespace}#{$payload->object_attributes->id}</a>",
+⚠️ {!! __('tg-notifier::events/gitlab/issues.reopened.title', [
+            'issue' => "⚠️ to 🦊 <a href='{$payload->object_attributes->url}'>{$payload->project->path_with_namespace}#{$payload->object_attributes->id}</a>",
             'user' => "<b>{$payload->user->name}</b>"
         ]
     ) !!}
