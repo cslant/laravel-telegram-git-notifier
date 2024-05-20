@@ -6,8 +6,8 @@
 
 ?>
 
-{!! __('tg-notifier::events/gitlab/release.title.delete', [
-       'repo' => "<a href='$payload->url'>{$payload->project->path_with_namespace}#{$payload->tag}</a>",
+🚫🚀 {!! __('tg-notifier::events/gitlab/release.title.delete', [
+       'repo' => "🦊<a href='$payload->url'>{$payload->project->path_with_namespace}#{$payload->tag}</a>",
        'user' => "<b>{$payload->commit->author->name}</b>"
    ]) !!}
 
