@@ -2,10 +2,10 @@
 
 return [
     'title' => [
-        'create' => '<b>Release Created</b> - :repo by :user',
-        'update' => '<b>Release Updated</b> - :repo by :user',
-        'delete' => '<b>Release Deleted</b> - :repo by :user',
+        'create' => '<b>Đã tạo bản phát hành</b> - :repo bởi :user',
+        'update' => '<b>Đã cập nhật bản phát hành</b> - :repo bởi :user',
+        'delete' => '<b>Đã xoá bản phát hành</b> - :repo bởi :user',
     ],
-    'tag' => 'Tag',
-    'name' => 'Release Name',
+    'tag' => 'Thẻ',
+    'name' => 'Tên phát hành',
 ];

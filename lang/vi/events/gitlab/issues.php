@@ -3,26 +3,26 @@
 return [
     'issue_title' => '📢',
     'closed' => [
-        'title' => '<b>Issue Closed </b> to :issue by :user',
+        'title' => '<b>Vấn đề đã đóng </b> từ :issue bởi :user',
     ],
     'edited' => [
-        'title' => '<b>Issue has been edited</b> to :issue by :user',
+        'title' => '<b>Vấn đề đã được chỉnh sửa</b> từ :issue bởi :user',
         'changes' => [
             'title' => [
-                'name' => '<b>Title</b> has been changed',
-                'from' => '<b>From:</b> :title_from',
-                'to' => '<b>To:</b> :title_to',
+                'name' => '<b>Tiêu đề</b> đã được thay đổi',
+                'from' => '<b>Từ:</b> :title_from',
+                'to' => '<b>Thành:</b> :title_to',
             ],
             'body' => [
-                'title' => '<b>Body</b> has been changed',
-                'message' => 'Please check the issue for more details',
+                'title' => '<b>Nội dung</b> đã được thay đổi',
+                'message' => 'Vui lòng kiểm tra vấn đề để biết thêm chi tiết',
             ],
         ],
     ],
     'opened' => [
-        'title' => '<b>New Issue</b> to :issue by :user',
+        'title' => '<b>Vấn đề mới</b> tới :issue bởi :user',
     ],
     'reopened' => [
-        'title' => '<b>Issue has been reopened</b> :issue by :user',
+        'title' => '<b>Vấn đề đã được mở lại</b> :issue bởi :user',
     ],
 ];
