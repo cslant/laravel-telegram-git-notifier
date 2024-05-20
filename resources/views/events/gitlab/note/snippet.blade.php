@@ -5,8 +5,8 @@
  */
 
 ?>
-{!! __('tg-notifier::events/gitlab/note.title.snippet', [
-       'repo' => "<a href='{$payload->object_attributes->url}'>{$payload->project->path_with_namespace}</a>",
+💬 {!! __('tg-notifier::events/gitlab/note.title.snippet', [
+       'repo' => "🦊<a href='{$payload->object_attributes->url}'>{$payload->project->path_with_namespace}</a>",
        'user' => "<b>{$payload->user->name}</b>"
    ]
 ) !!}

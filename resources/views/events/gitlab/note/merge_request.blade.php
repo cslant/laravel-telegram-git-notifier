@@ -5,8 +5,8 @@
  */
 
 ?>
-{!! __('tg-notifier::events/gitlab/note.title.merge_request', [
-       'repo' => "<a href='{$payload->object_attributes->url}'>{$payload->project->path_with_namespace}#{$payload->merge_request->iid}</a>",
+💬 {!! __('tg-notifier::events/gitlab/note.title.merge_request', [
+       'repo' => "🦊<a href='{$payload->object_attributes->url}'>{$payload->project->path_with_namespace}#{$payload->merge_request->iid}</a>",
        'user' => "<b>{$payload->user->name}</b>"
    ]
 ) !!}
