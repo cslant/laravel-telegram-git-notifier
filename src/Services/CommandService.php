@@ -23,6 +23,7 @@ class CommandService
 
     /**
      * @param  Bot  $bot
+     *
      * @return void
      *
      * @throws EntryNotFoundException
@@ -108,6 +109,9 @@ class CommandService
             ], [
                 'command' => '/settings',
                 'description' => __('tg-notifier::tools/menu.settings'),
+            ], [
+                'command' => '/set_menu',
+                'description' => __('tg-notifier::tools/menu.set_menu'),
             ],
         ];
     }
