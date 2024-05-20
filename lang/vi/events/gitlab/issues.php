@@ -3,7 +3,7 @@
 return [
     'issue_title' => '📢',
     'closed' => [
-        'title' => '<b>Vấn đề đã đóng </b> thành :issue bởi :user',
+        'title' => '<b>Vấn đề đã đóng </b> từ :issue bởi :user',
     ],
     'edited' => [
         'title' => '<b>Vấn đề đã được chỉnh sửa</b> từ :issue bởi :user',
@@ -11,7 +11,7 @@ return [
             'title' => [
                 'name' => '<b>Tiêu đề</b> đã được thay đổi',
                 'from' => '<b>Từ:</b> :title_from',
-                'to' => '<b>Đến:</b> :title_to',
+                'to' => '<b>Thành:</b> :title_to',
             ],
             'body' => [
                 'title' => '<b>Nội dung</b> đã được thay đổi',
