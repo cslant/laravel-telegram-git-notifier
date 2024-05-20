@@ -23,7 +23,6 @@ class CommandService
 
     /**
      * @param  Bot  $bot
-     *
      * @return void
      *
      * @throws EntryNotFoundException
