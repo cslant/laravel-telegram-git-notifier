@@ -13,7 +13,7 @@ $branch = implode('/', array_slice($ref, 2));
 👷⚙️ {!! __('tg-notifier::events/gitlab/push.default.title', [
             'count' => $count,
             'noun' => $noun,
-            'repo' => "🦑<b>" . $payload->project->path_with_namespace,
+            'repo' => "🦑<a href='{$payload->project->web_url}'>{$payload->project->path_with_namespace}</a>",
             'branch' => $branch,
         ]) !!}
 
