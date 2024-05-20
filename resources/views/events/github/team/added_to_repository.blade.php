@@ -13,7 +13,6 @@
 @endif
 @if(isset($payload->repository))
 📦 {!! __('tg-notifier::events/github/team.added_to_repository.full_name') !!}: 🦑<a href='{{ $payload->team->html_url }}'><b>{{ $payload->repository->full_name }}</b></a>
-🔐 {!! __('tg-notifier::events/github/team.added_to_repository.permissions') !!}: <b>{{ "{\n" . collect((array) $payload->repository->permissions)->filter()->map(fn($v, $k) => "    \"$k\": " . ($v ? '✔' : '❌'))->implode(",\n") . "\n}" }}</b>
 📄 {!! __('tg-notifier::events/github/team.added_to_repository.role_name') !!}: <b>{{ $payload->repository->role_name }}</b>
 @endif
 @if(isset($payload->sender))

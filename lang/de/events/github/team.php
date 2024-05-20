@@ -5,7 +5,6 @@ return [
         'title' => 'Team added to repository successfully',
         'organization' => 'Organization',
         'full_name' => 'Repository',
-        'permissions' => 'Permissions',
         'role_name' => 'Role',
         'sender' => 'Sender',
         'team' => 'Team',
