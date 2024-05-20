@@ -10,8 +10,9 @@ return [
     'usage' => 'Show step by step usage',
     'server' => 'To get Server Information',
     'settings' => 'Go to settings of the bot',
+    'set_menu' => 'Set the menu of the bot',
     'back' => 'Back',
 
-    'discussion' => '🗨 Discussion',
-    'source_code' => '💠 Source Code',
+    'discussion' => 'Discussion',
+    'source_code' => 'Source Code',
 ];
