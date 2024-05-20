@@ -6,7 +6,7 @@
 
 ?>
 
-⚡ <b>{!! __('tg-notifier::events/github/team.deleted.title') !!}</b> 🎊
+🗑 <b>{!! __('tg-notifier::events/github/team.deleted.title') !!}</b> 🎊
 
 @if(isset($payload->organization))
 🏢 {!! __('tg-notifier::events/github/team.deleted.organization') !!}: <b>{{ $payload->organization->login }}</b>
