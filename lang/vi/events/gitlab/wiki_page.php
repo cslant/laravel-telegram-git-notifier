@@ -2,9 +2,9 @@
 
 return [
     'title' => [
-        'create' => '<b>Wiki Page Created</b> - :repo by :user',
-        'update' => '<b>Wiki Page Updated</b> - :repo by :user',
-        'delete' => '<b>Wiki Page Deleted</b> - :repo by :user',
+        'create' => '<b>Trang Wiki đã được tạo</b> - :repo bởi :user',
+        'update' => '<b>Trang Wiki đã được cập nhật</b> - :repo bởi :user',
+        'delete' => '<b>Trang Wiki đã được xoá</b> - :repo bởi :user',
     ],
-    'name' => 'Page Name',
+    'name' => 'Tên trang',
 ];
