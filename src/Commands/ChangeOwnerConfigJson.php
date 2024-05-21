@@ -35,8 +35,8 @@ class ChangeOwnerConfigJson extends Command
             return;
         }
 
-        $user = $this->argument('user') ?? $this->getDefaultUserGroup();
-        $group = $this->argument('group') ?? $user;
+        $user = (string) ($this->argument('user') ?? $this->getDefaultUserGroup());
+        $group = (string) ($this->argument('group') ?? $user);
 
         if (empty($user) || empty($group)) {
             $user = $group = $this->getDefaultUserGroup();
