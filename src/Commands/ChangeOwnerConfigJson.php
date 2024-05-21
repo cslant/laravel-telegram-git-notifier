@@ -60,8 +60,10 @@ class ChangeOwnerConfigJson extends Command
         $defaultUserGroup = exec('ps aux | egrep "(apache|httpd|nginx)" | grep -v "root" | head -n1 | cut -d\  -f1');
         if ($defaultUserGroup === false) {
             $this->error('Failed to retrieve default user and group');
+
             return '';
         }
+
         return $defaultUserGroup;
     }
 }
