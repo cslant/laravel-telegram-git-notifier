@@ -11,7 +11,6 @@
         ]
     ) !!}
 
-📢 <b>{{ $payload->object_attributes->title }}</b>
-
+📢 {{ __('tg-notifier::app.title') }}: <code>{{ $payload->object_attributes->title }}</code>
 @include('tg-notifier::events.shared.partials.gitlab._assignees', compact('payload', 'event'))
 @include('tg-notifier::events.shared.partials.gitlab._body', compact('payload', 'event'))

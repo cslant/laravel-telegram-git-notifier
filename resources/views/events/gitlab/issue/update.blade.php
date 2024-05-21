@@ -11,10 +11,8 @@
         ]
     ) !!}
 
-📢 <b>{{ $payload->object_attributes->title }}</b>
-
+📢 {{ __('tg-notifier::app.title') }}: <code>{{ $payload->object_attributes->title }}</code>
 @include('tg-notifier::events.shared.partials.gitlab._assignees', compact('payload', 'event'))
-
 @if(isset($payload->changes->title))
 📖 {!! __('tg-notifier::events/gitlab/issues.edited.changes.title.name') !!}
 📝 {!! __('tg-notifier::events/gitlab/issues.edited.changes.title.from', ['title_from' => $payload->changes->title->previous]) !!}

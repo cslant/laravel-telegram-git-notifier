@@ -11,6 +11,5 @@
    ]
 ) !!}
 
-📢 <b>{{ $payload->issue->title }}</b>
-
+📢 <code>{{ $payload->issue->title }}</code>
 @include('tg-notifier::events.shared.partials.gitlab._body', compact('payload', 'event'))
