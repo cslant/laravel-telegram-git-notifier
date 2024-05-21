@@ -35,16 +35,27 @@ class ChangeOwnerConfigJson extends Command
             return;
         }
 
-        $user = $this->argument('user');
+        $user = $this->argument('user') ?? $this->getDefaultUserGroup();
         $group = $this->argument('group') ?? $user;
 
-        if (!is_string($user) || !is_string($group)) {
+        if (empty($user) || empty($group)) {
             $user = $group = $this->getDefaultUserGroup();
         }
 
+        $this->changeOwner($user, $group);
+    }
+
+    /**
+     * @param  string  $user
+     * @param  string  $group
+     *
+     * @return void
+     */
+    private function changeOwner(string $user, string $group): void
+    {
         $jsonsPath = config('telegram-git-notifier.data_file.storage_folder');
         if (is_string($jsonsPath) && file_exists($jsonsPath)) {
-            shell_exec("chown -R ".escapeshellarg($user).":".escapeshellarg($group)." ".escapeshellarg($jsonsPath));
+            shell_exec('chown -R '.escapeshellarg($user).':'.escapeshellarg($group).' '.escapeshellarg($jsonsPath));
         } else {
             $this->error('The path to the jsons folder is not valid');
         }
