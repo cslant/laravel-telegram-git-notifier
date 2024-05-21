@@ -82,7 +82,7 @@ class CommandService
     }
 
     /**
-     * @return array[]
+     * @return array<string[]>
      */
     public static function menuCommands(): array
     {

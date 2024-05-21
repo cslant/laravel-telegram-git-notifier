@@ -9,7 +9,9 @@ trait Markup
     /**
      * Generate menu markup.
      *
-     * @return array[]
+     * @param  Telegram  $telegram
+     *
+     * @return array<string[]>
      */
     public function menuMarkup(Telegram $telegram): array
     {

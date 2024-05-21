@@ -46,7 +46,7 @@ class TelegramGitNotifierServiceProvider extends ServiceProvider
     /**
      * Get the services provided by the provider.
      *
-     * @return array|null
+     * @return array<string>|null
      */
     public function provides(): ?array
     {

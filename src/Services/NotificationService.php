@@ -14,6 +14,9 @@ class NotificationService
 {
     protected Request $request;
 
+    /**
+     * @var array<int|string>
+     */
     protected array $chatIds = [];
 
     protected Notifier $notifier;
@@ -73,6 +76,7 @@ class NotificationService
                 continue;
             }
 
+            /** @var array<int|string> $thread */
             foreach ($thread as $threadId) {
                 $this->notifier->sendNotify(null, [
                     'chat_id' => $chatId, 'message_thread_id' => $threadId,
