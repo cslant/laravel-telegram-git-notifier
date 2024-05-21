@@ -34,7 +34,6 @@ $repo = "🦊<a href='{$payload->project->web_url}'>{$payload->project->path_wit
        'commit_message' => $commit->message,
        'commit_by' => $commit->author->name,
    ]) !!}
-
 @endforeach
 @endif
 
