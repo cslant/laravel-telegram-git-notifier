@@ -11,8 +11,6 @@
    ]
 ) !!}
 
-📝 <b>{{ $payload->snippet->title }}</b>
-
+📝 {{ __('tg-notifier::app.title') }}: <code>{{ $payload->snippet->title }}</code>
 🔗 <a href="{{ $payload->object_attributes->url }}">{{ __('tg-notifier::events/gitlab/note.snippet_comment') }}</a>
-
 @include('tg-notifier::events.shared.partials.gitlab._body', compact('payload', 'event'))

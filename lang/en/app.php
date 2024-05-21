@@ -6,4 +6,5 @@ return [
     'invalid_request' => 'Invalid Request!',
     'branch' => 'Branch',
     'commit' => 'Commit',
+    'title' => 'Title',
 ];
