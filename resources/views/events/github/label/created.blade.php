@@ -4,7 +4,6 @@
  */
 
 $label = $payload->label;
-$description = strlen($label->description) < 100 ? $label->description : substr($label->description, 0, 100).'...';
 ?>
 
 ✒ {!! __('tg-notifier::events/github/label.created.title', [
@@ -14,4 +13,4 @@ $description = strlen($label->description) < 100 ? $label->description : substr(
     ) !!}
 
 🔖 <b>{{ $payload->label->name }}</b>
-<b>{!! __('tg-notifier::events/shared/github._description.title') !!}:</b> {{ $description }}
+<b>{!! __('tg-notifier::events/shared/github._description.title') !!}:</b> {{ \Illuminate\Support\Str::limit($label->description) }}
