@@ -29,4 +29,5 @@ return [
     'update' => [
         'title' => '<b>Merge Request Updated</b> - :repo by :user',
     ],
+    'default' => 'Here is the default message for merge request',
 ];

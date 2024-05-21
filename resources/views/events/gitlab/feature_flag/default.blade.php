@@ -1,7 +1,7 @@
 <?php
 /**
- * @var $payload object
- * @var $event string
+ * @var object $payload
+ * @var string $event
  */
 
 $flagUrl = $payload->project->web_url."/-/feature_flags/".$payload->object_attributes->id;

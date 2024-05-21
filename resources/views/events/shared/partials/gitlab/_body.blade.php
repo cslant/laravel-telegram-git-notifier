@@ -1,8 +1,10 @@
 <?php
 /**
- * @var $payload object
- * @var $event string
+ * @var object $payload
+ * @var string $event
  */
+
+use Illuminate\Support\Str;
 
 $html = '';
 if (isset($event) && isset($payload)) {
@@ -19,11 +21,7 @@ if (isset($event) && isset($payload)) {
     } else {
         return '';
     }
-    if (strlen($body) > 100) {
-        $body = substr($body, 0, 100) . '...';
-    }
-
-    $html = htmlentities($body);
+    $html = htmlentities(Str::limit($body));
 }
 ?>
 @if(!empty($html))
