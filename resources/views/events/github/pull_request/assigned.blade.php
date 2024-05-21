@@ -1,6 +1,6 @@
 <?php
 /**
- * @var $payload object
+ * @var object $payload
  */
 
 $pull_request = $payload->pull_request;

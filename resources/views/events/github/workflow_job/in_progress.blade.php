@@ -1,6 +1,6 @@
 <?php
 /**
- * @var $payload object
+ * @var object $payload
  */
 
 ?>

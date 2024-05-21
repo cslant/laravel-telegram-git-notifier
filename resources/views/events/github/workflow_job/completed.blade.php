@@ -1,6 +1,6 @@
 <?php
 /**
- * @var $payload object
+ * @var object $payload
  */
 
 if ($payload->workflow_job->conclusion === 'success') {
