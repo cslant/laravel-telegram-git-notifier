@@ -38,8 +38,10 @@ class ChangeOwnerConfigJson extends Command
         $user = $this->argument('user') ?: $this->getDefaultUserGroup();
         $group = $this->argument('group') ?: $this->getDefaultUserGroup();
 
-        if (empty($user) || empty($group)) {
-            $user = $group = $this->getDefaultUserGroup();
+        if (!is_string($user) || !is_string($group)) {
+            $this->error('Failed to retrieve default user and group');
+
+            return;
         }
 
         $this->changeOwner($user, $group);
