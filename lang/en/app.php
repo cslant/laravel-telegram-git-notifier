@@ -7,4 +7,6 @@ return [
     'branch' => 'Branch',
     'commit' => 'Commit',
     'title' => 'Title',
+    'state' => 'State',
+    'confidential' => 'Confidential',
 ];

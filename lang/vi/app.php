@@ -7,4 +7,6 @@ return [
     'branch' => 'Tên nhánh',
     'commit' => 'Commit',
     'title' => 'Tiêu đề',
+    'state' => 'Trạng thái',
+    'confidential' => 'Bí mật',
 ];

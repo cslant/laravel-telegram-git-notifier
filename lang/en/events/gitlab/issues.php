@@ -2,6 +2,8 @@
 
 return [
     'issue_title' => '📢',
+    'default' => 'Default issue to :issue by :user',
+    'confidential_issue' => '🔒 <b>Confidential Issue</b> to :issue by :user',
     'closed' => [
         'title' => '<b>Issue Closed </b> to :issue by :user',
     ],
