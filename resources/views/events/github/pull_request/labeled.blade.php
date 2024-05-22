@@ -2,7 +2,6 @@
 /**
  * @var object $payload
  */
-use Illuminate\Support\Str;
 
 $pull_request = $payload->pull_request;
 ?>
