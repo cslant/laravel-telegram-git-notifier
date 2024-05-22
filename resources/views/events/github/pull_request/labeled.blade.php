@@ -5,7 +5,6 @@
 use Illuminate\Support\Str;
 
 $pull_request = $payload->pull_request;
-$description = Str::limit($payload->label->description);
 ?>
 
 ‍👷‍♂️🛠️ {!! __('tg-notifier::events/github/pull_request.labeled.title', [
@@ -15,4 +14,4 @@ $description = Str::limit($payload->label->description);
     ) !!}
 
 🔖 {!! __('tg-notifier::events/github/pull_request.labeled.name') !!}: <code>{{ $payload->label->name }}</code>
-📑 {!! __('tg-notifier::events/github/pull_request.labeled.description') !!}: {{ $description }}
+📑 {!! __('tg-notifier::events/github/pull_request.labeled.description') !!}: {{ Str::limit($payload->label->description) }}
