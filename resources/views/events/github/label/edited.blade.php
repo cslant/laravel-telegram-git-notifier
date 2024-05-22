@@ -2,12 +2,13 @@
 /**
  * @var object $payload
  */
+use Illuminate\Support\Str;
 
 $changes = $payload->changes;
 $label = $payload->label;
-$description = strlen($label->description) < 100 ? $label->description : substr($label->description, 0, 100).'...';
+$description = Str::limit($label->description);
 if (isset($changes->description->from)) {
-    $description_changes = strlen($changes->description->from) < 100 ? $changes->description->from : substr($changes->description->from, 0, 100).'...';
+    $description_changes = Str::limit($changes->description->from);
 }
 ?>
 

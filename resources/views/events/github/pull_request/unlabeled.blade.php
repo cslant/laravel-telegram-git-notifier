@@ -2,9 +2,10 @@
 /**
  * @var object $payload
  */
+use Illuminate\Support\Str;
 
 $pull_request = $payload->pull_request;
-$description = strlen($payload->label->description) > 100 ? $payload->label->description : substr($payload->label->description, 0, 100).'...';
+$description = Str::limit($payload->label->description);
 ?>
 
 ‍👷‍♂️🛠️ {!! __('tg-notifier::events/github/pull_request.unlabeled.title', [
