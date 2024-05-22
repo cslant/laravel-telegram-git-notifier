@@ -11,4 +11,5 @@ return [
     'confidential' => 'Confidential',
     'status' => 'Status',
     'link' => 'Link',
+    'repo' => 'Repository',
 ];

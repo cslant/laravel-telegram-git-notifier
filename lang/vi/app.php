@@ -11,4 +11,5 @@ return [
     'confidential' => 'Bí mật',
     'status' => 'Trạng thái',
     'link' => 'Liên kết',
+    'repo' => 'Kho',
 ];
