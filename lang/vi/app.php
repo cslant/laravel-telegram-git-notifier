@@ -15,5 +15,5 @@ return [
     'author' => [
         'name' => 'Tên',
         'email' => 'Email',
-    ]
+    ],
 ];
