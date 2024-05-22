@@ -12,4 +12,8 @@ return [
     'status' => 'Status',
     'link' => 'Link',
     'repo' => 'Repository',
+    'author' => [
+        'name' => 'Name',
+        'email' => 'Email',
+    ]
 ];

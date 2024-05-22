@@ -12,4 +12,8 @@ return [
     'status' => 'Trạng thái',
     'link' => 'Liên kết',
     'repo' => 'Kho',
+    'author' => [
+        'name' => 'Tên',
+        'email' => 'Email',
+    ]
 ];
