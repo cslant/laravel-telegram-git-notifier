@@ -9,4 +9,6 @@ return [
     'title' => 'Tiêu đề',
     'state' => 'Trạng thái',
     'confidential' => 'Bí mật',
+    'status' => 'Trạng thái',
+    'link' => 'Liên kết',
 ];

@@ -9,4 +9,6 @@ return [
     'title' => 'Title',
     'state' => 'State',
     'confidential' => 'Confidential',
+    'status' => 'Status',
+    'link' => 'Link',
 ];
