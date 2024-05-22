@@ -5,9 +5,6 @@ build:
         override: true
       tests:
         override: [ php-scrutinizer-run ]
-  environment:
-    php:
-      version: 8.3
 
 checks:
   php:
