@@ -1,7 +1,6 @@
-
 <?php
 
 return [
-    'title' => 'Cập nhật trạng thái Job',
-    'name' => 'Ten Job',
+    'title' => 'Cập nhật trạng thái của Job',
+    'name' => 'Tên Job',
 ];

@@ -6,7 +6,7 @@
 
 ?>
 
-🦊 {{ __('tg-notifier::events/gitlab/pipeline.title') }} 🔥
+🛰 {{ __('tg-notifier::events/gitlab/pipeline.title') }} 🦊
 
 🚀 {{ __('tg-notifier::app.repo') }}: <a href="{{ $payload->project->web_url }}">{{ $payload->project->path_with_namespace }}</a>
 🌳 {{ __('tg-notifier::app.branch') }}: <code>{{ $payload->object_attributes->ref }}</code>
