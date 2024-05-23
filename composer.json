@@ -37,7 +37,7 @@
   },
   "require": {
     "php": "^8.1",
-    "cslant/telegram-git-notifier": "^v1.3"
+    "cslant/telegram-git-notifier": "^v1.4"
   },
   "require-dev": {
     "friendsofphp/php-cs-fixer": "^v3.0",

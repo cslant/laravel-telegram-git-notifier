@@ -9,4 +9,11 @@ return [
     'title' => 'Title',
     'state' => 'State',
     'confidential' => 'Confidential',
+    'status' => 'Status',
+    'link' => 'Link',
+    'repo' => 'Repository',
+    'author' => [
+        'name' => 'Name',
+        'email' => 'Email',
+    ],
 ];

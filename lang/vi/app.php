@@ -9,4 +9,11 @@ return [
     'title' => 'Tiêu đề',
     'state' => 'Trạng thái',
     'confidential' => 'Bí mật',
+    'status' => 'Trạng thái',
+    'link' => 'Liên kết',
+    'repo' => 'Kho',
+    'author' => [
+        'name' => 'Tên',
+        'email' => 'Email',
+    ],
 ];
