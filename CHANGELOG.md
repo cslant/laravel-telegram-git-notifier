@@ -2,6 +2,35 @@
 
 Here you can see the full list of changes between each Telegram Git Notifier package release.
 
+## v1.2.0 - 2024-05-23
+
+### What's Changed
+
+* chore(deps): bump dependabot/fetch-metadata from 1.6.0 to 2.0.0 by @dependabot in https://github.com/cslant/laravel-telegram-git-notifier/pull/65
+* chore(deps): bump dependabot/fetch-metadata from 2.0.0 to 2.1.0 by @dependabot in https://github.com/cslant/laravel-telegram-git-notifier/pull/66
+* Update layout for workflow events, actions by @tanhongit in https://github.com/cslant/laravel-telegram-git-notifier/pull/68
+* feature/team_add by @hokhacminhtri in https://github.com/cslant/laravel-telegram-git-notifier/pull/70
+* Fix/update Gitlab event template by @tanhongit in https://github.com/cslant/laravel-telegram-git-notifier/pull/72
+* Update push event template by @tanhongit in https://github.com/cslant/laravel-telegram-git-notifier/pull/73
+* Update some templates for tool by @tanhongit in https://github.com/cslant/laravel-telegram-git-notifier/pull/76
+* feature/team by @hokhacminhtri in https://github.com/cslant/laravel-telegram-git-notifier/pull/75
+* Fix/update gitlab event template by @tongthanhphu in https://github.com/cslant/laravel-telegram-git-notifier/pull/78
+* fix: update menu translations by @tanhongit in https://github.com/cslant/laravel-telegram-git-notifier/pull/77
+* refactor: translate vi for gitlab by @NhutMinhIT in https://github.com/cslant/laravel-telegram-git-notifier/pull/79
+* Update gitlab and tool template and translations by @tanhongit in https://github.com/cslant/laravel-telegram-git-notifier/pull/80
+* Add/Update event template by @tanhongit in https://github.com/cslant/laravel-telegram-git-notifier/pull/81
+* feat: using laravel helper to set limit content message by @tongthanhphu in https://github.com/cslant/laravel-telegram-git-notifier/pull/82
+* feat: add gitlab events by @tanhongit in https://github.com/cslant/laravel-telegram-git-notifier/pull/83
+
+### New Contributors
+
+* @dependabot made their first contribution in https://github.com/cslant/laravel-telegram-git-notifier/pull/65
+* @hokhacminhtri made their first contribution in https://github.com/cslant/laravel-telegram-git-notifier/pull/70
+* @tongthanhphu made their first contribution in https://github.com/cslant/laravel-telegram-git-notifier/pull/78
+* @NhutMinhIT made their first contribution in https://github.com/cslant/laravel-telegram-git-notifier/pull/79
+
+**Full Changelog**: https://github.com/cslant/laravel-telegram-git-notifier/compare/v1.0.8...v1.2.0
+
 ## v1.0.8 - 2024-03-19
 
 ### What's Changed
@@ -106,6 +135,7 @@ Here you can see the full list of changes between each Telegram Git Notifier pac
   - You can now customize the configuration more easily using the following command:
     ```bash
     php artisan vendor:publish --provider="CSlant\LaravelTelegramGitNotifier\Providers\TelegramGitNotifierServiceProvider" --tag="config_jsons"            
+    
     
     
     
