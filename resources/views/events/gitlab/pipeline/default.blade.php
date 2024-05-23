@@ -12,4 +12,4 @@
 🌳 {{ __('tg-notifier::app.branch') }}: <code>{{ $payload->object_attributes->ref }}</code>
 👤 {{ __('tg-notifier::app.author.name') }}: <code>{{ $payload->commit->author->name }}</code>
 💻 {{ __('tg-notifier::app.commit') }}: <a href="{{ $payload->commit->url }}">{{ $payload->commit->message }}</a>
-🚦 {{ __('tg-notifier::app.status') }}: Pipeline <code>{{ $payload->object_attributes->status }}</code> {{ $payload->object_attributes->duration ? "⏱️ {$payload->object_attributes->duration}s" : '' }}
+🚦 {{ __('tg-notifier::app.status') }}: Pipeline <code>{{ $payload->object_attributes->status }}</code> <code>{{ $payload->object_attributes->duration ? "⏱️ {$payload->object_attributes->duration}s" : '' }}</code>
