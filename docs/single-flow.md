@@ -43,3 +43,39 @@ This package is a Laravel wrapper for the `telegram-git-notifier` package. It pr
 ## Future Work
 
 In the future, additional flows will be implemented to handle other aspects of the bot's functionality, such as error handling, customizing notifications, and sending notifications to multiple users.
+
+```mermaid
+erDiagram
+    User ||--o{ Webhook: sets
+    Webhook ||--|| Event: triggers
+    Event ||--o{ Notification: generates
+    Notification ||--o{ Recipient: sends_to
+
+    User {
+        int id PK
+        string webhook_url
+    }
+
+    Webhook {
+        int id PK
+        string url
+    }
+
+    Event {
+        int id PK
+        string name
+        string action
+        object payload
+    }
+
+    Notification {
+        int id PK
+        string message
+    }
+
+    Recipient {
+        int id PK
+        string type "user, group, channel, topic, etc."
+        string identifier
+    }
+```
