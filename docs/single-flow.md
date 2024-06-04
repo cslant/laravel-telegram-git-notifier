@@ -46,36 +46,54 @@ In the future, additional flows will be implemented to handle other aspects of t
 
 ```mermaid
 erDiagram
-    User ||--o{ Webhook: sets
-    Webhook ||--|| Event: triggers
-    Event ||--o{ Notification: generates
-    Notification ||--o{ Recipient: sends_to
+    User ||--o{ Bot: owns
+    User ||--o{ GitRepository: owns
+    Bot ||--o{ Webhook: creates
+    GitRepository ||--o{ Webhook: has
+    GitRepository ||--o{ Event: triggers
+    Event ||--o{ Webhook: sends_through
+    Webhook ||--o{ Bot: received_by
+    Bot ||--o{ Notification: sends
+    Notification ||--o{ Recipient: received_by
+
+    Bot {
+        int id PK
+        string token "The bot token" 
+        string bot_id "The bot ID"
+    }
 
     User {
         int id PK
-        string webhook_url
+        string telegram_id "The user Telegram ID"
     }
 
     Webhook {
         int id PK
-        string url
+        string url "The URL of the webhook"
     }
 
     Event {
         int id PK
-        string name
-        string action
-        object payload
+        json payload "The webhook payload"
+        string event_name "The name of the event in payload"
+        string action "The action of the event in payload"
     }
 
     Notification {
         int id PK
-        string message
+        string message "The notification message"
     }
 
     Recipient {
         int id PK
-        string type "user, group, channel, topic, etc."
-        string identifier
+        string type "bot, group, channel, topic, etc."
+        string identifier "The recipient identifier (e.g., bot ID, group ID)"
+    }
+
+    GitRepository {
+        int id PK
+        string platform "The git platform (e.g., GitHub, GitLab)"
+        string name "The name of the git repository"
+        string url "The URL of the git repository"
     }
 ```
