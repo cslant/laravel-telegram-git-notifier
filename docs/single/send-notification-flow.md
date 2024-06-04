@@ -8,17 +8,20 @@ This document describes the flow of sending notifications in the Telegram Git No
 
 The user adds the bot URL to the git repository webhook. The bot URL is the URL of the bot server.
 
+Example: `https://localhost:8000/telegram-git-notifier/`
+
 ### The git repository sends a webhook to the bot
 
 The git repository sends a webhook to the bot if any event occurs. The webhook contains the event details.
 
 ### The bot processes the webhook message
 
-The bot will receive the webhook message and process it. The bot will check the validity of the webhook message.
+When an application receives a webhook message from the git repository, the bot processes the webhook message.
+It checks if the webhook is set or not. If the event has any actions and the event is allowed notify in the settings, etc.
 
 ### The bot gets the message details if the event is valid
 
-If the event is valid, the bot will get the message details of this event and set the message details to the message
+If the event/action is valid, the bot will get the message details of this event/action and set the message details to the message
 object.
 
 ### The bot sends a notification
