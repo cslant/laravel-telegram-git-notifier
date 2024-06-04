@@ -1,6 +1,6 @@
-# The Telegram Git Notifier flow
+# Send Notification Flow - The Telegram Git Notifier Package
 
-This document describes the flow of the telegram git notifier.
+This document describes the flow of sending notifications in the Telegram Git Notifier package.
 
 ## Handle the webhook and send a notification
 
@@ -25,7 +25,7 @@ object.
 
 The bot sends a notification with the message details of the event to the user, group, or channel.
 
-## Sending notifications to multiple users
+## Sending notifications to multiple recipients
 
 If the bot supports sending notifications to multiple users, groups, or channels, it will manage this process. This
 could involve iterating over a list of recipients, handling individual user preferences, etc.
