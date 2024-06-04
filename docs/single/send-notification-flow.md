@@ -18,7 +18,8 @@ The bot will receive the webhook message and process it. The bot will check the 
 
 ### The bot gets the message details if the event is valid
 
-If the event is valid, the bot will get the message details of this event and set the message details to the message object.
+If the event is valid, the bot will get the message details of this event and set the message details to the message
+object.
 
 ### The bot sends a notification
 
@@ -26,7 +27,8 @@ The bot sends a notification with the message details of the event to the user, 
 
 ## Sending notifications to multiple users
 
-If the bot supports sending notifications to multiple users, groups, or channels, it will manage this process. This could involve iterating over a list of recipients, handling individual user preferences, etc.
+If the bot supports sending notifications to multiple users, groups, or channels, it will manage this process. This
+could involve iterating over a list of recipients, handling individual user preferences, etc.
 
 ## Packages
 
@@ -34,11 +36,13 @@ This flow is implemented in two packages: `telegram-git-notifier` and `laravel-t
 
 ### telegram-git-notifier
 
-This package handles the core functionality of receiving and processing webhooks from GitHub and GitLab, and sending notifications to Telegram.
+This package handles the core functionality of receiving and processing webhooks from GitHub and GitLab, and sending
+notifications to Telegram.
 
 ### laravel-telegram-git-notifier
 
-This package is a Laravel wrapper for the `telegram-git-notifier` package. It provides a Laravel-friendly way to use the `telegram-git-notifier` functionality, including configuration and views for customizing the notifications.
+This package is a Laravel wrapper for the `telegram-git-notifier` package. It provides a Laravel-friendly way to use
+the `telegram-git-notifier` functionality, including configuration and views for customizing the notifications.
 
 ## Entity Relationship Diagram
 
@@ -56,7 +60,7 @@ erDiagram
 
     Bot {
         int id PK
-        string token "The bot token" 
+        string token "The bot token"
         string bot_id "The bot ID"
     }
 
@@ -103,49 +107,49 @@ Here is the flowchart of the Telegram Git Notifier - send notification flow:
 ```mermaid
 flowchart TD
     title[The Telegram Git Notifier - send notification flow]
-
     application(New application created)
-    application-->bot[Bot created]
+    application --> bot[Bot created]
     bot[Bot]
-    bot-->webhookCheck{Is webhook set?}
-    webhookCheck-->|No|setNewWebhook[Set new webhook]
-    webhookCheck-->|Yes|updateWebhook[Update existing webhook]
-    updateWebhook-->webhook[Webhook updated]
-    setNewWebhook-->webhook[Webhook set]
+    bot --> webhookCheck{Is webhook set?}
+    webhookCheck -->|No| setNewWebhook[Set new webhook]
+    webhookCheck -->|Yes| updateWebhook[Update existing webhook]
+    updateWebhook --> webhook[Webhook updated]
+    setNewWebhook --> webhook[Webhook set]
 
     subgraph "User and Repository Interaction"
-        webhook-->user[User]
-        user-->addWebhookToRepo[Add webhook to repository]
-        addWebhookToRepo-->repository[Repository]
-        user-->ownsRepo[Owns]
-        ownsRepo-->repository
+        webhook --> user[User]
+        user --> addWebhookToRepo[Add webhook to repository]
+        addWebhookToRepo --> repository[Repository]
+        user --> ownsRepo[Owns]
+        ownsRepo --> repository
     end
 
-    repository-->triggerEvent{Trigger event}
-    triggerEvent-->sendPayload[Send event payload to bot]
-    sendPayload-->bot
-    
+    repository --> triggerEvent{Trigger event}
+    triggerEvent --> sendPayload[Send event payload to bot]
+    sendPayload --> bot
+
     subgraph "Event Processing"
-        bot-->processEvent{Process event}
-        processEvent-->checkAction{Is there an action?}
-        checkAction-->|Yes|actionMessage[Event type: Action]
-        checkAction-->|No|eventNameMessage[Event type: Event name]
-        eventNameMessage-->checkSettings{Is event allowed in settings?}
-        actionMessage-->checkSettings
+        bot --> processEvent{Process event}
+        processEvent --> checkAction{Is there an action?}
+        checkAction -->|Yes| actionMessage[Event type: Action]
+        checkAction -->|No| eventNameMessage[Event type: Event name]
+        eventNameMessage --> checkSettings{Is event allowed in settings?}
+        actionMessage --> checkSettings
     end
-    
-    checkSettings-->|Yes|findTemplate{Find message template}
-    checkSettings-->|No|endFlow[End flow]
-    findTemplate-->|Exists|setMessage[Set message for notification]
-    findTemplate-->|Not Exists|logAndEndFlow[Log and end flow]
-    logAndEndFlow-->endFlow
-    setMessage-->checkMessage{Is message empty?}
-    checkMessage-->|Yes|endFlow[End flow]
-    checkMessage-->|No|sendNotification[Send notification]
-    sendNotification-->|Success|endFlow[End flow]
-    sendNotification-->|Failure|logAndEndFlow[Log and end flow]
+
+    checkSettings -->|Yes| findTemplate{Find message template}
+    checkSettings -->|No| endFlow[End flow]
+    findTemplate -->|Exists| setMessage[Set message for notification]
+    findTemplate -->|Not Exists| log[Log error]
+    setMessage --> checkMessage{Is message empty?}
+    checkMessage -->|Yes| endFlow[End flow]
+    checkMessage -->|No| sendNotification[Send notification]
+    sendNotification -->|Success| endFlow[End flow]
+    sendNotification -->|Failure| log[Log error]
+    log --> endFlow
 ```
 
 ## Future Work
 
-In the future, additional flows will be implemented to handle other aspects of the bot's functionality, such as error handling, customizing notifications, and sending notifications to multiple users.
+In the future, additional flows will be implemented to handle other aspects of the bot's functionality, such as error
+handling, customizing notifications, and sending notifications to multiple users.
