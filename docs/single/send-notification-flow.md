@@ -75,7 +75,7 @@ erDiagram
     Event {
         int id PK
         json payload "The webhook payload"
-        string event_name "The name of the event in payload"
+        string name "The name of the event in payload"
         string action "The action of the event in payload"
     }
 
@@ -98,20 +98,42 @@ erDiagram
     }
 ```
 
+Here is the flowchart of the Telegram Git Notifier - send notification flow:
+
 ```mermaid
 flowchart TD
     title[The Telegram Git Notifier - send notification flow]
 
     application(New application created)
-    application-->bot[Create a new bot]
+    application-->bot[Bot created]
+    bot[Bot]
     bot-->webhookCheck{Is webhook set?}
     webhookCheck-->|No|setNewWebhook[Set new webhook]
     webhookCheck-->|Yes|updateWebhook[Update existing webhook]
     updateWebhook-->webhook[Webhook updated]
     setNewWebhook-->webhook[Webhook set]
-    user[User]
-    user-->addWebhookToRepo[Add webhook to repository]
-    addWebhookToRepo-->repository[Repository]
-    user-->ownsRepo[Owns]
-    ownsRepo-->repository
+
+    subgraph "User and Repository Interaction"
+        webhook-->user[User]
+        user-->addWebhookToRepo[Add webhook to repository]
+        addWebhookToRepo-->repository[Repository]
+        user-->ownsRepo[Owns]
+        ownsRepo-->repository
+    end
+
+    repository-->triggerEvent{Trigger event}
+    triggerEvent-->sendPayload[Send event payload to bot]
+    sendPayload-->bot
+    bot-->processEvent{Process event}
+    processEvent-->checkAction{Is there an action?}
+    checkAction-->|Yes|actionMessage[Event type: Action]
+    checkAction-->|No|eventNameMessage[Event type: Event name]
+    eventNameMessage-->checkSettings{Is event allowed in settings?}
+    actionMessage-->checkSettings
+    checkSettings-->|Yes|findTemplate{Find message template}
+    checkSettings-->|No|endFlow[End flow]
+    findTemplate-->|Exists|setMessage[Set message for notification]
+    findTemplate-->|Not Exists|logAndEndFlow[Log and end flow]
+    setMessage-->continueFlow[Continue flow]
+    logAndEndFlow-->endFlow
 ```
