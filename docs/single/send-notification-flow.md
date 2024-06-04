@@ -40,9 +40,7 @@ This package handles the core functionality of receiving and processing webhooks
 
 This package is a Laravel wrapper for the `telegram-git-notifier` package. It provides a Laravel-friendly way to use the `telegram-git-notifier` functionality, including configuration and views for customizing the notifications.
 
-## Future Work
-
-In the future, additional flows will be implemented to handle other aspects of the bot's functionality, such as error handling, customizing notifications, and sending notifications to multiple users.
+## Entity Relationship Diagram
 
 ```mermaid
 erDiagram
@@ -98,6 +96,8 @@ erDiagram
     }
 ```
 
+## Send notification flowchart
+
 Here is the flowchart of the Telegram Git Notifier - send notification flow:
 
 ```mermaid
@@ -141,3 +141,7 @@ flowchart TD
     sendNotification-->|Success|endFlow[End flow]
     sendNotification-->|Failure|logAndEndFlow[Log and end flow]
 ```
+
+## Future Work
+
+In the future, additional flows will be implemented to handle other aspects of the bot's functionality, such as error handling, customizing notifications, and sending notifications to multiple users.
