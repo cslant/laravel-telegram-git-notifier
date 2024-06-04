@@ -134,6 +134,10 @@ flowchart TD
     checkSettings-->|No|endFlow[End flow]
     findTemplate-->|Exists|setMessage[Set message for notification]
     findTemplate-->|Not Exists|logAndEndFlow[Log and end flow]
-    setMessage-->continueFlow[Continue flow]
     logAndEndFlow-->endFlow
+    setMessage-->checkMessage{Is message empty?}
+    checkMessage-->|Yes|endFlow[End flow]
+    checkMessage-->|No|sendNotification[Send notification]
+    sendNotification-->|Success|endFlow[End flow]
+    sendNotification-->|Failure|logAndEndFlow[Log and end flow]
 ```
