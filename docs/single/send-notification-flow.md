@@ -97,3 +97,21 @@ erDiagram
         string url "The URL of the git repository"
     }
 ```
+
+```mermaid
+flowchart TD
+    title[The Telegram Git Notifier - send notification flow]
+
+    application(New application created)
+    application-->bot[Create a new bot]
+    bot-->webhookCheck{Is webhook set?}
+    webhookCheck-->|No|setNewWebhook[Set new webhook]
+    webhookCheck-->|Yes|updateWebhook[Update existing webhook]
+    updateWebhook-->webhook[Webhook updated]
+    setNewWebhook-->webhook[Webhook set]
+    user[User]
+    user-->addWebhookToRepo[Add webhook to repository]
+    addWebhookToRepo-->repository[Repository]
+    user-->ownsRepo[Owns]
+    ownsRepo-->repository
+```
