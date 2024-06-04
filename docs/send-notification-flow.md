@@ -49,6 +49,12 @@ the `telegram-git-notifier` functionality, including configuration and views for
 
 ## Entity Relationship Diagram
 
+
+> [!NOTE]
+> The following diagram is a simplified version of the entity relationship diagram for the Telegram Git Notifier.
+> 
+> The data is **still saved in JSON format**. I don't use database storage because I don't want to **affect any data on your real system**. Its purpose is only to clarify the feature's operating model.
+
 ```mermaid
 erDiagram
     User ||--o{ Bot: owns
