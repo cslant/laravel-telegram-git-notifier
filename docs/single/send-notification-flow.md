@@ -124,12 +124,16 @@ flowchart TD
     repository-->triggerEvent{Trigger event}
     triggerEvent-->sendPayload[Send event payload to bot]
     sendPayload-->bot
-    bot-->processEvent{Process event}
-    processEvent-->checkAction{Is there an action?}
-    checkAction-->|Yes|actionMessage[Event type: Action]
-    checkAction-->|No|eventNameMessage[Event type: Event name]
-    eventNameMessage-->checkSettings{Is event allowed in settings?}
-    actionMessage-->checkSettings
+    
+    subgraph "Event Processing"
+        bot-->processEvent{Process event}
+        processEvent-->checkAction{Is there an action?}
+        checkAction-->|Yes|actionMessage[Event type: Action]
+        checkAction-->|No|eventNameMessage[Event type: Event name]
+        eventNameMessage-->checkSettings{Is event allowed in settings?}
+        actionMessage-->checkSettings
+    end
+    
     checkSettings-->|Yes|findTemplate{Find message template}
     checkSettings-->|No|endFlow[End flow]
     findTemplate-->|Exists|setMessage[Set message for notification]
