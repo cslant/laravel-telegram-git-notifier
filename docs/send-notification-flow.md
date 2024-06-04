@@ -166,31 +166,31 @@ Here is the code flow of the Telegram Git Notifier - send notification flow:
 
 ```plaintext
 Receive webhook from git repository
-    -> packages/laravel-telegram-git-notifier/src/Http/Actions/IndexAction::class
+    → packages/laravel-telegram-git-notifier/src/Http/Actions/IndexAction::class
         - Check query type (callback_query, message, webhook[gitlab, github])
-        - create new NotificationService
-        - call the handle method of the NotificationService
+        ∟ create new NotificationService
+            - call the handle method of the NotificationService
         
-        -> packages/laravel-telegram-git-notifier/src/Services/NotificationService@handle
+        → packages/laravel-telegram-git-notifier/src/Services/NotificationService@handle
             - Get and set the event from the request in handleEventFromRequest method
             - Call the sendNotification method
             
-            -> packages/telegram-git-notifier/src/Trait/EventTrait@handleEventFromRequest
+            → packages/telegram-git-notifier/src/Trait/EventTrait@handleEventFromRequest
                 - Set event name
                 - Check and update platform(GitLab, GitHub) for event object
                 
-                -> go to setPlatFormForEvent method
+                → Go to setPlatFormForEvent method
                     - Detech and set platform file
-                    - Update event config from platform file
+                    - Update event config from the platform file
                     
-            -> go to sendNotification method of this NotificationService
-                - call validateAccessEvent to check if the event is allowed
-                - loop through the recipients and send the notification to each recipient
+            → Go to sendNotification method of this NotificationService
+                - Call validateAccessEvent to check if the event is allowed
+                - Loop through the recipients and send the notification to each recipient
                 
-                -> packages/telegram-git-notifier/src/Services/NotificationService@validateAccessEvent
+                → packages/telegram-git-notifier/src/Services/NotificationService@validateAccessEvent
                     - Set payload and message from the event
-                    - Check if the eventis allowed in the settings
+                    - Check if the event is allowed in the settings
                     - Check if the event/action is allowed in the platform settings
             
-                -> packages/telegram-git-notifier/src/Structures/Notification@sendNotify
+                → packages/telegram-git-notifier/src/Structures/Notification@sendNotify
 ```
