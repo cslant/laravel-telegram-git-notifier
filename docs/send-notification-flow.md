@@ -17,11 +17,13 @@ The git repository sends a webhook to the bot if any event occurs. The webhook c
 ### The bot processes the webhook message
 
 When an application receives a webhook message from the git repository, the bot processes the webhook message.
-It checks if the webhook is set or not. If the event has any actions and the event is allowed notify in the settings, etc.
+It checks if the webhook is set or not. If the event has any actions and the event is allowed notify in the settings,
+etc.
 
 ### The bot gets the message details if the event is valid
 
-If the event/action is valid, the bot will get the message details of this event/action and set the message details to the message
+If the event/action is valid, the bot will get the message details of this event/action and set the message details to
+the message
 object.
 
 ### The bot sends a notification
@@ -49,11 +51,11 @@ the `telegram-git-notifier` functionality, including configuration and views for
 
 ## Entity Relationship Diagram
 
-
 > [!NOTE]
 > The following diagram is a simplified version of the entity relationship diagram for the Telegram Git Notifier.
-> 
-> The data is **still saved in JSON format**. I don't use database storage because I don't want to **affect any data on your real system**. Its purpose is only to clarify the feature's operating model.
+>
+> The data is **still saved in JSON format**. I don't use database storage because I don't want to **affect any data on
+your real system**. Its purpose is only to clarify the feature's operating model.
 
 ```mermaid
 erDiagram
@@ -128,7 +130,7 @@ flowchart TD
     subgraph "User and Repository Interaction"
         webhook --> user[User]
         user --> addWebhookToRepo[Add webhook to repository]
-        addWebhookToRepo --> repository[Repository]
+        addWebhookToRepo --> repository[Git Repository]
         user --> ownsRepo[Owns]
         ownsRepo --> repository
     end
@@ -137,13 +139,27 @@ flowchart TD
     triggerEvent --> sendPayload[Send event payload to bot]
     sendPayload --> bot
 
-    subgraph "Event Processing"
-        bot --> processEvent{Process event}
-        processEvent --> checkAction{Is there an action?}
-        checkAction -->|Yes| actionMessage[Event type: Action]
-        checkAction -->|No| eventNameMessage[Event type: Event name]
-        eventNameMessage --> checkSettings{Is event allowed in settings?}
-        actionMessage --> checkSettings
+    subgraph "Bot Processing"
+        bot --> detectPlatform{Detect platform}
+
+        subgraph "Platform Detection"
+            detectPlatform -->|GitHub| setGithubPlatform[Set GitHub platform]
+            detectPlatform -->|GitLab| setGitlabPlatform[Set GitLab platform]
+            setGithubPlatform --> getGithubPlatformFile[Get GitHub platform file]
+            setGitlabPlatform --> getGitlabPlatformFile[Get GitLab platform file]
+        end
+
+        getGithubPlatformFile --> setEventConfig[Set event config]
+        getGitlabPlatformFile --> setEventConfig[Set event config]
+        setEventConfig --> processEvent{Process event}
+
+        subgraph "Event Processing"
+            processEvent --> checkAction{Is there an action?}
+            checkAction -->|Yes| actionMessage[event_type: Action of event]
+            checkAction -->|No| eventNameMessage[event_type: Event name]
+            eventNameMessage --> checkSettings{Is event_type allowed in settings?}
+            actionMessage --> checkSettings
+        end
     end
 
     checkSettings -->|Yes| findTemplate{Find message template}
@@ -158,7 +174,37 @@ flowchart TD
     log --> endFlow
 ```
 
-## Future Work
+## Code flow
 
-In the future, additional flows will be implemented to handle other aspects of the bot's functionality, such as error
-handling, customizing notifications, and sending notifications to multiple users.
+Here is the code flow of the Telegram Git Notifier - send notification flow:
+
+```plaintext
+Receive webhook from git repository
+    → packages/laravel-telegram-git-notifier/src/Http/Actions/IndexAction::class
+        - Check query type (callback_query, message, webhook[gitlab, github])
+        ∟ create new NotificationService
+            - call the handle method of the NotificationService
+        
+        → packages/laravel-telegram-git-notifier/src/Services/NotificationService@handle
+            - Get and set the event from the request in handleEventFromRequest method
+            - Call the sendNotification method
+            
+            → packages/telegram-git-notifier/src/Trait/EventTrait@handleEventFromRequest
+                - Set event name
+                - Check and update platform(GitLab, GitHub) for event object
+                
+                → Go to setPlatFormForEvent method
+                    - Detech and set platform file
+                    - Update event config from the platform file
+                    
+            → Go to sendNotification method of this NotificationService
+                - Call validateAccessEvent to check if the event is allowed
+                - Loop through the recipients and send the notification to each recipient
+                
+                → packages/telegram-git-notifier/src/Services/NotificationService@validateAccessEvent
+                    - Set payload and message from the event
+                    - Check if the event is allowed in the settings
+                    - Check if the event/action is allowed in the platform settings
+            
+                → packages/telegram-git-notifier/src/Structures/Notification@sendNotify
+```
