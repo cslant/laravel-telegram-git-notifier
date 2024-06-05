@@ -130,7 +130,7 @@ flowchart TD
     subgraph "User and Repository Interaction"
         webhook --> user[User]
         user --> addWebhookToRepo[Add webhook to repository]
-        addWebhookToRepo --> repository[Repository]
+        addWebhookToRepo --> repository[Git Repository]
         user --> ownsRepo[Owns]
         ownsRepo --> repository
     end
@@ -139,13 +139,27 @@ flowchart TD
     triggerEvent --> sendPayload[Send event payload to bot]
     sendPayload --> bot
 
-    subgraph "Event Processing"
-        bot --> processEvent{Process event}
-        processEvent --> checkAction{Is there an action?}
-        checkAction -->|Yes| actionMessage[Event type: Action]
-        checkAction -->|No| eventNameMessage[Event type: Event name]
-        eventNameMessage --> checkSettings{Is event allowed in settings?}
-        actionMessage --> checkSettings
+    subgraph "Bot Processing"
+        bot --> detectPlatform{Detect platform}
+
+        subgraph "Platform Detection"
+            detectPlatform -->|GitHub| setGithubPlatform[Set GitHub platform]
+            detectPlatform -->|GitLab| setGitlabPlatform[Set GitLab platform]
+            setGithubPlatform --> getGithubPlatformFile[Get GitHub platform file]
+            setGitlabPlatform --> getGitlabPlatformFile[Get GitLab platform file]
+        end
+
+        getGithubPlatformFile --> setEventConfig[Set event config]
+        getGitlabPlatformFile --> setEventConfig[Set event config]
+        setEventConfig --> processEvent{Process event}
+
+        subgraph "Event Processing"
+            processEvent --> checkAction{Is there an action?}
+            checkAction -->|Yes| actionMessage[event_type: Action of event]
+            checkAction -->|No| eventNameMessage[event_type: Event name]
+            eventNameMessage --> checkSettings{Is event_type allowed in settings?}
+            actionMessage --> checkSettings
+        end
     end
 
     checkSettings -->|Yes| findTemplate{Find message template}
