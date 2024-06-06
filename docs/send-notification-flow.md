@@ -61,11 +61,11 @@ your real system**. Its purpose is only to clarify the feature's operating model
 erDiagram
     User ||--o{ Bot: owns
     User ||--o{ GitRepository: owns
-    Bot ||--o{ Webhook: creates
+    Bot ||--|{ Webhook: creates
     GitRepository ||--o{ Webhook: has
     GitRepository ||--o{ Event: triggers
     Event ||--o{ Webhook: sends_through
-    Webhook ||--o{ Bot: received_by
+    Webhook ||--|{ Bot: received_by
     Bot ||--o{ Notification: sends
     Notification ||--o{ Recipient: received_by
 
