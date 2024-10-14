@@ -165,12 +165,12 @@ flowchart TD
     checkSettings -->|Yes| findTemplate{Find message template}
     checkSettings -->|No| endFlow[End flow]
     findTemplate -->|Exists| setMessage[Set message for notification]
+    sendNotification -->|Failure| log[Log error]
     findTemplate -->|Not Exists| log[Log error]
     setMessage --> checkMessage{Is message empty?}
     checkMessage -->|Yes| endFlow[End flow]
     checkMessage -->|No| sendNotification[Send notification]
     sendNotification -->|Success| endFlow[End flow]
-    sendNotification -->|Failure| log[Log error]
     log --> endFlow
 ```
 
