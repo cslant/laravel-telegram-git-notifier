@@ -1,6 +1,6 @@
 {
   "name": "cslant/laravel-telegram-git-notifier",
-  "description": "Send notification from Gitlab and Github events to Telegram",
+  "description": "Send notification from Gitlab and GitHub events to Telegram",
   "keywords": [
     "cslant",
     "telegram-bot",
