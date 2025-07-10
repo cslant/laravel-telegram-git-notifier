@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace CSlant\LaravelTelegramGitNotifier\Traits;
 
-use Telegram as TelegramSDK;
 use Illuminate\Support\Facades\Config;
+use Telegram as TelegramSDK;
 
 /**
  * Trait Markup
- * 
+ *
  * Provides common markup generation methods for Telegram bot interfaces.
  */
 trait Markup

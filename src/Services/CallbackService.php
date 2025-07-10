@@ -43,7 +43,7 @@ class CallbackService
     public function answerBackButton(string $callback): void
     {
         $callback = str_replace(SettingConstant::SETTING_BACK, '', $callback);
-        
+
         $result = match ($callback) {
             'settings' => $this->handleSettingsBack(),
             'settings.custom_events.github' => $this->handleGithubEventsBack(),
@@ -54,13 +54,14 @@ class CallbackService
 
         if ($result === null) {
             $this->bot->answerCallbackQuery(__('tg-notifier::app.unknown_callback'));
+
             return;
         }
 
         ['view' => $view, 'markup' => $markup] = $result;
         $this->bot->editMessageText($view, ['reply_markup' => $markup]);
     }
-    
+
     /**
      * Handle settings back button.
      *
@@ -73,7 +74,7 @@ class CallbackService
             'markup' => $this->bot->settingMarkup(),
         ];
     }
-    
+
     /**
      * Handle GitHub events back button.
      *
@@ -86,7 +87,7 @@ class CallbackService
             'markup' => $this->bot->eventMarkup(),
         ];
     }
-    
+
     /**
      * Handle GitLab events back button.
      *
@@ -99,7 +100,7 @@ class CallbackService
             'markup' => $this->bot->eventMarkup(null, 'gitlab'),
         ];
     }
-    
+
     /**
      * Handle menu back button.
      *
@@ -142,6 +143,7 @@ class CallbackService
         }
 
         $this->bot->eventHandle($callback);
+
         return true;
     }
 
@@ -155,6 +157,7 @@ class CallbackService
         }
 
         $this->answerBackButton($callback);
+
         return true;
     }
 

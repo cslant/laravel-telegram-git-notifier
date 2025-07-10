@@ -9,7 +9,6 @@ use CSlant\TelegramGitNotifier\Bot;
 use CSlant\TelegramGitNotifier\Exceptions\EntryNotFoundException;
 use CSlant\TelegramGitNotifier\Exceptions\MessageIsEmptyException;
 use Illuminate\Support\Facades\Config;
-use Telegram\Telegram as TelegramSDK;
 
 class CommandService
 {
@@ -41,7 +40,7 @@ class CommandService
         $firstName = $this->bot->telegram->FirstName() ?: 'there';
         $reply = view("$this->viewNamespace::tools.start", ['first_name' => $firstName]);
         $imagePath = __DIR__.'/../../resources/images/telegram-git-notifier-laravel.png';
-        
+
         $this->bot->sendPhoto($imagePath, ['caption' => $reply]);
     }
 
@@ -57,11 +56,11 @@ class CommandService
         $command = trim($text, '/');
 
         $handlers = [
-            'start' => fn() => $this->handleStart(),
-            'menu' => fn() => $this->handleMenu(),
-            'settings' => fn() => $this->handleSettings(),
-            'set_menu' => fn() => $this->handleSetMenu(),
-            'default' => fn() => $this->handleDefault($command),
+            'start' => fn () => $this->handleStart(),
+            'menu' => fn () => $this->handleMenu(),
+            'settings' => fn () => $this->handleSettings(),
+            'set_menu' => fn () => $this->handleSetMenu(),
+            'default' => fn () => $this->handleDefault($command),
         ];
 
         $handler = $handlers[$command] ?? $this->handleToolCommand($command) ?? $handlers['default'];
@@ -119,7 +118,7 @@ class CommandService
     private function handleToolCommand(string $command): ?callable
     {
         $toolCommands = ['token', 'id', 'usage', 'server'];
-        
+
         if (!in_array($command, $toolCommands, true)) {
             return null;
         }

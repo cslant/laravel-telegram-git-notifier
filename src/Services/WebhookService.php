@@ -73,7 +73,7 @@ class WebhookService
         if ($this->webhook->getToken() === null) {
             $this->webhook->setToken(Config::get(self::CONFIG_PREFIX . '.bot.token'));
         }
-        
+
         if ($this->webhook->getUrl() === null) {
             $this->webhook->setUrl(Config::get(self::CONFIG_PREFIX . '.app.url'));
         }
