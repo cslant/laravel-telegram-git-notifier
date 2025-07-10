@@ -1,12 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace CSlant\LaravelTelegramGitNotifier\Services;
 
-use CSlant\TelegramGitNotifier\Exceptions\{
-    InvalidViewTemplateException,
-    MessageIsEmptyException,
-    SendNotificationException
-};
+use CSlant\TelegramGitNotifier\Exceptions\InvalidViewTemplateException;
+use CSlant\TelegramGitNotifier\Exceptions\MessageIsEmptyException;
+use CSlant\TelegramGitNotifier\Exceptions\SendNotificationException;
 use CSlant\TelegramGitNotifier\Models\Setting;
 use CSlant\TelegramGitNotifier\Notifier;
 use CSlant\TelegramGitNotifier\Objects\Validator;
@@ -14,16 +14,31 @@ use Symfony\Component\HttpFoundation\Request;
 
 class NotificationService
 {
-    /** @var array<string, array<int|string>> */
-    protected array $chatIds = [];
+    /** 
+     * @var array<string, array<int|string>> 
+     */
+    private array $chatIds = [];
 
     public function __construct(
-        protected Notifier $notifier,
-        protected Setting $setting,
-        protected Request $request = new Request()
+        private Notifier $notifier,
+        private Setting $setting,
+        private Request $request
     ) {
-        $this->request = $request ?? Request::createFromGlobals();
-        $this->chatIds = $notifier->parseNotifyChatIds();
+        $this->initialize();
+    }
+
+    public static function create(Notifier $notifier, Setting $setting, ?Request $request = null): self
+    {
+        return new self(
+            $notifier,
+            $setting,
+            $request ?? Request::createFromGlobals()
+        );
+    }
+
+    private function initialize(): void
+    {
+        $this->chatIds = $this->notifier->parseNotifyChatIds();
     }
 
     /**
@@ -35,9 +50,13 @@ class NotificationService
      */
     public function handle(): void
     {
-        if ($eventName = $this->notifier->handleEventFromRequest($this->request)) {
-            $this->sendNotification($eventName);
+        $eventName = $this->notifier->handleEventFromRequest($this->request);
+        
+        if ($eventName === null) {
+            return;
         }
+        
+        $this->sendNotification($eventName);
     }
 
     /**
@@ -58,10 +77,25 @@ class NotificationService
                 continue;
             }
 
-            empty($threads) 
-                ? $this->sendToChat($chatId)
-                : $this->sendToThreads($chatId, $threads);
+            $this->sendToRecipients((string) $chatId, $threads);
         }
+    }
+
+    /**
+     * Send notification to appropriate recipients (chat or threads).
+     *
+     * @param string $chatId The chat ID to send to
+     * @param array<int|string> $threads Array of thread IDs (empty for direct chat)
+     * @throws SendNotificationException
+     */
+    private function sendToRecipients(string $chatId, array $threads): void
+    {
+        if (empty($threads)) {
+            $this->sendToChat($chatId);
+            return;
+        }
+
+        $this->sendToThreads($chatId, $threads);
     }
 
     /**
@@ -71,24 +105,38 @@ class NotificationService
      */
     private function sendToChat(string $chatId): void
     {
-        $this->notifier->sendNotify(null, ['chat_id' => $chatId]);
+        $this->notifier->sendNotify(null, [
+            'chat_id' => $chatId
+        ]);
     }
 
     /**
      * Send notification to multiple threads in a chat.
      *
-     * @param  array<int|string>  $threads
-     *
+     * @param string $chatId The chat ID containing the threads
+     * @param array<int|string> $threads Array of thread IDs
      * @throws SendNotificationException
      */
     private function sendToThreads(string $chatId, array $threads): void
     {
         foreach ($threads as $threadId) {
-            $this->notifier->sendNotify(null, [
-                'chat_id' => $chatId,
-                'message_thread_id' => $threadId,
-            ]);
+            $this->sendToThread($chatId, (string) $threadId);
         }
+    }
+
+    /**
+     * Send notification to a specific thread in a chat.
+     *
+     * @param string $chatId The chat ID
+     * @param string $threadId The thread ID
+     * @throws SendNotificationException
+     */
+    private function sendToThread(string $chatId, string $threadId): void
+    {
+        $this->notifier->sendNotify(null, [
+            'chat_id' => $chatId,
+            'message_thread_id' => $threadId,
+        ]);
     }
 
     /**
@@ -102,6 +150,17 @@ class NotificationService
             return false;
         }
 
+        return $this->validateEventAccess($event, $payload);
+    }
+
+    /**
+     * Validate if the event has access.
+     *
+     * @param string $event The event name
+     * @param object $payload The event payload
+     */
+    private function validateEventAccess(string $event, object $payload): bool
+    {
         $validator = new Validator($this->setting, $this->notifier->event);
         
         return $validator->isAccessEvent(
