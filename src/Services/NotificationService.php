@@ -58,7 +58,7 @@ class NotificationService
                 continue;
             }
 
-            empty($threads) 
+            empty($threads)
                 ? $this->sendToChat($chatId)
                 : $this->sendToThreads($chatId, $threads);
         }
@@ -97,13 +97,13 @@ class NotificationService
     private function isValidEvent(string $event): bool
     {
         $payload = $this->notifier->setPayload($this->request, $event);
-        
+
         if (empty($payload) || !is_object($payload)) {
             return false;
         }
 
         $validator = new Validator($this->setting, $this->notifier->event);
-        
+
         return $validator->isAccessEvent(
             $this->notifier->event->platform,
             $event,
