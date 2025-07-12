@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace CSlant\LaravelTelegramGitNotifier\Http\Actions;
 
 use CSlant\LaravelTelegramGitNotifier\Services\CallbackService;
@@ -17,37 +15,35 @@ use CSlant\TelegramGitNotifier\Exceptions\MessageIsEmptyException;
 use CSlant\TelegramGitNotifier\Exceptions\SendNotificationException;
 use CSlant\TelegramGitNotifier\Notifier;
 use GuzzleHttp\Client;
-use GuzzleHttp\ClientInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Telegram\Telegram as TelegramSDK;
+use Telegram;
 
 class IndexAction
 {
-    public function __construct(
-        private ClientInterface $client,
-        private Bot $bot,
-        private Notifier $notifier,
-        private Request $request
-    ) {
-    }
+    protected Client $client;
+
+    protected Bot $bot;
+
+    protected Notifier $notifier;
+
+    protected Request $request;
 
     /**
-     * Create a new instance with default dependencies.
-     *
      * @throws ConfigFileException
      */
-    public static function createDefault(): self
+    public function __construct()
     {
-        return new self(
-            new Client(),
-            new Bot(new TelegramSDK(config('telegram-git-notifier.bot.token'))),
-            new Notifier(),
-            Request::createFromGlobals()
-        );
+        $this->client = new Client();
+
+        $telegram = new Telegram(config('telegram-git-notifier.bot.token'));
+        $this->bot = new Bot($telegram);
+        $this->notifier = new Notifier();
     }
 
     /**
      * Handle telegram git notifier app.
+     *
+     * @return void
      *
      * @throws InvalidViewTemplateException
      * @throws MessageIsEmptyException
@@ -59,69 +55,23 @@ class IndexAction
     public function __invoke(): void
     {
         if ($this->bot->isCallback()) {
-            $this->handleCallback();
+            $callbackAction = new CallbackService($this->bot);
+            $callbackAction->handle();
+
             return;
         }
 
-        if ($this->shouldHandleCommand()) {
-            $this->handleCommand();
+        if ($this->bot->isMessage() && $this->bot->isOwner()) {
+            $commandAction = new CommandService($this->bot);
+            $commandAction->handle();
+
             return;
         }
 
-        $this->handleNotification();
-    }
-
-    /**
-     * Handle callback actions.
-     *
-     * @throws CallbackException
-     * @throws EntryNotFoundException
-     * @throws InvalidViewTemplateException
-     * @throws MessageIsEmptyException
-     */
-    private function handleCallback(): void
-    {
-        $callbackAction = new CallbackService($this->bot);
-        $callbackAction->handle();
-    }
-
-    /**
-     * Handle command messages.
-     *
-     * @throws EntryNotFoundException
-     * @throws MessageIsEmptyException
-     */
-    private function handleCommand(): void
-    {
-        if (!$this->bot->isMessage() || !$this->bot->isOwner()) {
-            return;
-        }
-
-        $commandAction = new CommandService($this->bot);
-        $commandAction->handle();
-    }
-
-    /**
-     * Handle notification sending.
-     *
-     * @throws InvalidViewTemplateException
-     * @throws MessageIsEmptyException
-     * @throws SendNotificationException
-     */
-    private function handleNotification(): void
-    {
-        $notificationService = new NotificationService(
+        $sendNotification = new NotificationService(
             $this->notifier,
             $this->bot->setting
         );
-        $notificationService->handle();
-    }
-
-    /**
-     * Check if the current message should be handled as a command.
-     */
-    private function shouldHandleCommand(): bool
-    {
-        return $this->bot->isMessage() && $this->bot->isOwner();
+        $sendNotification->handle();
     }
 }

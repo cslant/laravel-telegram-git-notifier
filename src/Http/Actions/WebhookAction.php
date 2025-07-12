@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace CSlant\LaravelTelegramGitNotifier\Http\Actions;
 
 use CSlant\LaravelTelegramGitNotifier\Services\WebhookService;
@@ -9,13 +7,17 @@ use CSlant\TelegramGitNotifier\Exceptions\WebhookException;
 
 class WebhookAction
 {
-    public function __construct(
-        private readonly WebhookService $webhookService
-    ) {
+    protected WebhookService $webhookService;
+
+    public function __construct()
+    {
+        $this->webhookService = new WebhookService();
     }
 
     /**
      * Set webhook for telegram bot.
+     *
+     * @return string
      *
      * @throws WebhookException
      */
@@ -27,6 +29,8 @@ class WebhookAction
     /**
      * Delete webhook for telegram bot.
      *
+     * @return string
+     *
      * @throws WebhookException
      */
     public function delete(): string
@@ -37,6 +41,8 @@ class WebhookAction
     /**
      * Get webhook update.
      *
+     * @return string
+     *
      * @throws WebhookException
      */
     public function getUpdates(): string
@@ -46,6 +52,8 @@ class WebhookAction
 
     /**
      * Get webhook info.
+     *
+     * @return string
      *
      * @throws WebhookException
      */

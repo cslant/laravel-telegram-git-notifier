@@ -1,175 +1,117 @@
 <?php
 
-declare(strict_types=1);
-
 namespace CSlant\LaravelTelegramGitNotifier\Services;
 
 use CSlant\LaravelTelegramGitNotifier\Traits\Markup;
 use CSlant\TelegramGitNotifier\Bot;
 use CSlant\TelegramGitNotifier\Exceptions\EntryNotFoundException;
 use CSlant\TelegramGitNotifier\Exceptions\MessageIsEmptyException;
-use Illuminate\Support\Facades\Config;
-use Telegram\Telegram as TelegramSDK;
 
 class CommandService
 {
     use Markup;
 
-    private const CONFIG_VIEW_NAMESPACE = 'telegram-git-notifier.view.namespace';
+    private Bot $bot;
 
-    public function __construct(
-        private Bot $bot,
-        private string $viewNamespace
-    ) {
+    protected string $viewNamespace = '';
+
+    public function __construct(Bot $bot)
+    {
+        $this->bot = $bot;
+        $this->viewNamespace = config('telegram-git-notifier.view.namespace');
     }
 
-    public static function create(Bot $bot): self
+    /**
+     * @param  Bot  $bot
+     * @return void
+     *
+     * @throws EntryNotFoundException
+     */
+    public function sendStartMessage(Bot $bot): void
     {
-        return new self(
-            $bot,
-            (string) Config::get(self::CONFIG_VIEW_NAMESPACE, '')
+        $reply = view(
+            "$this->viewNamespace::tools.start",
+            ['first_name' => $bot->telegram->FirstName()]
+        );
+        $bot->sendPhoto(
+            __DIR__.'/../../resources/images/telegram-git-notifier-laravel.png',
+            ['caption' => $reply]
         );
     }
 
     /**
-     * Send the start message to the user.
-     *
-     * @throws EntryNotFoundException
-     */
-    private function sendStartMessage(): void
-    {
-        $firstName = $this->bot->telegram->FirstName() ?: 'there';
-        $reply = view("$this->viewNamespace::tools.start", ['first_name' => $firstName]);
-        $imagePath = __DIR__.'/../../resources/images/telegram-git-notifier-laravel.png';
-        
-        $this->bot->sendPhoto($imagePath, ['caption' => $reply]);
-    }
-
-    /**
-     * Handle the incoming command.
+     * @return void
      *
      * @throws EntryNotFoundException
      * @throws MessageIsEmptyException
      */
     public function handle(): void
     {
-        $text = (string) $this->bot->telegram->Text();
-        $command = trim($text, '/');
+        $text = $this->bot->telegram->Text();
 
-        $handlers = [
-            'start' => fn() => $this->handleStart(),
-            'menu' => fn() => $this->handleMenu(),
-            'settings' => fn() => $this->handleSettings(),
-            'set_menu' => fn() => $this->handleSetMenu(),
-            'default' => fn() => $this->handleDefault($command),
-        ];
+        switch ($text) {
+            case '/start':
+                $this->sendStartMessage($this->bot);
 
-        $handler = $handlers[$command] ?? $this->handleToolCommand($command) ?? $handlers['default'];
-        $handler();
-    }
+                break;
+            case '/menu':
+                $this->bot->sendMessage(
+                    view("$this->viewNamespace::tools.menu"),
+                    ['reply_markup' => $this->menuMarkup($this->bot->telegram)]
+                );
 
-    /**
-     * Handle the start command.
-     *
-     * @throws EntryNotFoundException
-     */
-    private function handleStart(): void
-    {
-        $this->sendStartMessage();
-    }
+                break;
+            case '/token':
+            case '/id':
+            case '/usage':
+            case '/server':
+                $this->bot->sendMessage(view("$this->viewNamespace::tools.".trim($text, '/')));
 
-    /**
-     * Handle the menu command.
-     *
-     * @throws EntryNotFoundException
-     * @throws MessageIsEmptyException
-     */
-    private function handleMenu(): void
-    {
-        $this->bot->sendMessage(
-            view("$this->viewNamespace::tools.menu"),
-            ['reply_markup' => $this->menuMarkup($this->bot->telegram)]
-        );
-    }
+                break;
+            case '/settings':
+                $this->bot->settingHandle();
 
-    /**
-     * Handle the settings command.
-     */
-    private function handleSettings(): void
-    {
-        $this->bot->settingHandle();
-    }
+                break;
+            case '/set_menu':
+                $this->bot->setMyCommands(self::menuCommands());
 
-    /**
-     * Handle the set_menu command.
-     *
-     * @throws EntryNotFoundException
-     * @throws MessageIsEmptyException
-     */
-    private function handleSetMenu(): void
-    {
-        $this->bot->setMyCommands(self::menuCommands());
-    }
-
-    /**
-     * Handle tool commands (token, id, usage, server).
-     *
-     * @return callable|null The handler function or null if not a tool command
-     */
-    private function handleToolCommand(string $command): ?callable
-    {
-        $toolCommands = ['token', 'id', 'usage', 'server'];
-        
-        if (!in_array($command, $toolCommands, true)) {
-            return null;
+                break;
+            default:
+                $this->bot->sendMessage('🤨 '.__('tg-notifier::app.invalid_request'));
         }
-
-        return function () use ($command): void {
-            $this->bot->sendMessage(view("$this->viewNamespace::tools.{$command}"));
-        };
     }
 
     /**
-     * Handle unknown commands.
-     *
-     * @throws EntryNotFoundException
-     * @throws MessageIsEmptyException
-     */
-    private function handleDefault(string $command): void
-    {
-        $this->bot->sendMessage('🤨 '.__('tg-notifier::app.invalid_request'));
-    }
-
-    /**
-     * Get the list of available menu commands.
-     *
-     * @return array<array{command: string, description: string}>
+     * @return array<string[]>
      */
     public static function menuCommands(): array
     {
         return [
-            self::createCommand('start', 'start'),
-            self::createCommand('menu', 'menu'),
-            self::createCommand('token', 'token'),
-            self::createCommand('id', 'id'),
-            self::createCommand('usage', 'usage'),
-            self::createCommand('server', 'server'),
-            self::createCommand('settings', 'settings'),
-        ];
-    }
-
-    /**
-     * Create a command array with the given name and translation key.
-     *
-     * @param string $name The command name without the leading slash
-     * @param string $translationKey The translation key suffix
-     * @return array{command: string, description: string}
-     */
-    private static function createCommand(string $name, string $translationKey): array
-    {
-        return [
-            'command' => "/$name",
-            'description' => __("tg-notifier::tools/menu.$translationKey"),
+            [
+                'command' => '/start',
+                'description' => __('tg-notifier::tools/menu.start'),
+            ], [
+                'command' => '/menu',
+                'description' => __('tg-notifier::tools/menu.menu'),
+            ], [
+                'command' => '/token',
+                'description' => __('tg-notifier::tools/menu.token'),
+            ], [
+                'command' => '/id',
+                'description' => __('tg-notifier::tools/menu.id'),
+            ], [
+                'command' => '/usage',
+                'description' => __('tg-notifier::tools/menu.usage'),
+            ], [
+                'command' => '/server',
+                'description' => __('tg-notifier::tools/menu.server'),
+            ], [
+                'command' => '/settings',
+                'description' => __('tg-notifier::tools/menu.settings'),
+            ], [
+                'command' => '/set_menu',
+                'description' => __('tg-notifier::tools/menu.set_menu'),
+            ],
         ];
     }
 }
