@@ -14,8 +14,8 @@ use Symfony\Component\HttpFoundation\Request;
 
 class NotificationService
 {
-    /**
-     * @var array<string, array<int|string>>
+    /** 
+     * @var array<string, array<int|string>> 
      */
     private array $chatIds = [];
 
@@ -51,11 +51,11 @@ class NotificationService
     public function handle(): void
     {
         $eventName = $this->notifier->handleEventFromRequest($this->request);
-
+        
         if ($eventName === null) {
             return;
         }
-
+        
         $this->sendNotification($eventName);
     }
 
@@ -92,7 +92,6 @@ class NotificationService
     {
         if (empty($threads)) {
             $this->sendToChat($chatId);
-
             return;
         }
 
@@ -107,7 +106,7 @@ class NotificationService
     private function sendToChat(string $chatId): void
     {
         $this->notifier->sendNotify(null, [
-            'chat_id' => $chatId,
+            'chat_id' => $chatId
         ]);
     }
 
@@ -146,7 +145,7 @@ class NotificationService
     private function isValidEvent(string $event): bool
     {
         $payload = $this->notifier->setPayload($this->request, $event);
-
+        
         if (empty($payload) || !is_object($payload)) {
             return false;
         }
@@ -163,7 +162,7 @@ class NotificationService
     private function validateEventAccess(string $event, object $payload): bool
     {
         $validator = new Validator($this->setting, $this->notifier->event);
-
+        
         return $validator->isAccessEvent(
             $this->notifier->event->platform,
             $event,

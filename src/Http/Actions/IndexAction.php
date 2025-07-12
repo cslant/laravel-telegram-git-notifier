@@ -60,13 +60,11 @@ class IndexAction
     {
         if ($this->bot->isCallback()) {
             $this->handleCallback();
-
             return;
         }
 
         if ($this->shouldHandleCommand()) {
             $this->handleCommand();
-
             return;
         }
 
