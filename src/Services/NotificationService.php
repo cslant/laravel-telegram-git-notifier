@@ -2,11 +2,9 @@
 
 namespace CSlant\LaravelTelegramGitNotifier\Services;
 
-use CSlant\TelegramGitNotifier\Exceptions\{
-    InvalidViewTemplateException,
-    MessageIsEmptyException,
-    SendNotificationException
-};
+use CSlant\TelegramGitNotifier\Exceptions\InvalidViewTemplateException;
+use CSlant\TelegramGitNotifier\Exceptions\MessageIsEmptyException;
+use CSlant\TelegramGitNotifier\Exceptions\SendNotificationException;
 use CSlant\TelegramGitNotifier\Models\Setting;
 use CSlant\TelegramGitNotifier\Notifier;
 use CSlant\TelegramGitNotifier\Objects\Validator;
@@ -14,20 +12,32 @@ use Symfony\Component\HttpFoundation\Request;
 
 class NotificationService
 {
-    /** @var array<string, array<int|string>> */
+    protected Request $request;
+
+    /**
+     * @var array<int|string>
+     */
     protected array $chatIds = [];
 
+    protected Notifier $notifier;
+
+    protected Setting $setting;
+
     public function __construct(
-        protected Notifier $notifier,
-        protected Setting $setting,
-        protected Request $request = new Request()
+        Notifier $notifier,
+        Setting $setting,
     ) {
-        $this->request = $request ?? Request::createFromGlobals();
-        $this->chatIds = $notifier->parseNotifyChatIds();
+        $this->request = Request::createFromGlobals();
+        $this->notifier = $notifier;
+        $this->chatIds = $this->notifier->parseNotifyChatIds();
+
+        $this->setting = $setting;
     }
 
     /**
-     * Handle sending notification from webhook event to Telegram.
+     * Handle to send notification from webhook event to telegram.
+     *
+     * @return void
      *
      * @throws InvalidViewTemplateException
      * @throws SendNotificationException
@@ -35,13 +45,15 @@ class NotificationService
      */
     public function handle(): void
     {
-        if ($eventName = $this->notifier->handleEventFromRequest($this->request)) {
+        $eventName = $this->notifier->handleEventFromRequest($this->request);
+        if (!empty($eventName)) {
             $this->sendNotification($eventName);
         }
     }
 
     /**
-     * Send notification to all configured chat IDs and threads.
+     * @param  string  $event
+     * @return void
      *
      * @throws InvalidViewTemplateException
      * @throws SendNotificationException
@@ -49,65 +61,53 @@ class NotificationService
      */
     private function sendNotification(string $event): void
     {
-        if (!$this->isValidEvent($event)) {
+        if (!$this->validateAccessEvent($event)) {
             return;
         }
 
-        foreach ($this->chatIds as $chatId => $threads) {
+        foreach ($this->chatIds as $chatId => $thread) {
             if (empty($chatId)) {
                 continue;
             }
 
-            empty($threads)
-                ? $this->sendToChat($chatId)
-                : $this->sendToThreads($chatId, $threads);
+            if (empty($thread)) {
+                $this->notifier->sendNotify(null, ['chat_id' => $chatId]);
+
+                continue;
+            }
+
+            /** @var array<int|string> $thread */
+            foreach ($thread as $threadId) {
+                $this->notifier->sendNotify(null, [
+                    'chat_id' => $chatId, 'message_thread_id' => $threadId,
+                ]);
+            }
         }
     }
 
     /**
-     * Send notification to a single chat.
+     * Validate access event.
      *
-     * @throws SendNotificationException
-     */
-    private function sendToChat(string $chatId): void
-    {
-        $this->notifier->sendNotify(null, ['chat_id' => $chatId]);
-    }
-
-    /**
-     * Send notification to multiple threads in a chat.
+     * @param  string  $event
+     * @return bool
      *
-     * @param  array<int|string>  $threads
-     *
-     * @throws SendNotificationException
+     * @throws InvalidViewTemplateException|MessageIsEmptyException
      */
-    private function sendToThreads(string $chatId, array $threads): void
-    {
-        foreach ($threads as $threadId) {
-            $this->notifier->sendNotify(null, [
-                'chat_id' => $chatId,
-                'message_thread_id' => $threadId,
-            ]);
-        }
-    }
-
-    /**
-     * Check if the event is valid and accessible.
-     */
-    private function isValidEvent(string $event): bool
+    private function validateAccessEvent(string $event): bool
     {
         $payload = $this->notifier->setPayload($this->request, $event);
+        $validator = new Validator($this->setting, $this->notifier->event);
 
-        if (empty($payload) || !is_object($payload)) {
+        if (empty($payload) || !is_object($payload)
+            || !$validator->isAccessEvent(
+                $this->notifier->event->platform,
+                $event,
+                $payload
+            )
+        ) {
             return false;
         }
 
-        $validator = new Validator($this->setting, $this->notifier->event);
-
-        return $validator->isAccessEvent(
-            $this->notifier->event->platform,
-            $event,
-            $payload
-        );
+        return true;
     }
 }
