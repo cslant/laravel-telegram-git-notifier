@@ -6,13 +6,13 @@
 
 ?>
 
-⚡ <b>{!! __('tg-notifier::events/github/team.added_to_repository.title') !!}</b> 🎊
-
+👥 <b>{!! __('tg-notifier::events/github/team.added_to_repository.title') !!}</b>
+━━━━━━━━━━━━━━━━━━━━
 @if(isset($payload->organization))
 🏢 {!! __('tg-notifier::events/github/team.added_to_repository.organization') !!}: <b>{{ $payload->organization->login }}</b>
 @endif
 @if(isset($payload->repository))
-📦 {!! __('tg-notifier::events/github/team.added_to_repository.full_name') !!}: 🦑<a href='{{ $payload->team->html_url }}'><b>{{ $payload->repository->full_name }}</b></a>
+📦 {!! __('tg-notifier::events/github/team.added_to_repository.full_name') !!}: <a href='{{ $payload->repository->html_url }}'><b>{{ $payload->repository->full_name }}</b></a>
 📄 {!! __('tg-notifier::events/github/team.added_to_repository.role_name') !!}: <b>{{ $payload->repository->role_name }}</b>
 @endif
 @if(isset($payload->sender))

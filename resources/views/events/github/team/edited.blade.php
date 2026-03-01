@@ -6,8 +6,8 @@
 
 ?>
 
-⚡ <b>{!! __('tg-notifier::events/github/team.edited.title') !!}</b> 🎊
-
+👥 <b>{!! __('tg-notifier::events/github/team.edited.title') !!}</b>
+━━━━━━━━━━━━━━━━━━━━
 @if(isset($payload->organization))
 🏢 {!! __('tg-notifier::events/github/team.edited.organization') !!}: <b>{{ $payload->organization->login }}</b>
 @endif

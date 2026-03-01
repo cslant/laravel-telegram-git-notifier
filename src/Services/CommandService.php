@@ -11,9 +11,9 @@ class CommandService
 {
     use Markup;
 
-    private Bot $bot;
+    private readonly Bot $bot;
 
-    protected string $viewNamespace = '';
+    protected readonly string $viewNamespace;
 
     public function __construct(Bot $bot)
     {
@@ -22,9 +22,6 @@ class CommandService
     }
 
     /**
-     * @param  Bot  $bot
-     * @return void
-     *
      * @throws EntryNotFoundException
      */
     public function sendStartMessage(Bot $bot): void
@@ -34,14 +31,12 @@ class CommandService
             ['first_name' => $bot->telegram->FirstName()]
         );
         $bot->sendPhoto(
-            __DIR__.'/../../resources/images/telegram-git-notifier-laravel.png',
+            __DIR__ . '/../../resources/images/telegram-git-notifier-laravel.png',
             ['caption' => $reply]
         );
     }
 
     /**
-     * @return void
-     *
      * @throws EntryNotFoundException
      * @throws MessageIsEmptyException
      */
@@ -49,69 +44,37 @@ class CommandService
     {
         $text = $this->bot->telegram->Text();
 
-        switch ($text) {
-            case '/start':
-                $this->sendStartMessage($this->bot);
-
-                break;
-            case '/menu':
-                $this->bot->sendMessage(
-                    view("$this->viewNamespace::tools.menu"),
-                    ['reply_markup' => $this->menuMarkup($this->bot->telegram)]
-                );
-
-                break;
-            case '/token':
-            case '/id':
-            case '/usage':
-            case '/server':
-                $this->bot->sendMessage(view("$this->viewNamespace::tools.".trim($text, '/')));
-
-                break;
-            case '/settings':
-                $this->bot->settingHandle();
-
-                break;
-            case '/set_menu':
-                $this->bot->setMyCommands(self::menuCommands());
-
-                break;
-            default:
-                $this->bot->sendMessage('🤨 '.__('tg-notifier::app.invalid_request'));
-        }
+        match ($text) {
+            '/start' => $this->sendStartMessage($this->bot),
+            '/menu' => $this->bot->sendMessage(
+                view("$this->viewNamespace::tools.menu"),
+                ['reply_markup' => $this->menuMarkup($this->bot->telegram)]
+            ),
+            '/token', '/id', '/usage', '/server' => $this->bot->sendMessage(
+                view("$this->viewNamespace::tools." . trim($text, '/'))
+            ),
+            '/settings' => $this->bot->settingHandle(),
+            '/set_menu' => $this->bot->setMyCommands(self::menuCommands()),
+            default => $this->bot->sendMessage(
+                '🤨 ' . __('tg-notifier::app.invalid_request')
+            ),
+        };
     }
 
     /**
-     * @return array<string[]>
+     * @return array<array{command: string, description: string}>
      */
     public static function menuCommands(): array
     {
         return [
-            [
-                'command' => '/start',
-                'description' => __('tg-notifier::tools/menu.start'),
-            ], [
-                'command' => '/menu',
-                'description' => __('tg-notifier::tools/menu.menu'),
-            ], [
-                'command' => '/token',
-                'description' => __('tg-notifier::tools/menu.token'),
-            ], [
-                'command' => '/id',
-                'description' => __('tg-notifier::tools/menu.id'),
-            ], [
-                'command' => '/usage',
-                'description' => __('tg-notifier::tools/menu.usage'),
-            ], [
-                'command' => '/server',
-                'description' => __('tg-notifier::tools/menu.server'),
-            ], [
-                'command' => '/settings',
-                'description' => __('tg-notifier::tools/menu.settings'),
-            ], [
-                'command' => '/set_menu',
-                'description' => __('tg-notifier::tools/menu.set_menu'),
-            ],
+            ['command' => '/start', 'description' => __('tg-notifier::tools/menu.start')],
+            ['command' => '/menu', 'description' => __('tg-notifier::tools/menu.menu')],
+            ['command' => '/token', 'description' => __('tg-notifier::tools/menu.token')],
+            ['command' => '/id', 'description' => __('tg-notifier::tools/menu.id')],
+            ['command' => '/usage', 'description' => __('tg-notifier::tools/menu.usage')],
+            ['command' => '/server', 'description' => __('tg-notifier::tools/menu.server')],
+            ['command' => '/settings', 'description' => __('tg-notifier::tools/menu.settings')],
+            ['command' => '/set_menu', 'description' => __('tg-notifier::tools/menu.set_menu')],
         ];
     }
 }

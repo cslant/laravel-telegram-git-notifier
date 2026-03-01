@@ -7,18 +7,14 @@ use CSlant\TelegramGitNotifier\Exceptions\WebhookException;
 
 class WebhookAction
 {
-    protected WebhookService $webhookService;
+    protected readonly WebhookService $webhookService;
 
-    public function __construct()
+    public function __construct(?WebhookService $webhookService = null)
     {
-        $this->webhookService = new WebhookService();
+        $this->webhookService = $webhookService ?? new WebhookService();
     }
 
     /**
-     * Set webhook for telegram bot.
-     *
-     * @return string
-     *
      * @throws WebhookException
      */
     public function set(): string
@@ -27,10 +23,6 @@ class WebhookAction
     }
 
     /**
-     * Delete webhook for telegram bot.
-     *
-     * @return string
-     *
      * @throws WebhookException
      */
     public function delete(): string
@@ -39,10 +31,6 @@ class WebhookAction
     }
 
     /**
-     * Get webhook update.
-     *
-     * @return string
-     *
      * @throws WebhookException
      */
     public function getUpdates(): string
@@ -51,10 +39,6 @@ class WebhookAction
     }
 
     /**
-     * Get webhook info.
-     *
-     * @return string
-     *
      * @throws WebhookException
      */
     public function getWebHookInfo(): string

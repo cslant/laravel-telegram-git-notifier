@@ -19,8 +19,9 @@ $interval = $completedAt->diff($startedAt);
 $allSeconds = $interval->s + $interval->i * 60 + $interval->h * 3600;
 ?>
 
-{{ $icon }} {!! __("tg-notifier::events/github/workflow_job.completed.$status", ['repo' => "🦑<a href='{$payload->repository->html_url}'>{$payload->repository->full_name}</a>"]) !!}
-
-🚀 {!! __('tg-notifier::events/github/workflow_job.name') !!}: {{ $icon }} <code>{{ $payload->workflow_job->name }}</code> {{ $last }}
+{{ $icon }} {!! __("tg-notifier::events/github/workflow_job.completed.$status", ['repo' => "<a href='{$payload->repository->html_url}'>{$payload->repository->full_name}</a>"]) !!}
+━━━━━━━━━━━━━━━━━━━━
+🔧 {!! __('tg-notifier::events/github/workflow_job.name') !!}: <code>{{ $payload->workflow_job->name }}</code>
 🚨 {!! __('tg-notifier::events/github/workflow_job.status.title') !!}: <code>{!! __('tg-notifier::events/github/workflow_job.status.'.$status) !!}</code> ⏱️ <code>{{ $allSeconds }}s</code>
-🔗 {!! __('tg-notifier::events/github/workflow_job.link', ['link' => "<a href='{$payload->workflow_job->html_url}'>{$payload->workflow_job->workflow_name}</a>"]) !!}
+
+🔗 <a href="{{ $payload->workflow_job->html_url }}">View Job</a>
