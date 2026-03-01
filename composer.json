@@ -37,17 +37,17 @@
   },
   "require": {
     "php": "^8.1",
-    "cslant/telegram-git-notifier": "^v1.4"
+    "cslant/telegram-git-notifier": "*"
   },
   "require-dev": {
-    "friendsofphp/php-cs-fixer": "^v3.0",
-    "nunomaduro/collision": "^7.10",
-    "nunomaduro/larastan": "^2.9",
-    "orchestra/testbench": "^8.0",
-    "pestphp/pest": "^2.0",
-    "phpstan/extension-installer": "^1.3",
-    "phpstan/phpstan-deprecation-rules": "^1.1",
-    "phpstan/phpstan-phpunit": "^1.3"
+    "friendsofphp/php-cs-fixer": "^3.0",
+    "nunomaduro/collision": "^8.9",
+    "nunomaduro/larastan": "^3.9",
+    "orchestra/testbench": "^v10.0",
+    "pestphp/pest": "^4.0",
+    "phpstan/extension-installer": "^1.4",
+    "phpstan/phpstan-deprecation-rules": "^1.2",
+    "phpstan/phpstan-phpunit": "^2.0"
   },
   "scripts": {
     "analyse": "vendor/bin/phpstan analyse",
