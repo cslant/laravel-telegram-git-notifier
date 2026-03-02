@@ -47,7 +47,7 @@
     "orchestra/testbench": "^v10.0",
     "pestphp/pest": "^4.0",
     "phpstan/extension-installer": "^1.4",
-    "phpstan/phpstan-deprecation-rules": "^1.2",
+    "phpstan/phpstan-deprecation-rules": "^2.0",
     "phpstan/phpstan-phpunit": "^2.0"
   },
   "scripts": {
