@@ -42,7 +42,7 @@ class NotificationService
     public function handle(): void
     {
         $eventName = $this->notifier->handleEventFromRequest($this->request);
-        if (!empty($eventName)) {
+        if ($eventName !== null && $eventName !== '') {
             $this->sendNotification($eventName);
         }
     }
@@ -88,7 +88,7 @@ class NotificationService
         $payload = $this->notifier->setPayload($this->request, $event);
         $validator = new Validator($this->setting, $this->notifier->event);
 
-        if (empty($payload) || !is_object($payload)) {
+        if ($payload === null) {
             return false;
         }
 
