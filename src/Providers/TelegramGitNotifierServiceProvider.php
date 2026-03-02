@@ -20,14 +20,14 @@ class TelegramGitNotifierServiceProvider extends ServiceProvider implements Defe
     {
         $this->loadRoutes();
         $this->loadViews();
-        $this->loadTranslationsFrom(__DIR__ . '/../../lang', 'tg-notifier');
+        $this->loadTranslationsFrom(__DIR__.'/../../lang', 'tg-notifier');
         $this->registerCommands();
         $this->registerAssetPublishing();
     }
 
     public function register(): void
     {
-        $configPath = __DIR__ . '/../../config/telegram-git-notifier.php';
+        $configPath = __DIR__.'/../../config/telegram-git-notifier.php';
         $this->mergeConfigFrom($configPath, 'telegram-git-notifier');
 
         $this->registerBindings();
@@ -49,7 +49,7 @@ class TelegramGitNotifierServiceProvider extends ServiceProvider implements Defe
 
     private function loadRoutes(): void
     {
-        $routePath = __DIR__ . '/../../routes/bot.php';
+        $routePath = __DIR__.'/../../routes/bot.php';
         if (file_exists($routePath)) {
             $this->loadRoutesFrom($routePath);
         }
@@ -57,7 +57,7 @@ class TelegramGitNotifierServiceProvider extends ServiceProvider implements Defe
 
     private function loadViews(): void
     {
-        $viewPath = __DIR__ . '/../../resources/views';
+        $viewPath = __DIR__.'/../../resources/views';
         if (file_exists($viewPath)) {
             $this->loadViewsFrom($viewPath, config('telegram-git-notifier.view.namespace'));
         }
@@ -97,21 +97,21 @@ class TelegramGitNotifierServiceProvider extends ServiceProvider implements Defe
 
     protected function registerAssetPublishing(): void
     {
-        $configPath = __DIR__ . '/../../config/telegram-git-notifier.php';
+        $configPath = __DIR__.'/../../config/telegram-git-notifier.php';
         $this->publishes([
             $configPath => config_path('telegram-git-notifier.php'),
         ], 'config');
 
         $this->publishes([
-            __DIR__ . '/../../resources/views' => config('telegram-git-notifier.defaults.paths.views'),
+            __DIR__.'/../../resources/views' => config('telegram-git-notifier.defaults.paths.views'),
         ], 'views');
 
         $this->publishes([
-            __DIR__ . '/../../lang' => resource_path('lang/vendor/tg-notifier'),
+            __DIR__.'/../../lang' => resource_path('lang/vendor/tg-notifier'),
         ], 'lang');
 
         $this->publishes([
-            __DIR__ . '/../../../telegram-git-notifier/config/jsons' => config('telegram-git-notifier.data_file.storage_folder'),
+            __DIR__.'/../../../telegram-git-notifier/config/jsons' => config('telegram-git-notifier.data_file.storage_folder'),
         ], 'config_jsons');
     }
 }
