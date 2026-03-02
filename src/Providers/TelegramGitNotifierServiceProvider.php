@@ -4,69 +4,102 @@ namespace CSlant\LaravelTelegramGitNotifier\Providers;
 
 use CSlant\LaravelTelegramGitNotifier\Commands\ChangeOwnerConfigJson;
 use CSlant\LaravelTelegramGitNotifier\Commands\SetWebhook;
+use CSlant\LaravelTelegramGitNotifier\Commands\WebhookStatus;
+use CSlant\TelegramGitNotifier\Bot;
+use CSlant\TelegramGitNotifier\Interfaces\WebhookInterface;
+use CSlant\TelegramGitNotifier\Notifier;
+use CSlant\TelegramGitNotifier\Webhook;
+use GuzzleHttp\Client;
+use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
+use Telegram;
 
-class TelegramGitNotifierServiceProvider extends ServiceProvider
+class TelegramGitNotifierServiceProvider extends ServiceProvider implements DeferrableProvider
 {
-    /**
-     * Bootstrap services.
-     *
-     * @return void
-     */
     public function boot(): void
+    {
+        $this->loadRoutes();
+        $this->loadViews();
+        $this->loadTranslationsFrom(__DIR__.'/../../lang', 'tg-notifier');
+        $this->registerCommands();
+        $this->registerAssetPublishing();
+    }
+
+    public function register(): void
+    {
+        $configPath = __DIR__.'/../../config/telegram-git-notifier.php';
+        $this->mergeConfigFrom($configPath, 'telegram-git-notifier');
+
+        $this->registerBindings();
+    }
+
+    /**
+     * @return array<int, string>
+     */
+    public function provides(): array
+    {
+        return [
+            Telegram::class,
+            Client::class,
+            Bot::class,
+            Notifier::class,
+            WebhookInterface::class,
+        ];
+    }
+
+    private function loadRoutes(): void
     {
         $routePath = __DIR__.'/../../routes/bot.php';
         if (file_exists($routePath)) {
             $this->loadRoutesFrom($routePath);
         }
+    }
 
+    private function loadViews(): void
+    {
         $viewPath = __DIR__.'/../../resources/views';
         if (file_exists($viewPath)) {
             $this->loadViewsFrom($viewPath, config('telegram-git-notifier.view.namespace'));
         }
-
-        $this->loadTranslationsFrom(__DIR__.'/../../lang', 'tg-notifier');
-
-        $this->registerCommands();
-
-        $this->registerAssetPublishing();
     }
 
-    /**
-     * Register services.
-     *
-     * @return void
-     */
-    public function register(): void
+    private function registerBindings(): void
     {
-        $configPath = __DIR__.'/../../config/telegram-git-notifier.php';
-        $this->mergeConfigFrom($configPath, 'telegram-git-notifier');
+        $this->app->singleton(Telegram::class, static function () {
+            return new Telegram(config('telegram-git-notifier.bot.token'));
+        });
+
+        $this->app->singleton(Bot::class, function ($app) {
+            return new Bot($app->make(Telegram::class));
+        });
+
+        $this->app->singleton(Notifier::class, static function () {
+            return new Notifier();
+        });
+
+        $this->app->singleton(WebhookInterface::class, static function () {
+            $webhook = new Webhook();
+            /** @var string $token */
+            $token = config('telegram-git-notifier.bot.token', '');
+            /** @var string $url */
+            $url = config('telegram-git-notifier.app.url', '');
+
+            $webhook->setToken($token);
+            $webhook->setUrl($url);
+
+            return $webhook;
+        });
     }
 
-    /**
-     * Get the services provided by the provider.
-     *
-     * @return array<string>|null
-     */
-    public function provides(): ?array
-    {
-        return ['telegram-git-notifier'];
-    }
-
-    /**
-     * @return void
-     */
     protected function registerCommands(): void
     {
         $this->commands([
             ChangeOwnerConfigJson::class,
             SetWebhook::class,
+            WebhookStatus::class,
         ]);
     }
 
-    /**
-     * @return void
-     */
     protected function registerAssetPublishing(): void
     {
         $configPath = __DIR__.'/../../config/telegram-git-notifier.php';

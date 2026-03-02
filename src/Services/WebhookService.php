@@ -8,60 +8,44 @@ use CSlant\TelegramGitNotifier\Webhook;
 
 class WebhookService
 {
-    protected WebhookInterface $webhookInterface;
+    protected readonly WebhookInterface $webhook;
 
-    public function __construct(?WebhookInterface $webhookInterface = null)
+    public function __construct(?WebhookInterface $webhook = null)
     {
-        $this->webhookInterface = $webhookInterface ?? new Webhook();
-        $this->webhookInterface->setToken(config('telegram-git-notifier.bot.token'));
-        $this->webhookInterface->setUrl(config('telegram-git-notifier.app.url'));
+        $this->webhook = $webhook ?? new Webhook();
+        $this->webhook->setToken(config('telegram-git-notifier.bot.token'));
+        $this->webhook->setUrl(config('telegram-git-notifier.app.url'));
     }
 
     /**
-     * Set webhook for telegram bot.
-     *
-     * @return string
-     *
      * @throws WebhookException
      */
     public function setWebhook(): string
     {
-        return $this->webhookInterface->setWebhook();
+        return $this->webhook->setWebhook();
     }
 
     /**
-     * Delete webhook for telegram bot.
-     *
-     * @return string
-     *
      * @throws WebhookException
      */
     public function deleteWebHook(): string
     {
-        return $this->webhookInterface->deleteWebHook();
+        return $this->webhook->deleteWebHook();
     }
 
     /**
-     * Get webhook update.
-     *
-     * @return string
-     *
      * @throws WebhookException
      */
     public function getUpdates(): string
     {
-        return $this->webhookInterface->getUpdates();
+        return $this->webhook->getUpdates();
     }
 
     /**
-     * Get webhook info.
-     *
-     * @return string
-     *
      * @throws WebhookException
      */
     public function getWebHookInfo(): string
     {
-        return $this->webhookInterface->getWebHookInfo();
+        return $this->webhook->getWebHookInfo();
     }
 }

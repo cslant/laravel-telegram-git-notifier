@@ -14,21 +14,20 @@ class CallbackService
 {
     use Markup;
 
-    private Bot $bot;
+    private readonly Bot $bot;
 
-    protected string $viewNamespace = '';
+    protected readonly string $viewNamespace;
 
     public function __construct(Bot $bot)
     {
         $this->bot = $bot;
-        $this->viewNamespace = config('telegram-git-notifier.view.namespace');
+        /** @var string $viewNamespace */
+        $viewNamespace = config('telegram-git-notifier.view.namespace');
+        $this->viewNamespace = $viewNamespace;
     }
 
     /**
      * Answer the back button.
-     *
-     * @param  string  $callback
-     * @return void
      *
      * @throws MessageIsEmptyException
      * @throws BotException
@@ -37,31 +36,31 @@ class CallbackService
     public function answerBackButton(string $callback): void
     {
         $callback = str_replace(SettingConstant::SETTING_BACK, '', $callback);
-        switch ($callback) {
-            case 'settings':
-                $view = view("$this->viewNamespace::tools.settings");
-                $markup = $this->bot->settingMarkup();
 
-                break;
-            case 'settings.custom_events.github':
-                $view = view("$this->viewNamespace::tools.custom_event", ['platform' => 'github']);
-                $markup = $this->bot->eventMarkup();
+        [$view, $markup] = match ($callback) {
+            'settings' => [
+                view("$this->viewNamespace::tools.settings"),
+                $this->bot->settingMarkup(),
+            ],
+            'settings.custom_events.github' => [
+                view("$this->viewNamespace::tools.custom_event", ['platform' => 'github']),
+                $this->bot->eventMarkup(),
+            ],
+            'settings.custom_events.gitlab' => [
+                view("$this->viewNamespace::tools.custom_event", ['platform' => 'gitlab']),
+                $this->bot->eventMarkup(null, 'gitlab'),
+            ],
+            'menu' => [
+                view("$this->viewNamespace::tools.menu"),
+                $this->menuMarkup($this->bot->telegram),
+            ],
+            default => [null, null],
+        };
 
-                break;
-            case 'settings.custom_events.gitlab':
-                $view = view("$this->viewNamespace::tools.custom_event", ['platform' => 'gitlab']);
-                $markup = $this->bot->eventMarkup(null, 'gitlab');
+        if ($view === null) {
+            $this->bot->answerCallbackQuery(__('tg-notifier::app.unknown_callback'));
 
-                break;
-            case 'menu':
-                $view = view("$this->viewNamespace::tools.menu");
-                $markup = $this->menuMarkup($this->bot->telegram);
-
-                break;
-            default:
-                $this->bot->answerCallbackQuery(__('tg-notifier::app.unknown_callback'));
-
-                return;
+            return;
         }
 
         $this->bot->editMessageText($view, [
@@ -70,8 +69,6 @@ class CallbackService
     }
 
     /**
-     * @return void
-     *
      * @throws MessageIsEmptyException
      * @throws InvalidViewTemplateException
      * @throws BotException|CallbackException

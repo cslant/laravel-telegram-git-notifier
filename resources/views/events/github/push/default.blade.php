@@ -14,14 +14,14 @@ if (empty($payload->commits)) {
 }
 ?>
 
-👷⚙️ {!! __('tg-notifier::events/github/push.default.title', [
+🚀 {!! __('tg-notifier::events/github/push.default.title', [
             'count' => $count,
             'noun' => $noun,
-            'repo' => "🦑<a href='{$payload->repository->html_url}'>{$payload->repository->full_name}</a>",
+            'repo' => "<a href='{$payload->repository->html_url}'>{$payload->repository->full_name}</a>",
             'branch' => $branch,
         ]
     ) !!}
-
+━━━━━━━━━━━━━━━━━━━━
 @foreach($payload->commits as $commit)
 @php
     $commitId = substr($commit->id, -7);
@@ -37,5 +37,7 @@ if (empty($payload->commits)) {
 ) !!}
 @endforeach
 
-🌲 {{ __('tg-notifier::app.branch') }}: <code>{{ $branch }}</code>
-👤 {!! __('tg-notifier::events/github/push.default.pusher') !!}: <code>{{ $payload->pusher->name }}</code>
+⎇ <code>{{ $branch }}</code>
+👤 {{ $payload->pusher->name }}
+
+🔗 <a href="{{ $payload->compare }}">View Changes</a>

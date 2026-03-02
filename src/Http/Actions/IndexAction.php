@@ -14,36 +14,28 @@ use CSlant\TelegramGitNotifier\Exceptions\InvalidViewTemplateException;
 use CSlant\TelegramGitNotifier\Exceptions\MessageIsEmptyException;
 use CSlant\TelegramGitNotifier\Exceptions\SendNotificationException;
 use CSlant\TelegramGitNotifier\Notifier;
-use GuzzleHttp\Client;
-use Symfony\Component\HttpFoundation\Request;
 use Telegram;
 
 class IndexAction
 {
-    protected Client $client;
+    protected readonly Bot $bot;
 
-    protected Bot $bot;
-
-    protected Notifier $notifier;
-
-    protected Request $request;
+    protected readonly Notifier $notifier;
 
     /**
      * @throws ConfigFileException
      */
-    public function __construct()
-    {
-        $this->client = new Client();
-
+    public function __construct(
+        ?Bot $bot = null,
+        ?Notifier $notifier = null,
+    ) {
         $telegram = new Telegram(config('telegram-git-notifier.bot.token'));
-        $this->bot = new Bot($telegram);
-        $this->notifier = new Notifier();
+        $this->bot = $bot ?? new Bot($telegram);
+        $this->notifier = $notifier ?? new Notifier();
     }
 
     /**
      * Handle telegram git notifier app.
-     *
-     * @return void
      *
      * @throws InvalidViewTemplateException
      * @throws MessageIsEmptyException
@@ -55,23 +47,20 @@ class IndexAction
     public function __invoke(): void
     {
         if ($this->bot->isCallback()) {
-            $callbackAction = new CallbackService($this->bot);
-            $callbackAction->handle();
+            (new CallbackService($this->bot))->handle();
 
             return;
         }
 
         if ($this->bot->isMessage() && $this->bot->isOwner()) {
-            $commandAction = new CommandService($this->bot);
-            $commandAction->handle();
+            (new CommandService($this->bot))->handle();
 
             return;
         }
 
-        $sendNotification = new NotificationService(
+        (new NotificationService(
             $this->notifier,
-            $this->bot->setting
-        );
-        $sendNotification->handle();
+            $this->bot->setting,
+        ))->handle();
     }
 }
