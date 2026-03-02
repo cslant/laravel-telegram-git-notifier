@@ -17,3 +17,8 @@ parameters:
 
         - message: '#Property .+ does not accept mixed#'
           path: %currentWorkingDirectory%/src/Services/*.php
+
+        - message: '#Parameter \#1 \$view of function view expects view-string\|null, string given\.#'
+          paths:
+              - src/Services/CallbackService.php
+              - src/Services/CommandService.php

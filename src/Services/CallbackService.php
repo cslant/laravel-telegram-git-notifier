@@ -21,7 +21,9 @@ class CallbackService
     public function __construct(Bot $bot)
     {
         $this->bot = $bot;
-        $this->viewNamespace = config('telegram-git-notifier.view.namespace');
+        /** @var string $viewNamespace */
+        $viewNamespace = config('telegram-git-notifier.view.namespace');
+        $this->viewNamespace = $viewNamespace;
     }
 
     /**

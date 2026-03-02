@@ -18,9 +18,9 @@ class VerifyWebhookSecret
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $secret = config('telegram-git-notifier.bot.webhook_secret');
+        $secret = (string) config('telegram-git-notifier.bot.webhook_secret');
 
-        if (empty($secret)) {
+        if ($secret === '') {
             return $next($request);
         }
 
