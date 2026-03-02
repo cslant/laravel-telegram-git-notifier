@@ -19,10 +19,16 @@
   "license": "MIT",
   "authors": [
     {
+      "name": "CSlant Team",
+      "email": "contact@cslant.com",
+      "homepage": "https://cslant.com",
+      "role": "Owner"
+    },
+    {
       "name": "Tan Nguyen",
       "email": "tannp@cslant.com",
       "homepage": "https://tanhongit.com",
-      "role": "Developer"
+      "role": "Maintainer"
     }
   ],
   "autoload": {
