@@ -33,7 +33,7 @@ class CommandService
             ['first_name' => $bot->telegram->FirstName()]
         );
         $bot->sendPhoto(
-            __DIR__ . '/../../resources/images/telegram-git-notifier-laravel.png',
+            __DIR__.'/../../resources/images/telegram-git-notifier-laravel.png',
             ['caption' => $reply]
         );
     }
@@ -53,12 +53,12 @@ class CommandService
                 ['reply_markup' => $this->menuMarkup($this->bot->telegram)]
             ),
             '/token', '/id', '/usage', '/server' => $this->bot->sendMessage(
-                view("$this->viewNamespace::tools." . trim($text, '/'))
+                view("$this->viewNamespace::tools.".trim($text, '/'))
             ),
             '/settings' => $this->bot->settingHandle(),
             '/set_menu' => $this->bot->setMyCommands(self::menuCommands()),
             default => $this->bot->sendMessage(
-                '🤨 ' . __('tg-notifier::app.invalid_request')
+                '🤨 '.__('tg-notifier::app.invalid_request')
             ),
         };
     }

@@ -61,7 +61,7 @@ class ChangeOwnerConfigJson extends Command
             return;
         }
 
-        $command = 'chown -R ' . escapeshellarg($user) . ':' . escapeshellarg($group) . ' ' . escapeshellarg($jsonsPath);
+        $command = 'chown -R '.escapeshellarg($user).':'.escapeshellarg($group).' '.escapeshellarg($jsonsPath);
         $result = shell_exec($command);
 
         if ($result === false) {

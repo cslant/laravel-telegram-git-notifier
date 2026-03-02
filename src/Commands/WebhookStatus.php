@@ -66,6 +66,6 @@ class WebhookStatus extends Command
             return '***';
         }
 
-        return substr($token, 0, 5) . '...' . substr($token, -4);
+        return substr($token, 0, 5).'...'.substr($token, -4);
     }
 }
