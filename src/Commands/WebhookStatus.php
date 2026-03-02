@@ -52,15 +52,22 @@ class WebhookStatus extends Command
     private function createWebhook(): WebhookInterface
     {
         $webhook = new Webhook();
-        $webhook->setToken((string) config('telegram-git-notifier.bot.token'));
-        $webhook->setUrl((string) config('telegram-git-notifier.app.url'));
+
+        /** @var string $token */
+        $token = config('telegram-git-notifier.bot.token', '');
+        /** @var string $url */
+        $url = config('telegram-git-notifier.app.url', '');
+
+        $webhook->setToken($token);
+        $webhook->setUrl($url);
 
         return $webhook;
     }
 
     private function maskToken(): string
     {
-        $token = (string) config('telegram-git-notifier.bot.token', '');
+        /** @var string $token */
+        $token = config('telegram-git-notifier.bot.token', '');
 
         if (strlen($token) < 10) {
             return '***';

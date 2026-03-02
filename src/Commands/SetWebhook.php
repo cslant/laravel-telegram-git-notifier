@@ -15,7 +15,8 @@ class SetWebhook extends Command
 
     public function handle(): void
     {
-        $url = (string) config('telegram-git-notifier.app.url');
+        /** @var string $url */
+        $url = config('telegram-git-notifier.app.url', '');
         $this->components->info("Setting webhook to: {$url}");
 
         try {
@@ -34,8 +35,14 @@ class SetWebhook extends Command
     private function createWebhook(): WebhookInterface
     {
         $webhook = new Webhook();
-        $webhook->setToken((string) config('telegram-git-notifier.bot.token'));
-        $webhook->setUrl((string) config('telegram-git-notifier.app.url'));
+
+        /** @var string $token */
+        $token = config('telegram-git-notifier.bot.token', '');
+        /** @var string $url */
+        $url = config('telegram-git-notifier.app.url', '');
+
+        $webhook->setToken($token);
+        $webhook->setUrl($url);
 
         return $webhook;
     }

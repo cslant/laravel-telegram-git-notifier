@@ -79,8 +79,13 @@ class TelegramGitNotifierServiceProvider extends ServiceProvider implements Defe
 
         $this->app->singleton(WebhookInterface::class, static function () {
             $webhook = new Webhook();
-            $webhook->setToken((string) config('telegram-git-notifier.bot.token'));
-            $webhook->setUrl((string) config('telegram-git-notifier.app.url'));
+            /** @var string $token */
+            $token = config('telegram-git-notifier.bot.token', '');
+            /** @var string $url */
+            $url = config('telegram-git-notifier.app.url', '');
+
+            $webhook->setToken($token);
+            $webhook->setUrl($url);
 
             return $webhook;
         });
