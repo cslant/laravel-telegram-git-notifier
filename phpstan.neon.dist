@@ -6,8 +6,6 @@ parameters:
     paths:
         - src
         - routes
-    scanDirectories:
-        - ../telegram-git-notifier/src
     tmpDir: build/phpstan
     checkOctaneCompatibility: true
     checkModelProperties: true
