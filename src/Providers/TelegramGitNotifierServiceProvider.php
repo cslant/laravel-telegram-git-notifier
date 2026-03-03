@@ -73,12 +73,16 @@ class TelegramGitNotifierServiceProvider extends ServiceProvider implements Defe
             return new Bot($app->make(Telegram::class));
         });
 
-        $this->app->singleton(Notifier::class, static function () {
-            return new Notifier();
+        $this->app->singleton(Notifier::class, static function ($app) {
+            return new Notifier($app->make(Telegram::class));
         });
 
-        $this->app->singleton(WebhookInterface::class, static function () {
-            $webhook = new Webhook();
+        $this->app->singleton(Client::class, static function () {
+            return new Client();
+        });
+
+        $this->app->singleton(WebhookInterface::class, static function ($app) {
+            $webhook = new Webhook($app->make(Client::class));
             /** @var string $token */
             $token = config('telegram-git-notifier.bot.token', '');
             /** @var string $url */
