@@ -5,13 +5,12 @@ use CSlant\TelegramGitNotifier\Interfaces\WebhookInterface;
 use CSlant\TelegramGitNotifier\Notifier;
 use CSlant\TelegramGitNotifier\Webhook;
 use GuzzleHttp\Client;
-use Telegram;
 
 it('binds Telegram client as singleton', function () {
-    $telegram1 = app(Telegram::class);
-    $telegram2 = app(Telegram::class);
+    $telegram1 = app(\Telegram::class);
+    $telegram2 = app(\Telegram::class);
 
-    expect($telegram1)->toBeInstanceOf(Telegram::class)
+    expect($telegram1)->toBeInstanceOf(\Telegram::class)
         ->and($telegram1)->toBe($telegram2);
 });
 
@@ -51,7 +50,7 @@ it('provides required services', function () {
     $provider = app()->getProvider(\CSlant\LaravelTelegramGitNotifier\Providers\TelegramGitNotifierServiceProvider::class);
     $provides = $provider->provides();
 
-    expect($provides)->toContain(Telegram::class)
+    expect($provides)->toContain(\Telegram::class)
         ->toContain(Client::class)
         ->toContain(Bot::class)
         ->toContain(Notifier::class)

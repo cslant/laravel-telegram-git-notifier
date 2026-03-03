@@ -58,7 +58,8 @@
   },
   "scripts": {
     "analyse": "vendor/bin/phpstan analyse",
-    "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes"
+    "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes",
+    "test": "vendor/bin/pest"
   },
   "support": {
     "issues": "https://github.com/cslant/laravel-telegram-git-notifier/issues"

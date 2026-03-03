@@ -2,6 +2,43 @@
 
 Here you can see the full list of changes between each Telegram Git Notifier package release.
 
+## v2.0.0 - 2026-03-03
+
+### 🚀 Major Release - Laravel 12 & Modern Architecture
+
+### ✨ New Features
+
+- **VerifyWebhookSecret Middleware**: New middleware for webhook secret verification with timing-safe `hash_equals()` comparison
+- **WebhookStatus Command**: New `php artisan tg-notifier:webhook:status` command to check webhook status
+- **DeferrableProvider**: Service provider now implements `DeferrableProvider` with singleton bindings for lazy loading
+- **API Retry Logic**: Exponential backoff for Telegram API rate limits (HTTP 429)
+
+### 🔧 Improvements
+
+- **PHP Version**: Upgraded to PHP ^8.4|^8.5
+- **Laravel Version**: Added Laravel 12 support (^11.0|^12.0)
+- **Type Safety**: Full return types, readonly properties, and explicit nullable params
+- **Match Expressions**: `switch` statements replaced with `match` expressions in CommandService and CallbackService
+- **Clean Services**: All services refactored with readonly properties and cleaner dependency injection
+
+### 🎨 Template Changes
+
+- Simplified emoji usage (single emoji per event type instead of multiple emojis)
+- Cleaner notification format with better structure
+
+### 💥 Breaking Changes
+
+- PHP `^8.4|^8.5` now required
+- Laravel `^11.0|^12.0` required (dropped Laravel 10 support)
+
+### 📦 Dependencies Updated
+
+- `orchestra/testbench`: ^v10.0
+- `pestphp/pest`: ^4.0
+- `nunomaduro/larastan`: ^3.9
+
+**Full Changelog**: https://github.com/cslant/laravel-telegram-git-notifier/compare/v1.2.0...v2.0.0
+
 ## v1.2.0 - 2024-05-23
 
 ### What's Changed
