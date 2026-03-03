@@ -70,10 +70,11 @@ class NotificationService
             }
 
             foreach ($target->threadIds as $threadId) {
-                $this->notifier->sendNotify(null, [
+                $sent = $this->notifier->sendNotify(null, [
                     'chat_id' => $target->chatId,
                     'message_thread_id' => $threadId,
                 ]);
+                unset($sent); // Return value intentionally discarded - notification sent
             }
         }
     }
